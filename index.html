@@ -76,13 +76,13 @@
             transform: scale(0.95) translateY(2px);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .button-container, .sub-menu, .sub-sub-menu, #mousseux-section, #static-section, #filtre-section {
+        .button-container, .sub-menu, .sub-sub-menu, #mousseux-section, #static-section, #filtre-section, #blanche-section {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 10px;
         }
-        .sub-menu, .sub-sub-menu, #mousseux-section, #static-section, #filtre-section {
+        .sub-menu, .sub-sub-menu, #mousseux-section, #static-section, #filtre-section, #blanche-section {
             display: none;
         }
         #info-popup {
@@ -112,7 +112,7 @@
             from { opacity: 1; }
             to { opacity: 0; }
         }
-        #mousseux-section, #static-section, #filtre-section {
+        #mousseux-section, #static-section, #filtre-section, #blanche-section {
             background: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 15px;
@@ -120,13 +120,13 @@
             text-align: center;
             max-width: 90%;
         }
-        #mousseux-section video, #static-section video, #filtre-section video {
+        #mousseux-section video, #static-section video, #filtre-section video, #blanche-section video {
             max-width: 100%;
             max-height: 200px;
             border-radius: 10px;
             margin-bottom: 15px;
         }
-        #mousseux-section p, #static-section p, #filtre-section p {
+        #mousseux-section p, #static-section p, #filtre-section p, #blanche-section p {
             margin: 5px 0;
             font-size: 16px;
         }
@@ -188,7 +188,7 @@
             <source src="filtre.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la vidéo.
         </video>
-        <p><strong>🍫Filttré 120U</strong></p>
+        <p><strong>🍫Filtré 120U</strong></p>
         <p><strong>🟡Toblerone</strong></p>
         <p><strong>—— 5G=50€ ——</strong></p>
         <p><strong>—— 10G=80€ ——</strong></p>
@@ -198,6 +198,24 @@
         <div class="button-container">
             <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
             <button onclick="goBackToSubMenu()">🍫 Retour Filtré 🍫</button>
+        </div>
+    </div>
+    <div id="blanche-section">
+        <video controls autoplay muted>
+            <source src="blanche.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <p><strong>❄️Blanche🌨️</strong></p>
+        <p><strong>Écaille de poisson 🐟</strong></p>
+        <p><strong>Pret pour le détail😀</strong></p>
+        <p><strong>—— 1G=50€ ——</strong></p>
+        <p><strong>—— 3G=140€ ——</strong></p>
+        <p><strong>—— 5G=220€ ——</strong></p>
+        <p><strong>—— 10G=390€ ——</strong></p>
+        <p><strong>Sur place📍et en livraison 🚚</strong></p>
+        <div class="button-container">
+            <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
+            <button onclick="goBackToSubMenu()">❄️ Retour Blanche ❄️</button>
         </div>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -248,7 +266,8 @@
         }
 
         function selectBlanche() {
-            alert('Blanche sélectionné !');
+            document.getElementById('sub-menu').style.display = 'none';
+            document.getElementById('blanche-section').style.display = 'flex';
         }
 
         function goBackToMenu() {
@@ -265,6 +284,7 @@
             document.getElementById('mousseux-section').style.display = 'none';
             document.getElementById('static-section').style.display = 'none';
             document.getElementById('filtre-section').style.display = 'none';
+            document.getElementById('blanche-section').style.display = 'none';
             document.getElementById('sub-sub-menu').style.display = 'flex';
         }
 
