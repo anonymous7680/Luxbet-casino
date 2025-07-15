@@ -6,7 +6,7 @@
     <title>Ma Mini-App Telegram</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -23,7 +23,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('chaton.jpg'); /* Remplace par ton image ou URL */
+            background-image: url('chaton.jpg');
             background-size: cover;
             background-position: center;
             opacity: 0.3;
@@ -40,40 +40,79 @@
             text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
         }
         button {
-            padding: 10px 20px;
+            padding: 12px 25px;
             font-size: 16px;
             cursor: pointer;
-            margin: 5px;
-            background-color: rgba(216, 191, 216, 0.9);
-            border: 1px solid #000000;
-            border-radius: 5px;
-            transition: transform 0.2s ease;
+            margin: 8px;
+            background: linear-gradient(45deg, #d8bfd8, #9370db);
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: #ffffff;
+            font-weight: bold;
+            transition: all 0.3s ease;
         }
         button:hover {
-            background-color: rgba(224, 224, 224, 0.9);
+            background: linear-gradient(45deg, #9370db, #6a0dad);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
         button:active {
-            animation: clickAnimation 0.2s ease;
+            transform: scale(0.95) translateY(2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        @keyframes clickAnimation {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        .button-container, .sub-menu, .sub-sub-menu {
+        .button-container, .sub-menu, .sub-sub-menu, #mousseux-section {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 10px;
         }
-        .sub-menu, .sub-sub-menu {
+        .sub-menu, .sub-sub-menu, #mousseux-section {
             display: none;
         }
-        #notification {
+        #info-popup {
             display: none;
-            color: #0000FF;
-            margin-top: 20px;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #e6e6fa, #d8bfd8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            color: #333;
+            text-align: center;
+            max-width: 80%;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        #info-popup.close {
+            animation: fadeOut 0.3s ease-out;
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        #mousseux-section {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 90%;
+        }
+        #mousseux-section video {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        #mousseux-section p {
+            margin: 5px 0;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -88,15 +127,30 @@
         <button onclick="selectHash()" aria-label="Sélectionner Hash">Hash🍫</button>
         <button onclick="selectWeed()" aria-label="Sélectionner Weed">Weed🌳</button>
         <button onclick="selectBlanche()" aria-label="Sélectionner Blanche">Blanche❄️</button>
-        <button onclick="goBack()">Retour</button>
+        <button onclick="goBack()">🔙 Retour</button>
     </div>
     <div id="sub-sub-menu" class="sub-sub-menu">
         <button onclick="selectMousseux()" aria-label="Sélectionner Mousseux">Mousseux🧽</button>
         <button onclick="selectStatic()" aria-label="Sélectionner Static">Static⚡</button>
         <button onclick="selectFiltre()" aria-label="Sélectionner Filtré">Filtré🍫</button>
-        <button onclick="goBackToMenu()">Retour</button>
+        <button onclick="goBackToMenu()">🔙 Retour</button>
     </div>
-    <div id="notification"></div>
+    <div id="info-popup"></div>
+    <div id="mousseux-section">
+        <video controls autoplay>
+            <source src="mousseux.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <p><strong>—— 10G=50€ ——</strong></p>
+        <p><strong>—— 20G=120€ ——</strong></p>
+        <p><strong>—— 50G=190€ ——</strong></p>
+        <p><strong>—— 100G=350€ ——</strong></p>
+        <p><strong>Sur place📍et en livraison 🚚</strong></p>
+        <div class="button-container">
+            <button onclick="window.open('https://votre-url-ici.com', '_blank')">Contact📱</button>
+            <button onclick="goBackToSubMenu()">🧽 Retour Mousseux 2025🧽</button>
+        </div>
+    </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         window.Telegram.WebApp.ready();
@@ -111,29 +165,41 @@
             document.getElementById('main-buttons').style.display = 'flex';
         }
 
-        function showNotification(message) {
-            const notif = document.getElementById('notification');
-            notif.textContent = message;
-            notif.style.display = 'block';
-            setTimeout(() => notif.style.display = 'none', 3000);
+        function showInfo() {
+            const popup = document.getElementById('info-popup');
+            popup.innerHTML = `
+                <p style="margin: 0; font-size: 16px; color: #ff69b4;">✨ Merci de votre confiance ! ✨</p>
+                <p style="margin: 10px 0; font-size: 14px;">Chez <strong>[DRY.COFFEE76]</strong>, on répond rapidement à vos messages en privé 💬.</p>
+                <p style="margin: 10px 0; font-size: 14px;">On met un point d’honneur à vous offrir de la qualité au top à chaque commande 💎.</p>
+                <p style="margin: 10px 0; font-size: 14px; color: #ff4500;">⚠️ Pour toute demande de commande, merci de nous envoyer une vidéo :</p>
+                <p style="margin: 10px 0; font-size: 14px;">cela nous permet de garantir un meilleur suivi et plus de sécurité pour vous comme pour nous 🎥🔒.</p>
+                <p style="margin: 10px 0; font-size: 16px; color: #ffd700;">Au plaisir de vous satisfaire 💛</p>
+                <button onclick="closeInfo()" style="margin-top: 15px;">🔙 Retour</button>
+            `;
+            popup.style.display = 'block';
+            setTimeout(() => {
+                popup.classList.add('close');
+                setTimeout(() => popup.style.display = 'none', 300);
+            }, 10000);
         }
 
-        function showInfo() {
-            showNotification('Bouton Information cliqué !');
+        function closeInfo() {
+            const popup = document.getElementById('info-popup');
+            popup.classList.add('close');
+            setTimeout(() => popup.style.display = 'none', 300);
         }
 
         function selectHash() {
             document.getElementById('sub-menu').style.display = 'none';
             document.getElementById('sub-sub-menu').style.display = 'flex';
-            showNotification('Hash sélectionné !');
         }
 
         function selectWeed() {
-            showNotification('Weed sélectionné !');
+            alert('Weed sélectionné !');
         }
 
         function selectBlanche() {
-            showNotification('Blanche sélectionné !');
+            alert('Blanche sélectionné !');
         }
 
         function goBackToMenu() {
@@ -142,15 +208,21 @@
         }
 
         function selectMousseux() {
-            showNotification('Mousseux sélectionné !');
+            document.getElementById('sub-sub-menu').style.display = 'none';
+            document.getElementById('mousseux-section').style.display = 'flex';
+        }
+
+        function goBackToSubMenu() {
+            document.getElementById('mousseux-section').style.display = 'none';
+            document.getElementById('sub-sub-menu').style.display = 'flex';
         }
 
         function selectStatic() {
-            showNotification('Static sélectionné !');
+            alert('Static sélectionné !');
         }
 
         function selectFiltre() {
-            showNotification('Filtré sélectionné !');
+            alert('Filtré sélectionné !');
         }
     </script>
 </body>
