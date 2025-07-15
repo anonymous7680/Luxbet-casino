@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Mini-App Telegram</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #808080;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('chaton.jpg'); /* Remplace par ton image ou URL */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        h1 {
+            color: #FFFF00;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        }
+        h2 {
+            color: #0000FF;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+            background-color: rgba(216, 191, 216, 0.9);
+            border: 1px solid #000000;
+            border-radius: 5px;
+            transition: transform 0.2s ease;
+        }
+        button:hover {
+            background-color: rgba(224, 224, 224, 0.9);
+        }
+        button:active {
+            animation: clickAnimation 0.2s ease;
+        }
+        @keyframes clickAnimation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .button-container, .sub-menu, .sub-sub-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .sub-menu, .sub-sub-menu {
+            display: none;
+        }
+        #notification {
+            display: none;
+            color: #0000FF;
+            margin-top: 20px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <h1>DRYCOFFEE76</h1>
+    <h2>Bienvenue</h2>
+    <div id="main-buttons" class="button-container">
+        <button onclick="showMenu()">Menu</button>
+        <button onclick="showInfo()">Information</button>
+    </div>
+    <div id="sub-menu" class="sub-menu">
+        <button onclick="selectHash()" aria-label="Sélectionner Hash">Hash🍫</button>
+        <button onclick="selectWeed()" aria-label="Sélectionner Weed">Weed🌳</button>
+        <button onclick="selectBlanche()" aria-label="Sélectionner Blanche">Blanche❄️</button>
+        <button onclick="goBack()">Retour</button>
+    </div>
+    <div id="sub-sub-menu" class="sub-sub-menu">
+        <button onclick="selectMousseux()" aria-label="Sélectionner Mousseux">Mousseux🧽</button>
+        <button onclick="selectStatic()" aria-label="Sélectionner Static">Static⚡</button>
+        <button onclick="selectFiltre()" aria-label="Sélectionner Filtré">Filtré🍫</button>
+        <button onclick="goBackToMenu()">Retour</button>
+    </div>
+    <div id="notification"></div>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        window.Telegram.WebApp.ready();
+
+        function showMenu() {
+            document.getElementById('main-buttons').style.display = 'none';
+            document.getElementById('sub-menu').style.display = 'flex';
+        }
+
+        function goBack() {
+            document.getElementById('sub-menu').style.display = 'none';
+            document.getElementById('main-buttons').style.display = 'flex';
+        }
+
+        function showNotification(message) {
+            const notif = document.getElementById('notification');
+            notif.textContent = message;
+            notif.style.display = 'block';
+            setTimeout(() => notif.style.display = 'none', 3000);
+        }
+
+        function showInfo() {
+            showNotification('Bouton Information cliqué !');
+        }
+
+        function selectHash() {
+            document.getElementById('sub-menu').style.display = 'none';
+            document.getElementById('sub-sub-menu').style.display = 'flex';
+            showNotification('Hash sélectionné !');
+        }
+
+        function selectWeed() {
+            showNotification('Weed sélectionné !');
+        }
+
+        function selectBlanche() {
+            showNotification('Blanche sélectionné !');
+        }
+
+        function goBackToMenu() {
+            document.getElementById('sub-sub-menu').style.display = 'none';
+            document.getElementById('sub-menu').style.display = 'flex';
+        }
+
+        function selectMousseux() {
+            showNotification('Mousseux sélectionné !');
+        }
+
+        function selectStatic() {
+            showNotification('Static sélectionné !');
+        }
+
+        function selectFiltre() {
+            showNotification('Filtré sélectionné !');
+        }
+    </script>
+</body>
+</html>
