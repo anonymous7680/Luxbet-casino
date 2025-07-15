@@ -15,6 +15,7 @@
             margin: 0;
             background-color: #4a4a4a; /* Fond gris foncé */
             position: relative;
+            overflow: hidden;
         }
         body::before {
             content: '';
@@ -25,6 +26,94 @@
             height: 100%;
             background: none;
             z-index: -1;
+        }
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none; /* Empêche les clics sur les emojis */
+        }
+        body::before, body::after {
+            content: '';
+        }
+        /* Emojis décoratifs */
+        body::before {
+            content: '❄️';
+            position: absolute;
+            font-size: 2.5em;
+            top: 10%;
+            left: 15%;
+            color: #87ceeb;
+            text-shadow: 0 0 10px rgba(135, 206, 235, 0.7);
+            animation: float 6s infinite ease-in-out;
+        }
+        body::after {
+            content: '🍫';
+            position: absolute;
+            font-size: 2em;
+            top: 30%;
+            left: 70%;
+            color: #8b4513;
+            text-shadow: 0 0 8px rgba(139, 69, 19, 0.7);
+            animation: float 7s infinite ease-in-out;
+        }
+        body::before:nth-child(2) {
+            content: '🌳';
+            position: absolute;
+            font-size: 2.2em;
+            top: 60%;
+            left: 25%;
+            color: #228b22;
+            text-shadow: 0 0 9px rgba(34, 139, 34, 0.7);
+            animation: float 5.5s infinite ease-in-out;
+        }
+        body::before:nth-child(3) {
+            content: '❄️';
+            position: absolute;
+            font-size: 1.8em;
+            top: 75%;
+            left: 80%;
+            color: #87ceeb;
+            text-shadow: 0 0 10px rgba(135, 206, 235, 0.7);
+            animation: float 6.5s infinite ease-in-out;
+        }
+        body::after:nth-child(2) {
+            content: '🍫';
+            position: absolute;
+            font-size: 2.3em;
+            top: 20%;
+            left: 40%;
+            color: #8b4513;
+            text-shadow: 0 0 8px rgba(139, 69, 19, 0.7);
+            animation: float 6s infinite ease-in-out;
+        }
+        body::after:nth-child(3) {
+            content: '🌳';
+            position: absolute;
+            font-size: 2em;
+            top: 50%;
+            left: 90%;
+            color: #228b22;
+            text-shadow: 0 0 9px rgba(34, 139, 34, 0.7);
+            animation: float 5.8s infinite ease-in-out;
+        }
+        body::before:nth-child(4) {
+            content: '🌳';
+            position: absolute;
+            font-size: 2.1em;
+            top: 40%;
+            left: 60%;
+            color: #2e8b57;
+            text-shadow: 0 0 9px rgba(46, 139, 87, 0.7);
+            animation: float 5.2s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
         h1 {
             color: transparent;
@@ -138,6 +227,8 @@
     <div id="main-buttons" class="button-container">
         <button onclick="showMenu()">Menu</button>
         <button onclick="showInfo()">Information</button>
+        <button onclick="window.open('https://t.me/+ayptPdxw1WEzNDVk', '_blank')">Canal Telegram</button>
+        <button onclick="window.open('https://ptdym198.org/joinchat/vlNUyjhhgWD8SfEaRTwUCQ', '_blank')">Canal Potato</button>
     </div>
     <div id="sub-menu" class="sub-menu">
         <button onclick="selectHash()" aria-label="Sélectionner Hash">Hash🍫</button>
@@ -262,7 +353,16 @@
         }
 
         function selectWeed() {
-            alert('Weed sélectionné !');
+            const popup = document.getElementById('info-popup');
+            popup.innerHTML = `
+                <p style="margin: 0; font-size: 18px; color: #32cd32;">🌱 pas pour le moment mais pour bientôt ⏳😄</p>
+                <button onclick="closeInfo()" style="margin-top: 15px;">🔙 Retour</button>
+            `;
+            popup.style.display = 'block';
+            setTimeout(() => {
+                popup.classList.add('close');
+                setTimeout(() => popup.style.display = 'none', 300);
+            }, 5000); // Ferme automatiquement après 5 secondes
         }
 
         function selectBlanche() {
