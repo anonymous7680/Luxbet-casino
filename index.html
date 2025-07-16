@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ma Mini-App Telegram</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -17,98 +18,43 @@
             position: relative;
             overflow: auto;
         }
-        body::before {
-            content: '';
+        .deco-emoji {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: none;
-            z-index: -1;
-        }
-        body::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
             pointer-events: none;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+            animation: float 5s infinite ease-in-out;
         }
-        body::before, body::after {
-            content: '';
-        }
-        body::before {
-            content: '❄️';
-            position: absolute;
-            font-size: 2.5em;
-            top: 10%;
-            left: 15%;
-            color: #87ceeb;
-            text-shadow: 0 0 10px rgba(135, 206, 235, 0.7);
-            animation: float 6s infinite ease-in-out;
-        }
-        body::after {
-            content: '🍫';
-            position: absolute;
+        .deco-emoji.coffee1 {
+            content: '☕';
             font-size: 2em;
-            top: 30%;
-            left: 70%;
-            color: #8b4513;
-            text-shadow: 0 0 8px rgba(139, 69, 19, 0.7);
-            animation: float 7s infinite ease-in-out;
-        }
-        body::before:nth-child(2) {
-            content: '🌳';
-            position: absolute;
-            font-size: 2.2em;
-            top: 60%;
-            left: 25%;
-            color: #228b22;
-            text-shadow: 0 0 9px rgba(34, 139, 34, 0.7);
-            animation: float 5.5s infinite ease-in-out;
-        }
-        body::before:nth-child(3) {
-            content: '❄️';
-            position: absolute;
-            font-size: 1.8em;
-            top: 75%;
+            top: 15%;
             left: 80%;
-            color: #87ceeb;
-            text-shadow: 0 0 10px rgba(135, 206, 235, 0.7);
-            animation: float 6.5s infinite ease-in-out;
-        }
-        body::after:nth-child(2) {
-            content: '🍫';
-            position: absolute;
-            font-size: 2.3em;
-            top: 20%;
-            left: 40%;
             color: #8b4513;
-            text-shadow: 0 0 8px rgba(139, 69, 19, 0.7);
-            animation: float 6s infinite ease-in-out;
         }
-        body::after:nth-child(3) {
-            content: '🌳';
-            position: absolute;
-            font-size: 2em;
-            top: 50%;
-            left: 90%;
-            color: #228b22;
-            text-shadow: 0 0 9px rgba(34, 139, 34, 0.7);
-            animation: float 5.8s infinite ease-in-out;
+        .deco-emoji.coffee2 {
+            content: '☕';
+            font-size: 1.8em;
+            top: 65%;
+            left: 20%;
+            color: #6b3e2e;
+            animation-delay: 1s;
         }
-        body::before:nth-child(4) {
-            content: '🌳';
-            position: absolute;
-            font-size: 2.1em;
-            top: 40%;
-            left: 60%;
-            color: #2e8b57;
-            text-shadow: 0 0 9px rgba(46, 139, 87, 0.7);
-            animation: float 5.2s infinite ease-in-out;
+        .deco-emoji.star {
+            content: '✨';
+            font-size: 2.2em;
+            top: 35%;
+            left: 50%;
+            color: #ffd700;
+            animation-delay: 0.5s;
+        }
+        body.hide-emojis .deco-emoji {
+            display: none;
+        }
+        #welcome-image {
+            display: block;
+        }
+        body.hide-welcome-image #welcome-image {
+            display: none;
         }
         @keyframes float {
             0%, 100% { transform: translateY(0); }
@@ -119,10 +65,11 @@
             background: linear-gradient(45deg, #ffff00, #ffd700);
             -webkit-background-clip: text;
             background-clip: text;
-            font-family: 'Arial Black', Impact, sans-serif;
-            font-size: 3em;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 3.5em;
             margin-bottom: 10px;
-            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 255, 0, 0.7);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 255, 0, 0.5);
             -webkit-text-stroke: 1px rgba(255, 215, 0, 0.8);
             animation: pulse 1.8s infinite alternate;
         }
@@ -131,57 +78,117 @@
             background: linear-gradient(45deg, #00b7eb, #800080);
             -webkit-background-clip: text;
             background-clip: text;
-            font-family: 'Georgia', serif;
-            font-size: 2.2em;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            font-size: 2.5em;
             margin-bottom: 20px;
-            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 183, 235, 0.7);
-            -webkit-text-stroke: 1px rgba(0, 183, 235, 0.8);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 183, 235, 0.5);
+            -webkit-text-stroke: 0.5px rgba(0, 183, 235, 0.8);
             animation: pulse 2s infinite alternate;
         }
         @keyframes pulse {
             from { transform: scale(1); }
             to { transform: scale(1.05); }
         }
-        button {
-            padding: 12px 25px;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 8px;
-            background: linear-gradient(45deg, #d8bfd8, #9370db), url('chaton.jpg');
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: overlay; /* Mélange le gradient et l'image */
-            opacity: 0.85; /* Transparence légère pour l'ensemble du bouton */
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        .welcome-image {
+            max-width: 80%;
+            max-height: 200px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 15px;
+            animation: fadeIn 1s ease-in;
+        }
+        .welcome-text {
             color: #ffffff;
-            font-weight: bold;
+            font-size: 1.4em;
+            font-weight: 300;
+            text-align: center;
+            max-width: 80%;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.3);
+            background: linear-gradient(45deg, #ffffff, #d8bfd8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: fadeIn 1s ease-in;
+        }
+        .welcome-text::before,
+        .welcome-text::after {
+            content: '✨';
+            color: #ffd700;
+            margin: 0 10px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        button {
+            padding: 14px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px;
+            background: linear-gradient(45deg, #d8bfd8, #9370db);
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             transition: all 0.3s ease;
             z-index: 10;
-            position: relative;
         }
         button:hover {
-            background: linear-gradient(45deg, #9370db, #6a0dad), url('chaton.jpg');
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: overlay;
-            opacity: 1; /* Pleine opacité au survol */
+            background: linear-gradient(45deg, #9370db, #6a0dad);
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
         }
         button:active {
             transform: scale(0.95) translateY(2px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
-        .button-container, .sub-menu, .sub-sub-menu, #mousseux-section, #static-section, #filtre-section, #blanche-section {
+        .button-container, .sub-menu, .sub-sub-menu, #mousseux-section, #static-section, #filtre-section, #blanche-section, .info-container, .telegram-container, .potato-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+            animation: slideIn 0.5s ease-in;
         }
-        .sub-menu, .sub-sub-menu, #mousseux-section, #static-section, #filtre-section, #blanche-section {
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sub-menu, .sub-sub-menu, #mousseux-section, #static-section, #filtre-section, #blanche-section, .info-container, .telegram-container, .potato-container {
             display: none;
+        }
+        .info-container p, .telegram-container p, .potato-container p, #mousseux-section p, #static-section p, #filtre-section p, #blanche-section p {
+            margin: 8px 0;
+            font-size: 1.2em;
+            font-weight: 400;
+            color: #333;
+            text-align: center;
+            line-height: 1.5;
+            letter-spacing: 0.3px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+        .info-container p.highlight, .telegram-container p.highlight, .potato-container p.highlight {
+            color: #ff69b4;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        #mousseux-section, #static-section, #filtre-section, #blanche-section {
+            background: rgba(255, 255, 255, 0.85);
+        }
+        #mousseux-section video, #static-section video, #filtre-section video, #blanche-section video {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
         #info-popup {
             display: none;
@@ -190,9 +197,9 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: linear-gradient(135deg, #e6e6fa, #d8bfd8);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
             color: #333;
             text-align: center;
             max-width: 80%;
@@ -210,150 +217,168 @@
             from { opacity: 1; }
             to { opacity: 0; }
         }
-        #mousseux-section, #static-section, #filtre-section, #blanche-section {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            max-width: 90%;
-        }
-        #mousseux-section video, #static-section video, #filtre-section video, #blanche-section video {
-            max-width: 100%;
-            max-height: 200px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-        #mousseux-section p, #static-section p, #filtre-section p, #blanche-section p {
-            margin: 5px 0;
-            font-size: 16px;
-        }
     </style>
 </head>
 <body>
     <h1>DRYCOFFEE76</h1>
-    <h2>Bienvenue</h2>
+    <h2 id="main-title">Bienvenue</h2>
+    <img id="welcome-image" src="chaton.jpg" alt="Chaton" class="welcome-image">
+    <p id="welcome-text" class="welcome-text">Découvrez notre sélection exclusive de produits de qualité. Cliquez sur "Menu" pour explorer ou rejoignez nos canaux pour plus d'infos !</p>
+    <div class="deco-emoji coffee1">☕</div>
+    <div class="deco-emoji coffee2">☕</div>
+    <div class="deco-emoji star">✨</div>
     <div id="main-buttons" class="button-container">
-        <button onclick="showMenu()">Menu</button>
-        <button onclick="showInfo()">Information</button>
-        <button onclick="window.open('https://t.me/+ayptPdxw1WEzNDVk', '_blank')">Canal Telegram</button>
-        <button onclick="window.open('https://ptdym198.org/joinchat/vlNUyjhhgWD8SfEaRTwUCQ', '_blank')">Canal Potato</button>
+        <button onclick="showInterface('menu')">Menu</button>
+        <button onclick="showInterface('info')">Information</button>
+        <button onclick="showInterface('telegram')">Canal Telegram</button>
+        <button onclick="showInterface('potato')">Canal Potato</button>
     </div>
-    <div id="sub-menu" class="sub-menu">
-        <button onclick="selectHash()" aria-label="Sélectionner Hash">Hash🍫</button>
-        <button onclick="selectWeed()" aria-label="Sélectionner Weed">Weed🌳</button>
-        <button onclick="selectBlanche()" aria-label="Sélectionner Blanche">Blanche❄️</button>
-        <button onclick="goBack()">🔙 Retour</button>
+    <div id="menu-interface" class="menu-interface">
+        <div id="sub-menu" class="sub-menu">
+            <button onclick="selectHash()" aria-label="Sélectionner Hash">Hash🍫</button>
+            <button onclick="selectWeed()" aria-label="Sélectionner Weed">Weed🌳</button>
+            <button onclick="selectBlanche()" aria-label="Sélectionner Blanche">Blanche❄️</button>
+            <button onclick="showInterface('main')">🔙 Retour à l'accueil</button>
+        </div>
+        <div id="sub-sub-menu" class="sub-sub-menu">
+            <button onclick="selectMousseux()" aria-label="Sélectionner Mousseux">Mousseux🧽</button>
+            <button onclick="selectStatic()" aria-label="Sélectionner Static">Static⚡</button>
+            <button onclick="selectFiltre()" aria-label="Sélectionner Filtré">Filtré🍫</button>
+            <button onclick="goBackToMenu()">🔙 Retour</button>
+        </div>
+        <div id="mousseux-section">
+            <video controls autoplay muted>
+                <source src="jaune.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+            <p><strong>—— 10G=50€ ——</strong></p>
+            <p><strong>—— 20G=120€ ——</strong></p>
+            <p><strong>—— 50G=190€ ——</strong></p>
+            <p><strong>—— 100G=350€ ——</strong></p>
+            <p><strong>Sur place📍et en livraison 🚚</strong></p>
+            <div class="button-container">
+                <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
+                <button onclick="goBackToSubMenu()">🧽 Retour Mousseux 2025🧽</button>
+            </div>
+        </div>
+        <div id="static-section">
+            <video controls autoplay muted>
+                <source src="static.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+            <p><strong>Static⚡️ no farm 120U</strong></p>
+            <p><strong>—— 5G=50€ ——</strong></p>
+            <p><strong>—— 10G=90€ ——</strong></p>
+            <p><strong>—— 25G=180€ ——</strong></p>
+            <p><strong>—— 50G=330€ ——</strong></p>
+            <p><strong>Sur place📍et en livraison 🚚</strong></p>
+            <div class="button-container">
+                <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
+                <button onclick="goBackToSubMenu()">⚡️ Retour Static ⚡️</button>
+            </div>
+        </div>
+        <div id="filtre-section">
+            <video controls autoplay muted>
+                <source src="filtre.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+            <p><strong>🍫Filtré 120U</strong></p>
+            <p><strong>🟡Toblerone</strong></p>
+            <p><strong>—— 5G=50€ ——</strong></p>
+            <p><strong>—— 10G=80€ ——</strong></p>
+            <p><strong>—— 25G=160€ ——</strong></p>
+            <p><strong>—— 50G=300€ ——</strong></p>
+            <p><strong>Sur place📍et en livraison 🚚</strong></p>
+            <div class="button-container">
+                <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
+                <button onclick="goBackToSubMenu()">🍫 Retour Filtré 🍫</button>
+            </div>
+        </div>
+        <div id="blanche-section">
+            <video controls autoplay muted>
+                <source src="blanche.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+            <p><strong>❄️Blanche🌨️</strong></p>
+            <p><strong>Écaille de poisson 🐟</strong></p>
+            <p><strong>Pret pour le détail😀</strong></p>
+            <p><strong>—— 1G=50€ ——</strong></p>
+            <p><strong>—— 3G=140€ ——</strong></p>
+            <p><strong>—— 5G=220€ ——</strong></p>
+            <p><strong>—— 10G=390€ ——</strong></p>
+            <p><strong>Sur place📍et en livraison 🚚</strong></p>
+            <div class="button-container">
+                <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
+                <button onclick="goBackToSubMenu()">❄️ Retour Blanche ❄️</button>
+            </div>
+        </div>
     </div>
-    <div id="sub-sub-menu" class="sub-sub-menu">
-        <button onclick="selectMousseux()" aria-label="Sélectionner Mousseux">Mousseux🧽</button>
-        <button onclick="selectStatic()" aria-label="Sélectionner Static">Static⚡</button>
-        <button onclick="selectFiltre()" aria-label="Sélectionner Filtré">Filtré🍫</button>
-        <button onclick="goBackToMenu()">🔙 Retour</button>
+    <div id="info-interface" class="info-container">
+        <img src="chaton.jpg" alt="Chaton" class="welcome-image">
+        <p class="highlight">✨ Merci de votre confiance ! ✨</p>
+        <p>Chez <strong>DRYCOFFEE76</strong>, on répond rapidement à vos messages en privé 💬.</p>
+        <p>On met un point d’honneur à vous offrir de la qualité au top à chaque commande 💎.</p>
+        <p style="color: #ff4500;">⚠️ Pour toute demande de commande, merci de nous envoyer une vidéo :</p>
+        <p>cela nous permet de garantir un meilleur suivi et plus de sécurité pour vous comme pour nous 🎥🔒.</p>
+        <p style="color: #ffd700;">Au plaisir de vous satisfaire 💛</p>
+        <button onclick="showInterface('main')">🔙 Retour à l'accueil</button>
+    </div>
+    <div id="telegram-interface" class="telegram-container">
+        <p class="highlight">Rejoignez notre <strong>Canal Telegram</strong> !</p>
+        <p>Restez informé des dernières mises à jour et offres exclusives avec notre canal Telegram. Cliquez ci-dessous pour nous rejoindre !</p>
+        <button onclick="window.open('https://t.me/+ayptPdxw1WEzNDVk', '_blank')">Accéder au Canal Telegram</button>
+        <button onclick="showInterface('main')">🔙 Retour à l'accueil</button>
+    </div>
+    <div id="potato-interface" class="potato-container">
+        <p class="highlight">Rejoignez notre <strong>Canal Potato</strong> !</p>
+        <p>Découvrez des offres spéciales et des informations exclusives en rejoignant notre canal Potato. Cliquez pour commencer !</p>
+        <button onclick="window.open('https://ptdym198.org/joinchat/vlNUyjhhgWD8SfEaRTwUCQ', '_blank')">Accéder au Canal Potato</button>
+        <button onclick="showInterface('main')">🔙 Retour à l'accueil</button>
     </div>
     <div id="info-popup"></div>
-    <div id="mousseux-section">
-        <video controls autoplay muted>
-            <source src="jaune.mp4" type="video/mp4">
-            Votre navigateur ne supporte pas la vidéo.
-        </video>
-        <p><strong>—— 10G=50€ ——</strong></p>
-        <p><strong>—— 20G=120€ ——</strong></p>
-        <p><strong>—— 50G=190€ ——</strong></p>
-        <p><strong>—— 100G=350€ ——</strong></p>
-        <p><strong>Sur place📍et en livraison 🚚</strong></p>
-        <div class="button-container">
-            <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
-            <button onclick="goBackToSubMenu()">🧽 Retour Mousseux 2025🧽</button>
-        </div>
-    </div>
-    <div id="static-section">
-        <video controls autoplay muted>
-            <source src="static.mp4" type="video/mp4">
-            Votre navigateur ne supporte pas la vidéo.
-        </video>
-        <p><strong>Static⚡️ no farm 120U</strong></p>
-        <p><strong>—— 5G=50€ ——</strong></p>
-        <p><strong>—— 10G=90€ ——</strong></p>
-        <p><strong>—— 25G=180€ ——</strong></p>
-        <p><strong>—— 50G=330€ ——</strong></p>
-        <p><strong>Sur place📍et en livraison 🚚</strong></p>
-        <div class="button-container">
-            <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
-            <button onclick="goBackToSubMenu()">⚡️ Retour Static ⚡️</button>
-        </div>
-    </div>
-    <div id="filtre-section">
-        <video controls autoplay muted>
-            <source src="filtre.mp4" type="video/mp4">
-            Votre navigateur ne supporte pas la vidéo.
-        </video>
-        <p><strong>🍫Filtré 120U</strong></p>
-        <p><strong>🟡Toblerone</strong></p>
-        <p><strong>—— 5G=50€ ——</strong></p>
-        <p><strong>—— 10G=80€ ——</strong></p>
-        <p><strong>—— 25G=160€ ——</strong></p>
-        <p><strong>—— 50G=300€ ——</strong></p>
-        <p><strong>Sur place📍et en livraison 🚚</strong></p>
-        <div class="button-container">
-            <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
-            <button onclick="goBackToSubMenu()">🍫 Retour Filtré 🍫</button>
-        </div>
-    </div>
-    <div id="blanche-section">
-        <video controls autoplay muted>
-            <source src="blanche.mp4" type="video/mp4">
-            Votre navigateur ne supporte pas la vidéo.
-        </video>
-        <p><strong>❄️Blanche🌨️</strong></p>
-        <p><strong>Écaille de poisson 🐟</strong></p>
-        <p><strong>Pret pour le détail😀</strong></p>
-        <p><strong>—— 1G=50€ ——</strong></p>
-        <p><strong>—— 3G=140€ ——</strong></p>
-        <p><strong>—— 5G=220€ ——</strong></p>
-        <p><strong>—— 10G=390€ ——</strong></p>
-        <p><strong>Sur place📍et en livraison 🚚</strong></p>
-        <div class="button-container">
-            <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
-            <button onclick="goBackToSubMenu()">❄️ Retour Blanche ❄️</button>
-        </div>
-    </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         window.Telegram.WebApp.ready();
 
-        function showMenu() {
+        function showInterface(interfaceId) {
+            // Masquer toutes les interfaces
             document.getElementById('main-buttons').style.display = 'none';
-            document.getElementById('sub-menu').style.display = 'flex';
-        }
-
-        function goBack() {
+            document.getElementById('menu-interface').style.display = 'none';
+            document.getElementById('info-interface').style.display = 'none';
+            document.getElementById('telegram-interface').style.display = 'none';
+            document.getElementById('potato-interface').style.display = 'none';
+            document.getElementById('welcome-text').style.display = 'none';
             document.getElementById('sub-menu').style.display = 'none';
-            document.getElementById('main-buttons').style.display = 'flex';
-        }
+            document.getElementById('sub-sub-menu').style.display = 'none';
+            document.getElementById('mousseux-section').style.display = 'none';
+            document.getElementById('static-section').style.display = 'none';
+            document.getElementById('filtre-section').style.display = 'none';
+            document.getElementById('blanche-section').style.display = 'none';
 
-        function showInfo() {
-            const popup = document.getElementById('info-popup');
-            popup.innerHTML = `
-                <p style="margin: 0; font-size: 16px; color: #ff69b4;">✨ Merci de votre confiance ! ✨</p>
-                <p style="margin: 10px 0; font-size: 14px;">Chez <strong>[DRY.COFFEE76]</strong>, on répond rapidement à vos messages en privé 💬.</p>
-                <p style="margin: 10px 0; font-size: 14px;">On met un point d’honneur à vous offrir de la qualité au top à chaque commande 💎.</p>
-                <p style="margin: 10px 0; font-size: 14px; color: #ff4500;">⚠️ Pour toute demande de commande, merci de nous envoyer une vidéo :</p>
-                <p style="margin: 10px 0; font-size: 14px;">cela nous permet de garantir un meilleur suivi et plus de sécurité pour vous comme pour nous 🎥🔒.</p>
-                <p style="margin: 10px 0; font-size: 16px; color: #ffd700;">Au plaisir de vous satisfaire 💛</p>
-                <button onclick="closeInfo()" style="margin-top: 15px;">🔙 Retour</button>
-            `;
-            popup.style.display = 'block';
-            setTimeout(() => {
-                popup.classList.add('close');
-                setTimeout(() => popup.style.display = 'none', 300);
-            }, 10000);
-        }
+            // Gérer la classe hide-emojis et hide-welcome-image
+            document.body.classList.remove('hide-emojis', 'hide-welcome-image');
 
-        function closeInfo() {
-            const popup = document.getElementById('info-popup');
-            popup.classList.add('close');
-            setTimeout(() => popup.style.display = 'none', 300);
+            // Afficher l'interface demandée
+            if (interfaceId === 'main') {
+                document.getElementById('main-buttons').style.display = 'flex';
+                document.getElementById('welcome-text').style.display = 'block';
+                document.getElementById('main-title').textContent = 'Bienvenue';
+                document.body.classList.add('hide-emojis'); // Masquer les emojis sur l'accueil
+            } else if (interfaceId === 'menu') {
+                document.getElementById('menu-interface').style.display = 'block';
+                document.getElementById('sub-menu').style.display = 'flex';
+                document.getElementById('main-title').textContent = 'Menu';
+            } else if (interfaceId === 'info') {
+                document.getElementById('info-interface').style.display = 'flex';
+                document.getElementById('main-title').textContent = 'Information';
+                document.body.classList.add('hide-welcome-image'); // Masquer l'image chaton de l'accueil
+            } else if (interfaceId === 'telegram') {
+                document.getElementById('telegram-interface').style.display = 'flex';
+                document.getElementById('main-title').textContent = 'Canal Telegram';
+            } else if (interfaceId === 'potato') {
+                document.getElementById('potato-interface').style.display = 'flex';
+                document.getElementById('main-title').textContent = 'Canal Potato';
+            }
         }
 
         function selectHash() {
@@ -364,14 +389,16 @@
         function selectWeed() {
             const popup = document.getElementById('info-popup');
             popup.innerHTML = `
-                <p style="margin: 0; font-size: 18px; color: #32cd32;">🌱 pas pour le moment mais pour bientôt ⏳😄</p>
-                <button onclick="closeInfo()" style="margin-top: 15px;">🔙 Retour</button>
+                <p style="margin: 0; font-size: 1.3em; font-weight: 600; color: #32cd32;">🌱 Pas pour le moment mais pour bientôt ⏳😄</p>
+                <button onclick="closePopup()">🔙 Retour</button>
             `;
-            popup.style.display = 'block';
-            setTimeout(() => {
-                popup.classList.add('close');
-                setTimeout(() => popup.style.display = 'none', 300);
-            }, 5000);
+            popup.style.display = 'flex';
+        }
+
+        function closePopup() {
+            const popup = document.getElementById('info-popup');
+            popup.style.display = 'none';
+            popup.innerHTML = '';
         }
 
         function selectBlanche() {
@@ -409,4 +436,3 @@
     </script>
 </body>
 </html>
-
