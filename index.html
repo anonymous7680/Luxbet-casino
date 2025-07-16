@@ -64,7 +64,7 @@
         }
         .welcome-text {
             color: #ffffff;
-            font-size: 1.2em; /* Réduit de 1.4em à 1.2em */
+            font-size: 1.1em;
             font-weight: 300;
             text-align: center;
             max-width: 80%;
@@ -202,4 +202,195 @@
             <button onclick="showInterface('main')">🔙 Retour à l'accueil</button>
         </div>
         <div id="sub-sub-menu" class="sub-sub-menu">
-            <button onclick="selectMousseux()" aria-label="Sélectionner Mousseux">Mousseux�的设计
+            <button onclick="selectMousseux()" aria-label="Sélectionner Mousseux">Mousseux🧽</button>
+            <button onclick="selectStatic()" aria-label="Sélectionner Static">Static⚡</button>
+            <button onclick="selectFiltre()" aria-label="Sélectionner Filtré">Filtré🍫</button>
+            <button onclick="goBackToMenu()">🔙 Retour</button>
+        </div>
+        <div id="mousseux-section">
+            <video controls autoplay muted>
+                <source src="jaune.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+            <p><strong>—— 10G=50€ ——</strong></p>
+            <p><strong>—— 20G=120€ ——</strong></p>
+            <p><strong>—— 50G=190€ ——</strong></p>
+            <p><strong>—— 100G=350€ ——</strong></p>
+            <p><strong>Sur place📍et en livraison 🚚</strong></p>
+            <div class="button-container">
+                <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
+                <button onclick="goBackToSubMenu()">🧽 Retour Mousseux 2025🧽</button>
+            </div>
+        </div>
+        <div id="static-section">
+            <video controls autoplay muted>
+                <source src="static.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+            <p><strong>Static⚡️ no farm 120U</strong></p>
+            <p><strong>—— 5G=50€ ——</strong></p>
+            <p><strong>—— 10G=90€ ——</strong></p>
+            <p><strong>—— 25G=180€ ——</strong></p>
+            <p><strong>—— 50G=330€ ——</strong></p>
+            <p><strong>Sur place📍et en livraison 🚚</strong></p>
+            <div class="button-container">
+                <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
+                <button onclick="goBackToSubMenu()">⚡️ Retour Static ⚡️</button>
+            </div>
+        </div>
+        <div id="filtre-section">
+            <video controls autoplay muted>
+                <source src="filtre.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+            <p><strong>🍫Filtré 120U</strong></p>
+            <p><strong>🟡Toblerone</strong></p>
+            <p><strong>—— 5G=50€ ——</strong></p>
+            <p><strong>—— 10G=80€ ——</strong></p>
+            <p><strong>—— 25G=160€ ——</strong></p>
+            <p><strong>—— 50G=300€ ——</strong></p>
+            <p><strong>Sur place📍et en livraison 🚚</strong></p>
+            <div class="button-container">
+                <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
+                <button onclick="goBackToSubMenu()">🍫 Retour Filtré 🍫</button>
+            </div>
+        </div>
+        <div id="blanche-section">
+            <video controls autoplay muted>
+                <source src="blanche.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+            <p><strong>❄️Blanche🌨️</strong></p>
+            <p><strong>Écaille de poisson 🐟</strong></p>
+            <p><strong>Pret pour le détail😀</strong></p>
+            <p><strong>—— 1G=50€ ——</strong></p>
+            <p><strong>—— 3G=140€ ——</strong></p>
+            <p><strong>—— 5G=220€ ——</strong></p>
+            <p><strong>—— 10G=390€ ——</strong></p>
+            <p><strong>Sur place📍et en livraison 🚚</strong></p>
+            <div class="button-container">
+                <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
+                <button onclick="goBackToSubMenu()">❄️ Retour Blanche ❄️</button>
+            </div>
+        </div>
+    </div>
+    <div id="info-interface" class="info-container">
+        <img src="chaton.jpg" alt="Chaton" class="welcome-image">
+        <p class="highlight">✨ Merci de votre confiance ! ✨</p>
+        <p>Chez <strong>DRYCOFFEE76</strong>, on répond rapidement à vos messages en privé 💬.</p>
+        <p>On met un point d’honneur à vous offrir de la qualité au top à chaque commande 💎.</p>
+        <p style="color: #ff4500;">⚠️ Pour toute demande de commande, merci de nous envoyer une vidéo :</p>
+        <p>cela nous permet de garantir un meilleur suivi et plus de sécurité pour vous comme pour nous 🎥🔒.</p>
+        <p style="color: #ffd700;">Au plaisir de vous satisfaire 💛</p>
+        <button onclick="showInterface('main')">🔙 Retour à l'accueil</button>
+    </div>
+    <div id="telegram-interface" class="telegram-container">
+        <p class="highlight">Rejoignez notre <strong>Canal Telegram</strong> !</p>
+        <p>Restez informé des dernières mises à jour et offres exclusives avec notre canal Telegram. Cliquez ci-dessous pour nous rejoindre !</p>
+        <button onclick="window.open('https://t.me/+ayptPdxw1WEzNDVk', '_blank')">Accéder au Canal Telegram</button>
+        <button onclick="showInterface('main')">🔙 Retour à l'accueil</button>
+    </div>
+    <div id="potato-interface" class="potato-container">
+        <p class="highlight">Rejoignez notre <strong>Canal Potato</strong> !</p>
+        <p>Découvrez des offres spéciales et des informations exclusives en rejoignant notre canal Potato. Cliquez pour commencer !</p>
+        <button onclick="window.open('https://ptdym198.org/joinchat/vlNUyjhhgWD8SfEaRTwUCQ', '_blank')">Accéder au Canal Potato</button>
+        <button onclick="showInterface('main')">🔙 Retour à l'accueil</button>
+    </div>
+    <div id="info-popup"></div>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        window.Telegram.WebApp.ready();
+
+        function showInterface(interfaceId) {
+            document.getElementById('main-buttons').style.display = 'none';
+            document.getElementById('menu-interface').style.display = 'none';
+            document.getElementById('info-interface').style.display = 'none';
+            document.getElementById('telegram-interface').style.display = 'none';
+            document.getElementById('potato-interface').style.display = 'none';
+            document.getElementById('welcome-text').style.display = 'none';
+            document.getElementById('sub-menu').style.display = 'none';
+            document.getElementById('sub-sub-menu').style.display = 'none';
+            document.getElementById('mousseux-section').style.display = 'none';
+            document.getElementById('static-section').style.display = 'none';
+            document.getElementById('filtre-section').style.display = 'none';
+            document.getElementById('blanche-section').style.display = 'none';
+
+            document.body.classList.remove('hide-welcome-image');
+
+            if (interfaceId === 'main') {
+                document.getElementById('main-buttons').style.display = 'flex';
+                document.getElementById('welcome-text').style.display = 'block';
+                document.getElementById('main-title').textContent = 'Bienvenue';
+            } else if (interfaceId === 'menu') {
+                document.getElementById('menu-interface').style.display = 'block';
+                document.getElementById('sub-menu').style.display = 'flex';
+                document.getElementById('main-title').textContent = 'Menu';
+                document.body.classList.add('hide-welcome-image');
+            } else if (interfaceId === 'info') {
+                document.getElementById('info-interface').style.display = 'flex';
+                document.getElementById('main-title').textContent = 'Information';
+                document.body.classList.add('hide-welcome-image');
+            } else if (interfaceId === 'telegram') {
+                document.getElementById('telegram-interface').style.display = 'flex';
+                document.getElementById('main-title').textContent = 'Canal Telegram';
+            } else if (interfaceId === 'potato') {
+                document.getElementById('potato-interface').style.display = 'flex';
+                document.getElementById('main-title').textContent = 'Canal Potato';
+            }
+        }
+
+        function selectHash() {
+            document.getElementById('sub-menu').style.display = 'none';
+            document.getElementById('sub-sub-menu').style.display = 'flex';
+        }
+
+        function selectWeed() {
+            const popup = document.getElementById('info-popup');
+            popup.innerHTML = `
+                <p style="margin: 0; font-size: 1.3em; font-weight: 600; color: #32cd32;">🌱 Pas pour le moment mais pour bientôt ⏳😄</p>
+                <button onclick="closePopup()">🔙 Retour</button>
+            `;
+            popup.style.display = 'flex';
+        }
+
+        function closePopup() {
+            const popup = document.getElementById('info-popup');
+            popup.style.display = 'none';
+            popup.innerHTML = '';
+        }
+
+        function selectBlanche() {
+            document.getElementById('sub-menu').style.display = 'none';
+            document.getElementById('blanche-section').style.display = 'flex';
+        }
+
+        function goBackToMenu() {
+            document.getElementById('sub-sub-menu').style.display = 'none';
+            document.getElementById('sub-menu').style.display = 'flex';
+        }
+
+        function selectMousseux() {
+            document.getElementById('sub-sub-menu').style.display = 'none';
+            document.getElementById('mousseux-section').style.display = 'flex';
+        }
+
+        function goBackToSubMenu() {
+            document.getElementById('mousseux-section').style.display = 'none';
+            document.getElementById('static-section').style.display = 'none';
+            document.getElementById('filtre-section').style.display = 'none';
+            document.getElementById('blanche-section').style.display = 'none';
+            document.getElementById('sub-sub-menu').style.display = 'flex';
+        }
+
+        function selectStatic() {
+            document.getElementById('sub-sub-menu').style.display = 'none';
+            document.getElementById('static-section').style.display = 'flex';
+        }
+
+        function selectFiltre() {
+            document.getElementById('sub-sub-menu').style.display = 'none';
+            document.getElementById('filtre-section').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
