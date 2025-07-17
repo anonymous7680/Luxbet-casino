@@ -130,18 +130,18 @@
             display: none;
         }
         .info-container p, .telegram-container p, .potato-container p, #mousseux-section p, #static-section p, #filtre-section p, #blanche-section p {
-            margin: 8px 0;
-            font-size: 1.2em;
+            margin: 5px 0;
+            font-size: 0.9em;
             font-weight: 400;
             color: #333;
             text-align: center;
-            line-height: 1.5;
+            line-height: 1.3;
             letter-spacing: 0.3px;
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         }
         .info-container p.highlight, .telegram-container p.highlight, .potato-container p.highlight {
             color: #ff69b4;
-            font-size: 1.3em;
+            font-size: 1.0em;
             font-weight: 600;
         }
         #mousseux-section, #static-section, #filtre-section, #blanche-section {
@@ -151,7 +151,7 @@
             max-width: 100%;
             max-height: 200px;
             border-radius: 12px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
         #info-popup {
@@ -199,13 +199,13 @@
             <button onclick="selectHash()" aria-label="Sélectionner Hash">Hash🍫</button>
             <button onclick="selectWeed()" aria-label="Sélectionner Weed">Weed🌳</button>
             <button onclick="selectBlanche()" aria-label="Sélectionner Blanche">Blanche❄️</button>
-            <button onclick="showInterface('main')">🔙 Retour à l'accueil</button>
+            <button onclick="showInterface('main')">🔙Retour</button>
         </div>
         <div id="sub-sub-menu" class="sub-sub-menu">
             <button onclick="selectMousseux()" aria-label="Sélectionner Mousseux">Mousseux🧽</button>
             <button onclick="selectStatic()" aria-label="Sélectionner Static">Static⚡</button>
             <button onclick="selectFiltre()" aria-label="Sélectionner Filtré">Filtré🍫</button>
-            <button onclick="goBackToMenu()">🔙 Retour</button>
+            <button onclick="goBackToMenu()">🔙Retour</button>
         </div>
         <div id="mousseux-section">
             <video controls autoplay muted>
@@ -219,7 +219,7 @@
             <p><strong>Sur place📍et en livraison 🚚</strong></p>
             <div class="button-container">
                 <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
-                <button onclick="goBackToSubMenu()">🧽 Retour Mousseux 2025🧽</button>
+                <button onclick="goBackToSubMenu()">🔙Retour</button>
             </div>
         </div>
         <div id="static-section">
@@ -235,7 +235,7 @@
             <p><strong>Sur place📍et en livraison 🚚</strong></p>
             <div class="button-container">
                 <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
-                <button onclick="goBackToSubMenu()">⚡️ Retour Static ⚡️</button>
+                <button onclick="goBackToSubMenu()">🔙Retour</button>
             </div>
         </div>
         <div id="filtre-section">
@@ -252,7 +252,7 @@
             <p><strong>Sur place📍et en livraison 🚚</strong></p>
             <div class="button-container">
                 <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
-                <button onclick="goBackToSubMenu()">🍫 Retour Filtré 🍫</button>
+                <button onclick="goBackToSubMenu()">🔙Retour</button>
             </div>
         </div>
         <div id="blanche-section">
@@ -270,7 +270,7 @@
             <p><strong>Sur place📍et en livraison 🚚</strong></p>
             <div class="button-container">
                 <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
-                <button onclick="goBackToSubMenu()">❄️ Retour Blanche ❄️</button>
+                <button onclick="goBackToSubMenu()">🔙Retour</button>
             </div>
         </div>
     </div>
@@ -282,19 +282,19 @@
         <p style="color: #ff4500;">⚠️ Pour toute demande de commande, merci de nous envoyer une vidéo :</p>
         <p>cela nous permet de garantir un meilleur suivi et plus de sécurité pour vous comme pour nous 🎥🔒.</p>
         <p style="color: #ffd700;">Au plaisir de vous satisfaire 💛</p>
-        <button onclick="showInterface('main')">🔙 Retour à l'accueil</button>
+        <button onclick="showInterface('main')">🔙Retour</button>
     </div>
     <div id="telegram-interface" class="telegram-container">
         <p class="highlight">Rejoignez notre <strong>Canal Telegram</strong> !</p>
         <p>Restez informé des dernières mises à jour et offres exclusives avec notre canal Telegram. Cliquez ci-dessous pour nous rejoindre !</p>
         <button onclick="window.open('https://t.me/+ayptPdxw1WEzNDVk', '_blank')">Accéder au Canal Telegram</button>
-        <button onclick="showInterface('main')">🔙 Retour à l'accueil</button>
+        <button onclick="showInterface('main')">🔙Retour</button>
     </div>
     <div id="potato-interface" class="potato-container">
         <p class="highlight">Rejoignez notre <strong>Canal Potato</strong> !</p>
         <p>Découvrez des offres spéciales et des informations exclusives en rejoignant notre canal Potato. Cliquez pour commencer !</p>
         <button onclick="window.open('https://ptdym198.org/joinchat/vlNUyjhhgWD8SfEaRTwUCQ', '_blank')">Accéder au Canal Potato</button>
-        <button onclick="showInterface('main')">🔙 Retour à l'accueil</button>
+        <button onclick="showInterface('main')">🔙Retour</button>
     </div>
     <div id="info-popup"></div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -348,7 +348,7 @@
             const popup = document.getElementById('info-popup');
             popup.innerHTML = `
                 <p style="margin: 0; font-size: 1.3em; font-weight: 600; color: #32cd32;">🌱 Pas pour le moment mais pour bientôt ⏳😄</p>
-                <button onclick="closePopup()">🔙 Retour</button>
+                <button onclick="closePopup()">🔙Retour</button>
             `;
             popup.style.display = 'flex';
         }
