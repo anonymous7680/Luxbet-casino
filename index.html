@@ -177,11 +177,24 @@
             background: rgba(255, 255, 255, 0.85);
         }
         #mousseux-section video, #static-section video, #filtre-section video, #blanche-section video {
-            max-width: 100%;
+            max-width: 50%;
             max-height: 150px;
             border-radius: 12px;
-            margin-bottom: 5px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .video-container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 15px;
+            width: 100%;
+            justify-content: center;
+        }
+        .description-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            max-width: 45%;
         }
         #info-popup {
             display: none;
@@ -236,66 +249,82 @@
             <button onclick="selectFiltre()" aria-label="Sélectionner Filtré">Filtré🍫</button>
         </div>
         <div id="mousseux-section">
-            <video controls autoplay muted>
-                <source src="jaune.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p><strong>—— 10G=50€ ——</strong></p>
-            <p><strong>—— 20G=120€ ——</strong></p>
-            <p><strong>—— 50G=190€ ——</strong></p>
-            <p><strong>—— 100G=350€ ——</strong></p>
-            <p><strong>Sur place📍et en livraison 🚚</strong></p>
+            <div class="video-container">
+                <video controls autoplay muted>
+                    <source src="jaune.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la vidéo.
+                </video>
+                <div class="description-container">
+                    <p><strong>—— 10G=50€ ——</strong></p>
+                    <p><strong>—— 20G=120€ ——</strong></p>
+                    <p><strong>—— 50G=190€ ——</strong></p>
+                    <p><strong>—— 100G=350€ ——</strong></p>
+                    <p><strong>Sur place📍et en livraison 🚚</strong></p>
+                </div>
+            </div>
             <div class="button-container">
                 <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
                 <button onclick="goBackToSubMenu()">🔙Retour</button>
             </div>
         </div>
         <div id="static-section">
-            <video controls autoplay muted>
-                <source src="static.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p><strong>Static⚡️ no farm 120U</strong></p>
-            <p><strong>—— 5G=50€ ——</strong></p>
-            <p><strong>—— 10G=90€ ——</strong></p>
-            <p><strong>—— 25G=180€ ——</strong></p>
-            <p><strong>—— 50G=330€ ——</strong></p>
-            <p><strong>Sur place📍et en livraison 🚚</strong></p>
+            <div class="video-container">
+                <video controls autoplay muted>
+                    <source src="static.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la vidéo.
+                </video>
+                <div class="description-container">
+                    <p><strong>Static⚡️ no farm 120U</strong></p>
+                    <p><strong>—— 5G=50€ ——</strong></p>
+                    <p><strong>—— 10G=90€ ——</strong></p>
+                    <p><strong>—— 25G=180€ ——</strong></p>
+                    <p><strong>—— 50G=330€ ——</strong></p>
+                    <p><strong>Sur place📍et en livraison 🚚</strong></p>
+                </div>
+            </div>
             <div class="button-container">
                 <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
                 <button onclick="goBackToSubMenu()">🔙Retour</button>
             </div>
         </div>
         <div id="filtre-section">
-            <video controls autoplay muted>
-                <source src="filtre.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p><strong>🍫Filtré 120U</strong></p>
-            <p><strong>🟡Toblerone</strong></p>
-            <p><strong>—— 5G=50€ ——</strong></p>
-            <p><strong>—— 10G=80€ ——</strong></p>
-            <p><strong>—— 25G=160€ ——</strong></p>
-            <p><strong>—— 50G=300€ ——</strong></p>
-            <p><strong>Sur place📍et en livraison 🚚</strong></p>
+            <div class="video-container">
+                <video controls autoplay muted>
+                    <source src="filtre.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la vidéo.
+                </video>
+                <div class="description-container">
+                    <p><strong>🍫Filtré 120U</strong></p>
+                    <p><strong>🟡Toblerone</strong></p>
+                    <p><strong>—— 5G=50€ ——</strong></p>
+                    <p><strong>—— 10G=80€ ——</strong></p>
+                    <p><strong>—— 25G=160€ ——</strong></p>
+                    <p><strong>—— 50G=300€ ——</strong></p>
+                    <p><strong>Sur place📍et en livraison 🚚</strong></p>
+                </div>
+            </div>
             <div class="button-container">
                 <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
                 <button onclick="goBackToSubMenu()">🔙Retour</button>
             </div>
         </div>
         <div id="blanche-section">
-            <video controls autoplay muted>
-                <source src="blanche.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p><strong>❄️Blanche🌨️</strong></p>
-            <p><strong>Écaille de poisson 🐟</strong></p>
-            <p><strong>Pret pour le détail😀</strong></p>
-            <p><strong>—— 1G=50€ ——</strong></p>
-            <p><strong>—— 3G=140€ ——</strong></p>
-            <p><strong>—— 5G=220€ ——</strong></p>
-            <p><strong>—— 10G=390€ ——</strong></p>
-            <p><strong>Sur place📍et en livraison 🚚</strong></p>
+            <div class="video-container">
+                <video controls autoplay muted>
+                    <source src="blanche.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la vidéo.
+                </video>
+                <div class="description-container">
+                    <p><strong>❄️Blanche🌨️</strong></p>
+                    <p><strong>Écaille de poisson 🐟</strong></p>
+                    <p><strong>Pret pour le détail😀</strong></p>
+                    <p><strong>—— 1G=50€ ——</strong></p>
+                    <p><strong>—— 3G=140€ ——</strong></p>
+                    <p><strong>—— 5G=220€ ——</strong></p>
+                    <p><strong>—— 10G=390€ ——</strong></p>
+                    <p><strong>Sur place📍et en livraison 🚚</strong></p>
+                </div>
+            </div>
             <div class="button-container">
                 <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
                 <button onclick="goBackToSubMenu()">🔙Retour</button>
