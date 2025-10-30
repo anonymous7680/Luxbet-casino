@@ -1,489 +1,445 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma Mini-App Telegram</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
-            margin: 0;
-            padding-top: 10px;
-            background-color: #4a4a4a;
-            position: relative;
-            overflow: auto;
-        }
-        #welcome-image {
-            display: block;
-        }
-        body.hide-welcome-image #welcome-image {
-            display: none;
-        }
-        h1 {
-            color: transparent;
-            background: linear-gradient(45deg, #ffff00, #ffd700);
-            -webkit-background-clip: text;
-            background-clip: text;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 2.5em;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 255, 0, 0.5);
-            -webkit-text-stroke: 1px rgba(255, 215, 0, 0.8);
-            animation: pulse 1.8s infinite alternate;
-        }
-        h2 {
-            color: transparent;
-            background: linear-gradient(45deg, #00b7eb, #800080);
-            -webkit-background-clip: text;
-            background-clip: text;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 400;
-            font-size: 2em;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 183, 235, 0.5);
-            -webkit-text-stroke: 0.5px rgba(0, 183, 235, 0.8);
-            animation: pulse 2s infinite alternate;
-        }
-        @keyframes pulse {
-            from { transform: scale(1); }
-            to { transform: scale(1.05); }
-        }
-        .welcome-image {
-            max-width: 80%;
-            max-height: 120px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            margin-bottom: 5px;
-            animation: fadeIn 1s ease-in;
-        }
-        .welcome-text {
-            color: #ffffff;
-            font-size: 1em;
-            font-weight: 300;
-            text-align: center;
-            max-width: 80%;
-            margin-bottom: 8px;
-            line-height: 1.4;
-            letter-spacing: 0.5px;
-            text-shadow: 0 0 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.3);
-            background: linear-gradient(45deg, #ffffff, #d8bfd8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: fadeIn 1s ease-in;
-        }
-        .welcome-text::before,
-        .welcome-text::after {
-            content: '✨';
-            color: #ffd700;
-            margin: 0 10px;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        button {
-            padding: 12px 25px;
-            font-size: 1em;
-            font-weight: 600;
-            cursor: pointer;
-            margin: 5px;
-            background: linear-gradient(45deg, #d8bfd8, #9370db);
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            color: #ffffff;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        button:hover {
-            background: linear-gradient(45deg, #9370db, #6a0dad);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
-        }
-        button:active {
-            transform: scale(0.95) translateY(2px);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-        .back-button {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 8px;
-            font-size: 1.2em;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(45deg, #d8bfd8, #9370db);
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            color: #ffffff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: none;
-        }
-        .back-button:hover {
-            background: linear-gradient(45deg, #9370db, #6a0dad);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
-        }
-        .back-button:active {
-            transform: scale(0.95) translateY(2px);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-        .button-container, .sub-menu, .sub-sub-menu, #mousseux-section, #static-section, #filtre-section, #blanche-section, .info-container, .telegram-container, .potato-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 15px;
-            border-radius: 20px;
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
-            animation: slideIn 0.5s ease-in;
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .sub-menu, .sub-sub-menu, #mousseux-section, #static-section, #filtre-section, #blanche-section, .info-container, .telegram-container, .potato-container {
-            display: none;
-        }
-        .info-container p, .telegram-container p, .potato-container p, #mousseux-section p, #static-section p, #filtre-section p, #blanche-section p {
-            margin: 5px 0;
-            font-size: 0.9em;
-            font-weight: 400;
-            color: #333;
-            text-align: center;
-            line-height: 1.3;
-            letter-spacing: 0.3px;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-        }
-        .info-container p.highlight, .telegram-container p.highlight, .potato-container p.highlight {
-            color: #ff69b4;
-            font-size: 1.0em;
-            font-weight: 600;
-        }
-        #mousseux-section, #static-section, #filtre-section, #blanche-section {
-            background: rgba(255, 255, 255, 0.85);
-        }
-        #mousseux-section video, #static-section video, #filtre-section video, #blanche-section video {
-            max-width: 50%;
-            max-height: 150px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-        .video-container {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            gap: 15px;
-            width: 100%;
-            justify-content: center;
-        }
-        .description-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            max-width: 45%;
-        }
-        #info-popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #e6e6fa, #d8bfd8);
-            padding: 15px;
-            border-radius: 20px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            color: #333;
-            text-align: center;
-            max-width: 80%;
-            z-index: 1000;
-            animation: fadeIn 0.3s ease-in;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        #info-popup.close {
-            animation: fadeOut 0.3s ease-out;
-        }
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Nouveau casino en ligne 2025 - Bonus 500€ + 200 Free Spins. Licencié Curaçao. Crypto & EUR acceptés."/>
+  <title>LuxBet Casino | Bonus 500€ + 200 FS | Nouveau 2025</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎰</text></svg>">
+
+  <style>
+    :root {
+      --primary: #ff6b35;
+      --secondary: #ffd23f;
+      --dark: #0f0f1a;
+      --light: #f8f9fa;
+      --gray: #1a1a2e;
+      --success: #00bf63;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: white;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 15, 26, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--secondary);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #e55a2b;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--primary);
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(135deg, rgba(15,15,26,0.9), rgba(255,107,53,0.2)), url('https://images.unsplash.com/photo-1511512578047-d82ccd80aafb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(transparent, var(--dark));
+    }
+
+    .hero-content {
+      max-width: 800px;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .hero .highlight {
+      color: var(--secondary);
+    }
+
+    .bonus {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      border-radius: 15px;
+      margin: 2rem 0;
+      display: inline-block;
+    }
+
+    .bonus h2 {
+      font-size: 2.5rem;
+      color: var(--secondary);
+    }
+
+    .bonus p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* Features */
+    .features {
+      padding: 5rem 5%;
+      background: var(--gray);
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 15px;
+      transition: 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 107, 53, 0.1);
+      border-color: var(--primary);
+    }
+
+    .card h3 {
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    /* Games Preview */
+    .games {
+      padding: 5rem 5%;
+      background: var(--dark);
+    }
+
+    .games h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .game-card {
+      position: relative;
+      height: 250px;
+      border-radius: 15px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .game-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+
+    .game-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .game-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(transparent, black);
+      color: white;
+    }
+
+    .game-overlay h4 {
+      font-size: 1.1rem;
+    }
+
+    .game-overlay .provider {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    /* Footer */
+    footer {
+      background: #0a0a14;
+      padding: 3rem 5% 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+    }
+
+    .footer-col h4 {
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    .footer-col a {
+      color: #ccc;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-col a:hover {
+      color: var(--primary);
+    }
+
+    .license {
+      text-align: center;
+      font-size: 0.8rem;
+      opacity: 0.6;
+      margin-top: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .bonus h2 {
+        font-size: 2rem;
+      }
+      nav {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <button id="back-button" class="back-button" onclick="goBack()">←</button>
-    <h1>DRYCOFFEE76</h1>
-    <h2 id="main-title">Bienvenue</h2>
-    <img id="welcome-image" src="chaton.jpg" alt="Chaton" class="welcome-image">
-    <p id="welcome-text" class="welcome-text">Découvrez notre sélection exclusive de produits de qualité. Cliquez sur "📝Menu" pour explorer ou rejoignez nos canaux pour plus d'infos !</p>
-    <div id="main-buttons" class="button-container">
-        <button onclick="showInterface('menu')">📝Menu</button>
-        <button onclick="showInterface('info')">Information</button>
-        <button onclick="showInterface('telegram')">Canal Telegram</button>
-        <button onclick="showInterface('potato')">Canal Potato</button>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="logo">Lux<span>Bet</span></a>
+    <nav>
+      <a href="#jeux">Jeux</a>
+      <a href="#promotions">Promotions</a>
+      <a href="#paiements">Paiements</a>
+      <a href="#support">Support</a>
+    </nav>
+    <div>
+      <a href="#inscription" class="btn">S'inscrire</a>
     </div>
-    <div id="menu-interface" class="menu-interface">
-        <div id="sub-menu" class="sub-menu">
-            <button onclick="selectHash()" aria-label="Sélectionner Hash">Hash🍫</button>
-            <button onclick="selectWeed()" aria-label="Sélectionner Weed">Weed🌳</button>
-            <button onclick="selectBlanche()" aria-label="Sélectionner Blanche">Blanche❄️</button>
-        </div>
-        <div id="sub-sub-menu" class="sub-sub-menu">
-            <button onclick="selectMousseux()" aria-label="Sélectionner Mousseux">Mousseux🧽</button>
-            <button onclick="selectStatic()" aria-label="Sélectionner Static">Static⚡</button>
-            <button onclick="selectFiltre()" aria-label="Sélectionner Filtré">Filtré🍫</button>
-        </div>
-        <div id="mousseux-section">
-            <div class="video-container">
-                <video controls autoplay muted>
-                    <source src="jaune.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la vidéo.
-                </video>
-                <div class="description-container">
-                    <p><strong>—— 10G=50€ ——</strong></p>
-                    <p><strong>—— 20G=120€ ——</strong></p>
-                    <p><strong>—— 50G=190€ ——</strong></p>
-                    <p><strong>—— 100G=350€ ——</strong></p>
-                    <p><strong>Sur place📍et en livraison 🚚</strong></p>
-                </div>
-            </div>
-            <div class="button-container">
-                <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
-                <button onclick="goBackToSubMenu()">🔙Retour</button>
-            </div>
-        </div>
-        <div id="static-section">
-            <div class="video-container">
-                <video controls autoplay muted>
-                    <source src="static.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la vidéo.
-                </video>
-                <div class="description-container">
-                    <p><strong>Static⚡️ no farm 120U</strong></p>
-                    <p><strong>—— 5G=50€ ——</strong></p>
-                    <p><strong>—— 10G=90€ ——</strong></p>
-                    <p><strong>—— 25G=180€ ——</strong></p>
-                    <p><strong>—— 50G=330€ ——</strong></p>
-                    <p><strong>Sur place📍et en livraison 🚚</strong></p>
-                </div>
-            </div>
-            <div class="button-container">
-                <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
-                <button onclick="goBackToSubMenu()">🔙Retour</button>
-            </div>
-        </div>
-        <div id="filtre-section">
-            <div class="video-container">
-                <video controls autoplay muted>
-                    <source src="filtre.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la vidéo.
-                </video>
-                <div class="description-container">
-                    <p><strong>🍫Filtré 120U</strong></p>
-                    <p><strong>🟡Toblerone</strong></p>
-                    <p><strong>—— 5G=50€ ——</strong></p>
-                    <p><strong>—— 10G=80€ ——</strong></p>
-                    <p><strong>—— 25G=160€ ——</strong></p>
-                    <p><strong>—— 50G=300€ ——</strong></p>
-                    <p><strong>Sur place📍et en livraison 🚚</strong></p>
-                </div>
-            </div>
-            <div class="button-container">
-                <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
-                <button onclick="goBackToSubMenu()">🔙Retour</button>
-            </div>
-        </div>
-        <div id="blanche-section">
-            <div class="video-container">
-                <video controls autoplay muted>
-                    <source src="blanche.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la vidéo.
-                </video>
-                <div class="description-container">
-                    <p><strong>❄️Blanche🌨️</strong></p>
-                    <p><strong>Écaille de poisson 🐟</strong></p>
-                    <p><strong>Pret pour le détail😀</strong></p>
-                    <p><strong>—— 1G=50€ ——</strong></p>
-                    <p><strong>—— 3G=140€ ——</strong></p>
-                    <p><strong>—— 5G=220€ ——</strong></p>
-                    <p><strong>—— 10G=390€ ——</strong></p>
-                    <p><strong>Sur place📍et en livraison 🚚</strong></p>
-                </div>
-            </div>
-            <div class="button-container">
-                <button onclick="window.open('https://ptdym198.org/dry_coffee76', '_blank')">Contact📱</button>
-                <button onclick="goBackToSubMenu()">🔙Retour</button>
-            </div>
-        </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Bienvenue sur <span class="highlight">LuxBet Casino</span></h1>
+      <p>Le nouveau casino en ligne 2025 – Licencié • Crypto • 2000+ jeux</p>
+      
+      <div class="bonus">
+        <h2>500€ + 200 Free Spins</h2>
+        <p>Bonus de bienvenue exclusif – Dépôt min. 20€</p>
+      </div>
+
+      <a href="#inscription" class="btn">Jouer maintenant</a>
+      <a href="#conditions" class="btn btn-secondary" style="margin-left: 1rem;">Conditions</a>
     </div>
-    <div id="info-interface" class="info-container">
-        <img src="chaton.jpg" alt="Chaton" class="welcome-image">
-        <p class="highlight">✨ Merci de votre confiance ! ✨</p>
-        <p>Chez <strong>DRYCOFFEE76</strong>, on répond rapidement à vos messages en privé 💬.</p>
-        <p>On met un point d’honneur à vous offrir de la qualité au top à chaque commande 💎.</p>
-        <p style="color: #ff4500;">⚠️ Pour toute demande de commande, merci de nous envoyer une vidéo :</p>
-        <p>cela nous permet de garantir un meilleur suivi et plus de sécurité pour vous comme pour nous 🎥🔒.</p>
-        <p style="color: #ffd700;">Au plaisir de vous satisfaire 💛</p>
-        <button onclick="showInterface('main')">🔙Retour</button>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <h2>Pourquoi choisir LuxBet ?</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>🔐 Licencié & Sécurisé</h3>
+        <p>Licence Curaçao n°8048/JAZ. SSL 256 bits. KYC vérifié.</p>
+      </div>
+      <div class="card">
+        <h3>💸 Paiements Rapides</h3>
+        <p>Retrait en <24h. Crypto, Visa, Skrill, virement.</p>
+      </div>
+      <div class="card">
+        <h3>🎮 2000+ Jeux</h3>
+        <p>NetEnt, Evolution, Pragmatic, Play’n GO, Nolimit City.</p>
+      </div>
+      <div class="card">
+        <h3>🎁 Bonus Quotidien</h3>
+        <p>Free Spins, Cashback 15%, Recharge 50% chaque vendredi.</p>
+      </div>
     </div>
-    <div id="telegram-interface" class="telegram-container">
-        <p class="highlight">Rejoignez notre <strong>Canal Telegram</strong> !</p>
-        <p>Restez informé des dernières mises à jour et offres exclusives avec notre canal Telegram. Cliquez ci-dessous pour nous rejoindre !</p>
-        <button onclick="window.open('https://t.me/+ayptPdxw1WEzNDVk', '_blank')">Accéder au Canal Telegram</button>
-        <button onclick="showInterface('main')">🔙Retour</button>
+  </section>
+
+  <!-- Games Preview -->
+  <section class="games" id="jeux">
+    <h2>Jeux Populaires</h2>
+    <div class="game-grid">
+      <div class="game-card">
+        <img src="https://images.unsplash.com/photo-1633409361618-c8f9a6377e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sweet Bonanza">
+        <div class="game-overlay">
+          <h4>Sweet Bonanza</h4>
+          <p class="provider">Pragmatic Play</p>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Live Roulette">
+        <div class="game-overlay">
+          <h4>Live Roulette</h4>
+          <p class="provider">Evolution Gaming</p>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gates of Olympus">
+        <div class="game-overlay">
+          <h4>Gates of Olympus</h4>
+          <p class="provider">Pragmatic Play</p>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Blackjack">
+        <div class="game-overlay">
+          <h4>Blackjack VIP</h4>
+          <p class="provider">NetEnt</p>
+        </div>
+      </div>
     </div>
-    <div id="potato-interface" class="potato-container">
-        <p class="highlight">Rejoignez notre <strong>Canal Potato</strong> !</p>
-        <p>Découvrez des offres spéciales et des informations exclusives en rejoignant notre canal Potato. Cliquez pour commencer !</p>
-        <button onclick="window.open('https://ptdym198.org/joinchat/vlNUyjhhgWD8SfEaRTwUCQ', '_blank')">Accéder au Canal Potato</button>
-        <button onclick="showInterface('main')">🔙Retour</button>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="#tous-les-jeux" class="btn">Voir tous les jeux</a>
     </div>
-    <div id="info-popup"></div>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-        window.Telegram.WebApp.ready();
+  </section>
 
-        let currentInterface = 'main';
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>LuxBet</h4>
+        <a href="#">À propos</a>
+        <a href="#">Licence</a>
+        <a href="#">Jeu responsable</a>
+        <a href="#">CGU</a>
+      </div>
+      <div class="footer-col">
+        <h4>Jeux</h4>
+        <a href="#">Machines à sous</a>
+        <a href="#">Casino en direct</a>
+        <a href="#">Jackpots</a>
+        <a href="#">Paris sportifs</a>
+      </div>
+      <div class="footer-col">
+        <h4>Paiements</h4>
+        <a href="#">Dépôt</a>
+        <a href="#">Retrait</a>
+        <a href="#">Crypto</a>
+        <a href="#">Frais</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Live Chat 24/7</a>
+        <a href="#">Email</a>
+        <a href="#">FAQ</a>
+        <a href="#">Telegram</a>
+      </div>
+    </div>
+    <div class="license">
+      © 2025 LuxBet Casino. Licence Curaçao n°8048/JAZ. Jeu réservé aux +18 ans. Jouez responsablement. 
+      <br><strong>18+</strong> | <a href="#" style="color: var(--primary);">BeGambleAware.org</a>
+    </div>
+  </footer>
 
-        function showInterface(interfaceId) {
-            document.getElementById('main-buttons').style.display = 'none';
-            document.getElementById('menu-interface').style.display = 'none';
-            document.getElementById('info-interface').style.display = 'none';
-            document.getElementById('telegram-interface').style.display = 'none';
-            document.getElementById('potato-interface').style.display = 'none';
-            document.getElementById('welcome-text').style.display = 'none';
-            document.getElementById('sub-menu').style.display = 'none';
-            document.getElementById('sub-sub-menu').style.display = 'none';
-            document.getElementById('mousseux-section').style.display = 'none';
-            document.getElementById('static-section').style.display = 'none';
-            document.getElementById('filtre-section').style.display = 'none';
-            document.getElementById('blanche-section').style.display = 'none';
-            document.getElementById('back-button').style.display = 'none';
-
-            document.body.classList.remove('hide-welcome-image');
-
-            if (interfaceId === 'main') {
-                document.getElementById('main-buttons').style.display = 'flex';
-                document.getElementById('welcome-text').style.display = 'block';
-                document.getElementById('main-title').textContent = 'Bienvenue';
-            } else if (interfaceId === 'menu') {
-                document.getElementById('menu-interface').style.display = 'block';
-                document.getElementById('sub-menu').style.display = 'flex';
-                document.getElementById('main-title').textContent = 'Menu';
-                document.body.classList.add('hide-welcome-image');
-                document.getElementById('back-button').style.display = 'flex';
-            } else if (interfaceId === 'info') {
-                document.getElementById('info-interface').style.display = 'flex';
-                document.getElementById('main-title').textContent = 'Information';
-                document.body.classList.add('hide-welcome-image');
-                document.getElementById('back-button').style.display = 'flex';
-            } else if (interfaceId === 'telegram') {
-                document.getElementById('telegram-interface').style.display = 'flex';
-                document.getElementById('main-title').textContent = 'Canal Telegram';
-                document.getElementById('back-button').style.display = 'flex';
-            } else if (interfaceId === 'potato') {
-                document.getElementById('potato-interface').style.display = 'flex';
-                document.getElementById('main-title').textContent = 'Canal Potato';
-                document.getElementById('back-button').style.display = 'flex';
-            }
-            currentInterface = interfaceId;
-        }
-
-        function selectHash() {
-            document.getElementById('sub-menu').style.display = 'none';
-            document.getElementById('sub-sub-menu').style.display = 'flex';
-            document.getElementById('back-button').style.display = 'flex';
-            currentInterface = 'sub-sub-menu';
-        }
-
-        function selectWeed() {
-            const popup = document.getElementById('info-popup');
-            popup.innerHTML = `
-                <p style="margin: 0; font-size: 1.3em; font-weight: 600; color: #32cd32;">🌱 Pas pour le moment mais pour bientôt ⏳😄</p>
-                <button onclick="closePopup()">🔙Retour</button>
-            `;
-            popup.style.display = 'flex';
-        }
-
-        function closePopup() {
-            const popup = document.getElementById('info-popup');
-            popup.style.display = 'none';
-            popup.innerHTML = '';
-        }
-
-        function selectBlanche() {
-            document.getElementById('sub-menu').style.display = 'none';
-            document.getElementById('blanche-section').style.display = 'flex';
-            document.getElementById('back-button').style.display = 'flex';
-            currentInterface = 'blanche';
-        }
-
-        function goBackToMenu() {
-            document.getElementById('sub-sub-menu').style.display = 'none';
-            document.getElementById('sub-menu').style.display = 'flex';
-            document.getElementById('back-button').style.display = 'flex';
-            currentInterface = 'menu';
-        }
-
-        function selectMousseux() {
-            document.getElementById('sub-sub-menu').style.display = 'none';
-            document.getElementById('mousseux-section').style.display = 'flex';
-            document.getElementById('back-button').style.display = 'flex';
-            currentInterface = 'mousseux';
-        }
-
-        function selectStatic() {
-            document.getElementById('sub-sub-menu').style.display = 'none';
-            document.getElementById('static-section').style.display = 'flex';
-            document.getElementById('back-button').style.display = 'flex';
-            currentInterface = 'static';
-        }
-
-        function selectFiltre() {
-            document.getElementById('sub-sub-menu').style.display = 'none';
-            document.getElementById('filtre-section').style.display = 'flex';
-            document.getElementById('back-button').style.display = 'flex';
-            currentInterface = 'filtre';
-        }
-
-        function goBackToSubMenu() {
-            document.getElementById('mousseux-section').style.display = 'none';
-            document.getElementById('static-section').style.display = 'none';
-            document.getElementById('filtre-section').style.display = 'none';
-            document.getElementById('blanche-section').style.display = 'none';
-            document.getElementById('sub-sub-menu').style.display = 'flex';
-            document.getElementById('back-button').style.display = 'flex';
-            currentInterface = 'sub-sub-menu';
-        }
-
-        function goBack() {
-            if (currentInterface === 'menu') {
-                showInterface('main');
-            } else if (currentInterface === 'sub-sub-menu') {
-                goBackToMenu();
-            } else if (currentInterface === 'mousseux' || currentInterface === 'static' || currentInterface === 'filtre') {
-                goBackToSubMenu();
-            } else if (currentInterface === 'blanche') {
-                goBackToMenu();
-            } else {
-                showInterface('main');
-            }
-        }
-    </script>
 </body>
 </html>
