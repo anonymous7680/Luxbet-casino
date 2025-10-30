@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Nouveau casino en ligne 2025 - Bonus 500€ + 200 Free Spins. Licencié Curaçao. Crypto & EUR acceptés."/>
-  <title>LuxBet Casino | Bonus 500€ + 200 FS | Nouveau 2025</title>
+  <meta name="description" content="LuxBet Casino - Bonus 500€ + 200 FS. Inscription rapide. Licencié Curaçao."/>
+  <title>LuxBet Casino | Inscription & Bonus 500€</title>
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
-  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎰</text></svg>">
 
   <style>
@@ -20,6 +18,7 @@
       --light: #f8f9fa;
       --gray: #1a1a2e;
       --success: #00bf63;
+      --error: #ff4444;
     }
 
     * {
@@ -59,25 +58,11 @@
       text-decoration: none;
     }
 
-    .logo span {
-      color: var(--primary);
-    }
+    .logo span { color: var(--primary); }
 
-    nav {
-      display: flex;
-      gap: 2rem;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--primary);
-    }
+    nav { display: flex; gap: 2rem; }
+    nav a { color: white; text-decoration: none; font-weight: 500; transition: 0.3s; }
+    nav a:hover { color: var(--primary); }
 
     .btn {
       background: var(--primary);
@@ -134,9 +119,7 @@
       font-family: 'Playfair Display', serif;
     }
 
-    .hero .highlight {
-      color: var(--secondary);
-    }
+    .hero .highlight { color: var(--secondary); }
 
     .bonus {
       background: rgba(255, 255, 255, 0.1);
@@ -147,166 +130,125 @@
       display: inline-block;
     }
 
-    .bonus h2 {
-      font-size: 2.5rem;
-      color: var(--secondary);
-    }
+    .bonus h2 { font-size: 2.5rem; color: var(--secondary); }
+    .bonus p { font-size: 1.1rem; opacity: 0.9; }
 
-    .bonus p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-
-    /* Features */
-    .features {
-      padding: 5rem 5%;
-      background: var(--gray);
-      text-align: center;
-    }
-
-    .features h2 {
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 2rem;
-      border-radius: 15px;
-      transition: 0.3s;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      background: rgba(255, 107, 53, 0.1);
-      border-color: var(--primary);
-    }
-
-    .card h3 {
-      color: var(--secondary);
-      margin-bottom: 1rem;
-    }
-
-    /* Games Preview */
-    .games {
-      padding: 5rem 5%;
-      background: var(--dark);
-    }
-
-    .games h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .game-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .game-card {
-      position: relative;
-      height: 250px;
-      border-radius: 15px;
-      overflow: hidden;
-      cursor: pointer;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
-
-    .game-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: 0.5s;
-    }
-
-    .game-card:hover img {
-      transform: scale(1.1);
-    }
-
-    .game-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
+    /* Modal Inscription */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
       padding: 1rem;
-      background: linear-gradient(transparent, black);
-      color: white;
     }
 
-    .game-overlay h4 {
-      font-size: 1.1rem;
+    .modal.active { display: flex; }
+
+    .modal-content {
+      background: var(--gray);
+      padding: 2rem;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 500px;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      animation: slideIn 0.4s ease;
     }
 
-    .game-overlay .provider {
-      font-size: 0.8rem;
-      opacity: 0.7;
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
-    /* Footer */
-    footer {
-      background: #0a0a14;
-      padding: 3rem 5% 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
+    .close {
+      position: absolute;
+      top: 1rem; right: 1.5rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #aaa;
     }
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto 2rem;
-    }
+    .close:hover { color: white; }
 
-    .footer-col h4 {
+    .modal h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-family: 'Playfair Display', serif;
       color: var(--secondary);
+    }
+
+    .form-group {
       margin-bottom: 1rem;
     }
 
-    .footer-col a {
-      color: #ccc;
-      text-decoration: none;
+    label {
       display: block;
       margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      color: white;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(255,107,53,0.3);
+    }
+
+    .error {
+      color: var(--error);
+      font-size: 0.85rem;
+      margin-top: 0.3rem;
+      display: none;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      margin: 1rem 0;
+    }
+
+    .checkbox input { width: auto; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 1rem;
       font-size: 0.9rem;
     }
 
-    .footer-col a:hover {
+    .login-link a {
       color: var(--primary);
-    }
-
-    .license {
-      text-align: center;
-      font-size: 0.8rem;
-      opacity: 0.6;
-      margin-top: 2rem;
+      text-decoration: none;
     }
 
     /* Responsive */
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      .bonus h2 {
-        font-size: 2rem;
-      }
-      nav {
-        display: none;
-      }
+      .hero h1 { font-size: 2.5rem; }
+      .bonus h2 { font-size: 2rem; }
+      nav { display: none; }
+      .modal-content { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -322,7 +264,7 @@
       <a href="#support">Support</a>
     </nav>
     <div>
-      <a href="#inscription" class="btn">S'inscrire</a>
+      <button class="btn" id="openRegister">S'inscrire</button>
     </div>
   </header>
 
@@ -330,116 +272,168 @@
   <section class="hero">
     <div class="hero-content">
       <h1>Bienvenue sur <span class="highlight">LuxBet Casino</span></h1>
-      <p>Le nouveau casino en ligne 2025 – Licencié • Crypto • 2000+ jeux</p>
+      <p>Le casino en ligne 2025 – Bonus exclusif, crypto, +2000 jeux</p>
       
       <div class="bonus">
         <h2>500€ + 200 Free Spins</h2>
-        <p>Bonus de bienvenue exclusif – Dépôt min. 20€</p>
+        <p>Sur votre premier dépôt – Inscription en 30 secondes</p>
       </div>
 
-      <a href="#inscription" class="btn">Jouer maintenant</a>
-      <a href="#conditions" class="btn btn-secondary" style="margin-left: 1rem;">Conditions</a>
+      <button class="btn" id="heroRegister">S'inscrire maintenant</button>
+      <button class="btn btn-secondary" style="margin-left: 1rem;">Démo gratuite</button>
     </div>
   </section>
 
-  <!-- Features -->
-  <section class="features">
-    <h2>Pourquoi choisir LuxBet ?</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>🔐 Licencié & Sécurisé</h3>
-        <p>Licence Curaçao n°8048/JAZ. SSL 256 bits. KYC vérifié.</p>
-      </div>
-      <div class="card">
-        <h3>💸 Paiements Rapides</h3>
-        <p>Retrait en <24h. Crypto, Visa, Skrill, virement.</p>
-      </div>
-      <div class="card">
-        <h3>🎮 2000+ Jeux</h3>
-        <p>NetEnt, Evolution, Pragmatic, Play’n GO, Nolimit City.</p>
-      </div>
-      <div class="card">
-        <h3>🎁 Bonus Quotidien</h3>
-        <p>Free Spins, Cashback 15%, Recharge 50% chaque vendredi.</p>
-      </div>
-    </div>
-  </section>
+  <!-- Modal Inscription -->
+  <div class="modal" id="registerModal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">×</span>
+      <h2>Créer un compte</h2>
+      <form id="registerForm">
+        <div class="form-group">
+          <label>Prénom</label>
+          <input type="text" id="firstName" required placeholder="Jean">
+          <div class="error" id="firstNameError">Veuillez entrer un prénom valide</div>
+        </div>
 
-  <!-- Games Preview -->
-  <section class="games" id="jeux">
-    <h2>Jeux Populaires</h2>
-    <div class="game-grid">
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1633409361618-c8f9a6377e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sweet Bonanza">
-        <div class="game-overlay">
-          <h4>Sweet Bonanza</h4>
-          <p class="provider">Pragmatic Play</p>
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" id="lastName" required placeholder="Dupont">
+          <div class="error" id="lastNameError">Veuillez entrer un nom valide</div>
         </div>
-      </div>
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Live Roulette">
-        <div class="game-overlay">
-          <h4>Live Roulette</h4>
-          <p class="provider">Evolution Gaming</p>
-        </div>
-      </div>
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gates of Olympus">
-        <div class="game-overlay">
-          <h4>Gates of Olympus</h4>
-          <p class="provider">Pragmatic Play</p>
-        </div>
-      </div>
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Blackjack">
-        <div class="game-overlay">
-          <h4>Blackjack VIP</h4>
-          <p class="provider">NetEnt</p>
-        </div>
-      </div>
-    </div>
-    <div style="text-align: center; margin-top: 2rem;">
-      <a href="#tous-les-jeux" class="btn">Voir tous les jeux</a>
-    </div>
-  </section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>LuxBet</h4>
-        <a href="#">À propos</a>
-        <a href="#">Licence</a>
-        <a href="#">Jeu responsable</a>
-        <a href="#">CGU</a>
-      </div>
-      <div class="footer-col">
-        <h4>Jeux</h4>
-        <a href="#">Machines à sous</a>
-        <a href="#">Casino en direct</a>
-        <a href="#">Jackpots</a>
-        <a href="#">Paris sportifs</a>
-      </div>
-      <div class="footer-col">
-        <h4>Paiements</h4>
-        <a href="#">Dépôt</a>
-        <a href="#">Retrait</a>
-        <a href="#">Crypto</a>
-        <a href="#">Frais</a>
-      </div>
-      <div class="footer-col">
-        <h4>Support</h4>
-        <a href="#">Live Chat 24/7</a>
-        <a href="#">Email</a>
-        <a href="#">FAQ</a>
-        <a href="#">Telegram</a>
-      </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="email" required placeholder="jean.dupont@gmail.com">
+          <div class="error" id="emailError">Email invalide</div>
+        </div>
+
+        <div class="form-group">
+          <label>Mot de passe (min. 8 caractères)</label>
+          <input type="password" id="password" required placeholder="••••••••">
+          <div class="error" id="passwordError">8 caractères minimum, 1 majuscule, 1 chiffre</div>
+        </div>
+
+        <div class="form-group">
+          <label>Date de naissance</label>
+          <input type="date" id="birthDate" required>
+          <div class="error" id="birthDateError">Vous devez avoir 18 ans minimum</div>
+        </div>
+
+        <div class="form-group">
+          <label>Pays</label>
+          <select id="country" required>
+            <option value="">Choisir un pays</option>
+            <option value="FR">France</option>
+            <option value="BE">Belgique</option>
+            <option value="CA">Canada</option>
+            <option value="CH">Suisse</option>
+            <option value="MA">Maroc</option>
+            <option value="OTHER">Autre</option>
+          </select>
+          <div class="error" id="countryError">Sélectionnez un pays</div>
+        </div>
+
+        <div class="checkbox">
+          <input type="checkbox" id="terms" required>
+          <label for="terms">J'accepte les <a href="#" style="color:var(--primary)">conditions d'utilisation</a> et j'ai 18 ans ou plus</label>
+        </div>
+
+        <button type="submit" class="btn submit-btn">Créer mon compte</button>
+
+        <div class="login-link">
+          Déjà inscrit ? <a href="#" id="openLogin">Se connecter</a>
+        </div>
+      </form>
     </div>
-    <div class="license">
-      © 2025 LuxBet Casino. Licence Curaçao n°8048/JAZ. Jeu réservé aux +18 ans. Jouez responsablement. 
-      <br><strong>18+</strong> | <a href="#" style="color: var(--primary);">BeGambleAware.org</a>
-    </div>
-  </footer>
+  </div>
+
+  <!-- Script JavaScript -->
+  <script>
+    // Ouvrir la modale
+    document.getElementById('openRegister').onclick = openModal;
+    document.getElementById('heroRegister').onclick = openModal;
+
+    // Fermer la modale
+    document.getElementById('closeModal').onclick = closeModal;
+    window.onclick = function(e) {
+      if (e.target === document.getElementById('registerModal')) closeModal();
+    }
+
+    function openModal() {
+      document.getElementById('registerModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('registerModal').classList.remove('active');
+      document.getElementById('registerForm').reset();
+      document.querySelectorAll('.error').forEach(el => el.style.display = 'none');
+    }
+
+    // Validation en temps réel
+    const form = document.getElementById('registerForm');
+    const inputs = form.querySelectorAll('input, select');
+
+    inputs.forEach(input => {
+      input.addEventListener('blur', validateField);
+    });
+
+    function validateField() {
+      const field = this.id;
+      const value = this.value.trim();
+      const errorEl = document.getElementById(field + 'Error');
+
+      let valid = true;
+
+      switch(field) {
+        case 'firstName':
+        case 'lastName':
+          valid = value.length >= 2;
+          break;
+        case 'email':
+          valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+          break;
+        case 'password':
+          valid = value.length >= 8 && /[A-Z]/.test(value) && /\d/.test(value);
+          break;
+        case 'birthDate':
+          const birth = new Date(value);
+          const today = new Date();
+          const age = today.getFullYear() - birth.getFullYear();
+          valid = age >= 18 && birth < today;
+          break;
+        case 'country':
+          valid = value !== '';
+          break;
+      }
+
+      errorEl.style.display = valid ? 'none' : 'block';
+      return valid;
+    }
+
+    // Soumission du formulaire
+    form.onsubmit = function(e) {
+      e.preventDefault();
+      
+      let allValid = true;
+      inputs.forEach(input => {
+        if (!validateField.call(input)) allValid = false;
+      });
+
+      if (allValid) {
+        alert('Inscription réussie ! 🎉\n\nUn email de confirmation a été envoyé à ' + document.getElementById('email').value);
+        closeModal();
+      } else {
+        alert('Veuillez corriger les erreurs dans le formulaire.');
+      }
+    };
+
+    // Lien "Se connecter"
+    document.getElementById('openLogin').onclick = function(e) {
+      e.preventDefault();
+      alert('Fonctionnalité de connexion à venir... (ou intégrée via White Label)');
+    };
+  </script>
 
 </body>
 </html>
