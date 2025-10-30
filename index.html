@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="LuxBet Casino - Dépôt crypto réel (Solana, BNB, USDT) min 20€ pour jouer aux vrais jeux."/>
-  <title>LuxBet Casino | Dépôt Crypto Réel 20€</title>
+  <meta name="description" content="LuxBet - Dépôt crypto auto-détecté → Jeux débloqués en 10s"/>
+  <title>LuxBet | Dépôt Auto → Jeux Débloqués</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎰</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>₿</text></svg>">
 
   <style>
     :root {
@@ -19,6 +19,8 @@
       --light: #ffffff;
       --success: #00bf63;
       --error: #ff4444;
+      --card: #161625;
+      --border: rgba(255,255,255,0.08);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,85 +28,101 @@
 
     /* Header */
     header {
-      position: fixed; top: 0; width: 100%; background: rgba(15,15,26,0.95); backdrop-filter: blur(10px);
+      position: fixed; top: 0; width: 100%; background: rgba(15,15,26,0.98); backdrop-filter: blur(12px);
       z-index: 1000; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid var(--border);
     }
-
-    .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--secondary); text-decoration: none; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; color: var(--secondary); text-decoration: none; }
     .logo span { color: var(--primary); }
 
-    /* Hamburger Menu */
+    /* Hamburger */
     .hamburger {
-      display: flex; flex-direction: column; cursor: pointer; gap: 5px;
+      display: flex; flex-direction: column; cursor: pointer; gap: 6px; transition: 0.3s;
     }
     .hamburger span {
-      width: 25px; height: 3px; background: var(--light); border-radius: 2px; transition: 0.3s;
+      width: 28px; height: 3px; background: var(--light); border-radius: 3px; transition: 0.3s;
     }
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
 
     .menu {
-      position: absolute; top: 70px; left: 5%; background: var(--gray); padding: 1rem; border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: none; width: 200px;
+      position: absolute; top: 75px; left: 5%; background: var(--card); padding: 1.2rem; border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4); display: none; width: 220px; border: 1px solid rgba(255,107,53,0.2);
     }
-    .menu.active { display: block; animation: slideDown 0.3s ease; }
-    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .menu.active { display: block; animation: pop 0.3s ease; }
+    @keyframes pop { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
     .menu a {
-      display: block; color: white; text-decoration: none; padding: 0.8rem 1rem; border-radius: 10px; margin: 0.5rem 0;
-      transition: 0.3s;
+      display: block; color: #ccc; text-decoration: none; padding: 0.9rem 1rem; border-radius: 12px; margin: 0.4rem 0;
+      font-weight: 500; transition: 0.3s;
     }
-    .menu a:hover { background: rgba(255,107,53,0.3); color: var(--secondary); }
-
-    .btn { background: var(--primary); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s; text-decoration: none; display: inline-block; }
-    .btn:hover { background: #e55a2b; transform: translateY(-2px); }
-    .btn-success { background: var(--success); }
-
-    .user-info { display: flex; align-items: center; gap: 1rem; }
-    .balance { background: var(--success); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; }
+    .menu a:hover { background: rgba(255,107,53,0.2); color: white; }
 
     /* Hero */
-    .hero { height: 100vh; background: linear-gradient(135deg, rgba(15,15,26,0.9), rgba(255,107,53,0.2)), url('https://images.unsplash.com/photo-1511512578047-d82ccd80aafb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
-    .hero::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 150px; background: linear-gradient(transparent, var(--dark)); }
-    .hero-content { max-width: 800px; z-index: 2; }
-    .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
+    .hero {
+      height: 100vh; background: linear-gradient(135deg, rgba(15,15,26,0.95), rgba(255,107,53,0.15)), url('https://images.unsplash.com/photo-1511512578047-d82ccd80aafb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
+      display: flex; align-items: center; justify-content: center; text-align: center; position: relative;
+    }
+    .hero::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 200px; background: linear-gradient(transparent, var(--dark)); }
+    .hero-content { max-width: 900px; z-index: 2; }
+    .hero h1 { font-size: 3.8rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
     .hero .highlight { color: var(--secondary); }
-    .bonus { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 15px; margin: 2rem 0; display: inline-block; }
-    .bonus h2 { font-size: 2.5rem; color: var(--secondary); }
+    .bonus {
+      background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); padding: 1.8rem; border-radius: 20px; margin: 2rem 0; display: inline-block;
+      border: 1px solid rgba(255,215,0,0.2);
+    }
+    .bonus h2 { font-size: 2.6rem; color: var(--secondary); }
 
     /* Dashboard */
-    .dashboard { padding: 6rem 5% 3rem; text-align: center; display: none; }
+    .dashboard { padding: 6rem 5% 4rem; text-align: center; display: none; }
     .dashboard.active { display: block; }
-    .deposit-form { max-width: 400px; margin: 2rem auto; }
-    .form-group { margin-bottom: 1rem; }
-    label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
-    input, select { width: 100%; padding: 0.8rem; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: white; border-radius: 10px; }
-    input:focus, select:focus { outline: none; border-color: var(--primary); }
-    .crypto-info { background: var(--gray); padding: 1rem; border-radius: 10px; margin: 1rem 0; display: none; }
-    .crypto-info.active { display: block; }
-    #qrCode { width: 200px; height: 200px; margin: 1rem auto; display: block; }
+    .status { background: var(--card); padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; font-size: 1.1rem; }
+    .status.pending { border-left: 5px solid var(--primary); }
+    .status.success { border-left: 5px solid var(--success); }
 
-    /* Games (cachés sans dépôt) */
-    .games { padding: 3rem 5%; text-align: center; display: none; }
-    .games.active { display: block; }
-    .games h2 { font-size: 2.5rem; margin-bottom: 3rem; font-family: 'Playfair Display', serif; }
-    .game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-    .game-card { background: var(--gray); border-radius: 15px; overflow: hidden; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-    .game-card:hover { transform: translateY(-10px); }
-    .game-card img { width: 100%; height: 200px; object-fit: cover; }
-    .game-info { padding: 1rem; }
-    .game-info h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-    .play-btn { background: var(--primary); color: white; padding: 0.8rem; border-radius: 50px; width: 80%; margin: 1rem auto 0; display: block; font-weight: 600; }
+    .deposit-box {
+      background: var(--card); padding: 2rem; border-radius: 20px; max-width: 500px; margin: 2rem auto;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3); border: 1px solid var(--border);
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    label { display: block; margin-bottom: 0.6rem; font-weight: 600; color: #aaa; }
+    input, select {
+      width: 100%; padding: 1rem; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);
+      color: white; border-radius: 12px; font-size: 1rem; transition: 0.3s;
+    }
+    input:focus, select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(255,107,53,0.2); }
 
-    /* Modal */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; }
-    .modal.active { display: flex; }
-    .modal-content { background: #111; padding: 0; border-radius: 15px; width: 100%; max-width: 1000px; height: 80vh; position: relative; }
-    .close { position: absolute; top: 10px; right: 10px; font-size: 2rem; color: white; cursor: pointer; z-index: 10; }
+    .btn {
+      background: var(--primary); color: white; border: none; padding: 1rem 2rem; border-radius: 50px; font-weight: 600;
+      cursor: pointer; transition: 0.3s; text-decoration: none; display: inline-block; font-size: 1.1rem;
+    }
+    .btn:hover { background: #e55a2b; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255,107,53,0.3); }
+    .btn-success { background: var(--success); }
+    .btn-large { font-size: 1.3rem; padding: 1.2rem 3rem; }
+
+    /* Crypto Info */
+    .crypto-info { margin-top: 1.5rem; padding: 1.5rem; background: rgba(0,191,99,0.1); border-radius: 16px; display: none; }
+    .crypto-info.active { display: block; animation: fadeIn 0.5s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    #qrCode { width: 220px; height: 220px; margin: 1.5rem auto; display: block; border: 8px solid white; border-radius: 16px; }
+    .copy-btn { background: transparent; border: 2px solid var(--primary); margin-top: 1rem; }
+
+    /* Unlocked */
+    .unlocked {
+      text-align: center; padding: 3rem 5%; background: linear-gradient(135deg, #00bf63, #00994d); border-radius: 20px; margin: 2rem auto; max-width: 600px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+
+    .loader { border: 4px solid #f3f3f3; border-top: 4px solid var(--success); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 1rem auto; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
     /* Responsive */
-    @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } .menu { left: 1rem; width: 180px; } }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.6rem; }
+      .deposit-box { padding: 1.5rem; }
+      #qrCode { width: 180px; height: 180px; }
+    }
   </style>
 </head>
 <body>
@@ -117,271 +135,211 @@
       <span></span>
     </div>
     <div class="menu" id="menu">
-      <a href="#jeux" onclick="closeMenu()">Jeux</a>
-      <a href="#casino" onclick="closeMenu()">Casino en ligne</a>
-      <a href="#promotions" onclick="closeMenu()">Promotions</a>
-      <a href="#support" onclick="closeMenu()">Support</a>
+      <a href="#" onclick="closeMenu()">Accueil</a>
+      <a href="#deposit" onclick="closeMenu()">Dépôt</a>
     </div>
     <a href="#" class="logo">Lux<span>Bet</span></a>
-    <div id="userNav" class="user-info" style="display:none;">
-      <span class="balance">Solde: <span id="balance">0€</span></span>
-      <button class="btn" onclick="logout()">Déconnexion</button>
-    </div>
-    <div id="authNav">
-      <button class="btn" id="openLogin">Connexion</button>
-      <button class="btn" style="margin-left:1rem;" id="openRegister">S'inscrire</button>
-    </div>
   </header>
 
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Dépôt <span class="highlight">Crypto Réel</span> dès 20€</h1>
-      <p>Envoyez Solana, BNB ou USDT pour débloquer les jeux</p>
+      <h1>Dépôt <span class="highlight">Auto-Détecté</span></h1>
+      <p>Envoyez en crypto → Jeux débloqués en 10 secondes</p>
       <div class="bonus">
         <h2>500€ + 200 FS</h2>
-        <p>Après dépôt confirmé</p>
+        <p>Automatique après réception</p>
       </div>
-      <button class="btn" id="heroRegister">S'inscrire & Déposer</button>
+      <button class="btn" id="heroDeposit">Déposer Maintenant</button>
     </div>
   </section>
 
   <!-- Dashboard -->
   <section class="dashboard" id="dashboard">
-    <h2>Bienvenue, <span id="userName"></span> !</h2>
-    <p>Faites un dépôt crypto réel (min. 20€) pour jouer</p>
-    <form class="deposit-form" id="depositForm">
-      <div class="form-group">
-        <label>Montant en € (min. 20)</label>
-        <input type="number" id="depositAmount" min="20" placeholder="20" required>
+    <div class="status pending" id="status">
+      <strong>Statut : En attente de dépôt</strong>
+      <p>Envoyez le montant exact pour débloquer les jeux.</p>
+    </div>
+
+    <div class="deposit-box">
+      <h2>Dépôt Crypto (Auto-Détecté)</h2>
+      <form id="depositForm">
+        <div class="form-group">
+          <label>Montant (€)</label>
+          <input type="number" id="depositAmount" min="20" value="20" required>
+        </div>
+        <div class="form-group">
+          <label>Crypto</label>
+          <select id="cryptoType">
+            <option value="sol">Solana (SOL)</option>
+            <option value="bnb">BNB (BEP-20)</option>
+            <option value="usdt">USDT (BEP-20)</option>
+          </select>
+        </div>
+        <button type="submit" class="btn">Générer Adresse</button>
+      </form>
+
+      <div class="crypto-info" id="cryptoInfo">
+        <h3>Envoyez <span id="cryptoAmount">0</span> <span id="cryptoSymbol">SOL</span></h3>
+        <p>Adresse :</p>
+        <p style="word-break:break-all; background:rgba(0,0,0,0.3); padding:1rem; border-radius:12px; font-family:monospace; font-size:0.9rem;" id="walletAddress"></p>
+        <button class="btn copy-btn" onclick="copyAddress()">Copier</button>
+        <canvas id="qrCode"></canvas>
+        <div class="loader" id="loader" style="display:none;"></div>
+        <p id="checking" style="display:none; color:var(--success);">Vérification en cours...</p>
       </div>
-      <div class="form-group">
-        <label>Crypto</label>
-        <select id="cryptoType">
-          <option value="sol">Solana (SOL)</option>
-          <option value="bnb">BNB Chain (BNB)</option>
-          <option value="usdt">USDT (sur BNB)</option>
-        </select>
-      </div>
-      <button type="submit" class="btn">Générer Dépôt Crypto</button>
-    </form>
-    <div class="crypto-info" id="cryptoInfo">
-      <h3>Envoyez <span id="cryptoAmount"></span> <span id="cryptoSymbol"></span></h3>
-      <p>Adresse: <strong id="walletAddress"></strong></p>
-      <button class="btn" onclick="copyAddress()">Copier Adresse</button>
-      <canvas id="qrCode"></canvas>
-      <p>Confirmez l'envoi → Jeux débloqués automatiquement (vérifiez en rafraîchissant).</p>
-      <button class="btn btn-success" onclick="confirmDeposit()">J'ai envoyé ! Débloquer Jeux</button>
+    </div>
+
+    <!-- Débloqué -->
+    <div class="unlocked" id="unlocked" style="display:none;">
+      <h2>JEUX DÉBLOQUÉS !</h2>
+      <p>Accès immédiat aux vrais jeux</p>
+      <a href="https://stake.com/?c=luxbet2025" target="_blank" class="btn btn-large">
+        JOUER MAINTENANT
+      </a>
     </div>
   </section>
 
-  <!-- Games -->
-  <section class="games" id="jeux">
-    <h2>Vrais Jeux Débloqués</h2>
-    <div class="game-grid">
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1633409361618-c8f9a6377e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sweet Bonanza">
-        <div class="game-info">
-          <h3>Sweet Bonanza</h3>
-          <p>Pragmatic Play</p>
-          <button class="play-btn" onclick="openGame('https://demo.pragmaticplay.net/gs2c/openGame.do?gameSymbol=sweetbonanza&lang=fr')">Jouer</button>
-        </div>
-      </div>
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gates of Olympus">
-        <div class="game-info">
-          <h3>Gates of Olympus</h3>
-          <p>Pragmatic Play</p>
-          <button class="play-btn" onclick="openGame('https://demo.pragmaticplay.net/gs2c/openGame.do?gameSymbol=gatesofolympus&lang=fr')">Jouer</button>
-        </div>
-      </div>
-      <!-- Ajoute plus de jeux ici si besoin -->
-    </div>
-  </section>
-
-  <!-- Modal Jeu -->
-  <div class="modal" id="gameModal">
-    <div class="modal-content">
-      <span class="close" id="closeGame">×</span>
-      <iframe id="gameFrame" src="" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <!-- Modals Inscription/Connexion (simplifiées) -->
-  <div class="modal" id="registerModal">
-    <div class="modal-content" style="padding:2rem; max-width:500px;">
-      <span class="close" id="closeRegister">×</span>
-      <h2>Inscription</h2>
-      <form id="registerForm">
-        <input type="text" placeholder="Nom" id="regName" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;background:rgba(255,255,255,0.05);color:white;border:1px solid rgba(255,255,255,0.2);">
-        <input type="email" placeholder="Email" id="regEmail" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;background:rgba(255,255,255,0.05);color:white;border:1px solid rgba(255,255,255,0.2);">
-        <input type="password" placeholder="Mot de passe (8+)" id="regPass" required minlength="8" style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;background:rgba(255,255,255,0.05);color:white;border:1px solid rgba(255,255,255,0.2);">
-        <button type="submit" class="btn" style="width:100%;margin-top:1rem;">S'inscrire</button>
-      </form>
-    </div>
-  </div>
-
-  <div class="modal" id="loginModal">
-    <div class="modal-content" style="padding:2rem; max-width:500px;">
-      <span class="close" id="closeLogin">×</span>
-      <h2>Connexion</h2>
-      <form id="loginForm">
-        <input type="email" placeholder="Email" id="loginEmail" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;background:rgba(255,255,255,0.05);color:white;border:1px solid rgba(255,255,255,0.2);">
-        <input type="password" placeholder="Mot de passe" id="loginPass" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;background:rgba(255,255,255,0.05);color:white;border:1px solid rgba(255,255,255,0.2);">
-        <button type="submit" class="btn" style="width:100%;margin-top:1rem;">Se connecter</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- QR Code Library (CDN) -->
+  <!-- QR Code -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
   <script>
-    // Variables
-    let user = JSON.parse(localStorage.getItem('luxbetUser')) || null;
-    let hasDeposited = localStorage.getItem('hasDeposited') === 'true';
-    let addresses = {
+    const addresses = {
       sol: 'EGvemaEtYWCxwjGWgPL2Q23P8iUAEh3f9ZixUERBDxEJ',
       bnb: '0x684753E3c806AE18734d8233d673d999Faf3FcFd',
-      usdt: '0x684753E3c806AE18734d8233d673d999Faf3FcFd' // USDT sur BNB
+      usdt: '0x684753E3c806AE18734d8233d673d999Faf3FcFd'
     };
 
-    // Éléments
-    const hamburger = document.getElementById('hamburger');
-    const menu = document.getElementById('menu');
-    const dashboard = document.getElementById('dashboard');
-    const games = document.getElementById('jeux');
-    const cryptoInfo = document.getElementById('cryptoInfo');
+    let currentTx = null;
+    let checkInterval = null;
 
-    // Init
-    function init() {
-      if (user) {
-        document.getElementById('authNav').style.display = 'none';
-        document.getElementById('userNav').style.display = 'flex';
-        document.getElementById('userName').textContent = user.name;
-        dashboard.classList.add('active');
-        if (hasDeposited) {
-          games.classList.add('active');
-          document.getElementById('balance').textContent = 'Débloqué !';
-        }
-      }
-    }
+    const status = document.getElementById('status');
+    const cryptoInfo = document.getElementById('cryptoInfo');
+    const loader = document.getElementById('loader');
+    const checking = document.getElementById('checking');
+    const unlocked = document.getElementById('unlocked');
 
     // Hamburger
-    hamburger.onclick = () => {
-      hamburger.classList.toggle('active');
-      menu.classList.toggle('active');
-    };
-    function closeMenu() {
-      hamburger.classList.remove('active');
-      menu.classList.remove('active');
-    }
-
-    // Inscription
-    document.getElementById('registerForm').onsubmit = (e) => {
-      e.preventDefault();
-      const name = document.getElementById('regName').value;
-      const email = document.getElementById('regEmail').value;
-      const pass = document.getElementById('regPass').value;
-      if (pass.length < 8) return alert('Mot de passe min. 8 caractères');
-      user = { name, email, pass };
-      localStorage.setItem('luxbetUser', JSON.stringify(user));
-      alert('Inscription réussie ! Connectez-vous pour déposer.');
-      closeModal('registerModal');
+    document.getElementById('hamburger').onclick = () => {
+      const h = document.getElementById('hamburger');
+      const m = document.getElementById('menu');
+      h.classList.toggle('active');
+      m.classList.toggle('active');
     };
 
-    // Connexion
-    document.getElementById('loginForm').onsubmit = (e) => {
-      e.preventDefault();
-      const email = document.getElementById('loginEmail').value;
-      const pass = document.getElementById('loginPass').value;
-      const stored = JSON.parse(localStorage.getItem('luxbetUser'));
-      if (stored && stored.email === email && stored.pass === pass) {
-        user = stored;
-        alert('Connexion réussie !');
-        closeModal('loginModal');
-        init();
-      } else {
-        alert('Erreur de connexion');
-      }
-    };
-
-    // Dépôt Crypto
+    // Générer dépôt
     document.getElementById('depositForm').onsubmit = (e) => {
       e.preventDefault();
-      const amountEur = parseFloat(document.getElementById('depositAmount').value);
-      if (amountEur < 20) return alert('Minimum 20€');
+      const eur = parseFloat(document.getElementById('depositAmount').value);
+      if (eur < 20) return alert('Min 20€');
       const type = document.getElementById('cryptoType').value;
       const symbol = type.toUpperCase();
       const addr = addresses[type];
 
-      // Conversion simple (fixe pour démo – en prod: fetch prix live via API comme CoinGecko)
-      const rates = { sol: 0.0045, bnb: 0.008, usdt: 1 }; // Approx SOL~220€, BNB~580€, USDT=1€
-      const amountCrypto = (amountEur / (1 / rates[type])).toFixed(6);
+      const rates = { sol: 220, bnb: 580, usdt: 0.92 };
+      const amount = (eur / rates[type]).toFixed(6);
 
-      document.getElementById('cryptoAmount').textContent = amountCrypto;
+      document.getElementById('cryptoAmount').textContent = amount;
       document.getElementById('cryptoSymbol').textContent = symbol;
       document.getElementById('walletAddress').textContent = addr;
 
-      // Génère QR Code avec adresse + montant
-      const qr = new QRCode(document.getElementById('qrCode'), {
-        text: `${addr}?amount=${amountCrypto}`,
-        width: 200,
-        height: 200,
-        colorDark: '#000000',
-        colorLight: '#ffffff',
-        correctLevel: QRCode.CorrectLevel.H
+      new QRCode(document.getElementById('qrCode'), {
+        text: `${type === 'sol' ? 'solana:' : ''}${addr}?amount=${amount}`,
+        width: 220, height: 220, colorDark: '#000', colorLight: '#fff'
       });
 
-      // Lien wallet (ex: Phantom pour Solana, MetaMask pour BNB/USDT)
-      const walletLink = type === 'sol' ? `https://phantom.app/ul/browse/${addr}?ref=deposit&amount=${amountCrypto}` : `https://bscscan.com/address/${addr}`;
-      window.open(walletLink, '_blank');
-
       cryptoInfo.classList.add('active');
+      status.innerHTML = `<strong>En attente de ${amount} ${symbol}...</strong><p>Ne fermez pas la page.</p>`;
+      loader.style.display = 'block';
+      checking.style.display = 'block';
+
+      currentTx = { addr, amount, type };
+      localStorage.setItem('pendingTx', JSON.stringify(currentTx));
+
+      startChecking();
     };
 
     function copyAddress() {
-      const addr = document.getElementById('walletAddress').textContent;
-      navigator.clipboard.writeText(addr).then(() => alert('Adresse copiée ! Envoyez le montant exact.'));
+      navigator.clipboard.writeText(document.getElementById('walletAddress').textContent)
+        .then(() => alert('Adresse copiée !'));
     }
 
-    function confirmDeposit() {
-      hasDeposited = true;
-      localStorage.setItem('hasDeposited', 'true');
-      cryptoInfo.classList.remove('active');
-      games.classList.add('active');
-      document.getElementById('balance').textContent = 'Vérifié !';
-      alert('Dépôt confirmé ! Jeux débloqués. (Vérifiez en rafraîchissant pour prod).');
+    function startChecking() {
+      if (checkInterval) clearInterval(checkInterval);
+      checkInterval = setInterval(async () => {
+        if (!currentTx) return;
+        const received = await checkDeposit(currentTx);
+        if (received) {
+          clearInterval(checkInterval);
+          unlockGames();
+        }
+      }, 5000);
     }
 
-    // Ouvrir Jeu
-    function openGame(url) {
-      if (!hasDeposited) return alert('Faites un dépôt crypto pour jouer');
-      document.getElementById('gameFrame').src = url;
-      document.getElementById('gameModal').classList.add('active');
+    async function checkDeposit(tx) {
+      try {
+        if (tx.type === 'sol') {
+          const res = await fetch(`https://api.mainnet-beta.solana.com`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              jsonrpc: "2.0",
+              id: 1,
+              method: "getConfirmedSignaturesForAddress2",
+              params: [tx.addr, { limit: 1 }]
+            })
+          });
+          const data = await res.json();
+          if (data.result && data.result.length > 0) {
+            const sig = data.result[0].signature;
+            const txDetail = await fetch(`https://api.mainnet-beta.solana.com`, {
+              method: 'POST',
+              body: JSON.stringify({
+                jsonrpc: "2.0", id: 1, method: "getTransaction", params: [sig, "json"]
+              })
+            }).then(r => r.json());
+            const lamports = txDetail.result.transaction.message.accountKeys[1].lamports || 0;
+            const receivedSol = lamports / 1e9;
+            return receivedSol >= parseFloat(tx.amount);
+          }
+        } else {
+          const res = await fetch(`https://api.bscscan.com/api?module=account&action=txlist&address=${tx.addr}&sort=desc&apikey=YOUR_API_KEY`);
+          const data = await res.json();
+          if (data.status === "1" && data.result.length > 0) {
+            const lastTx = data.result[0];
+            const value = parseFloat(lastTx.value) / 1e18;
+            return value >= parseFloat(tx.amount);
+          }
+        }
+      } catch (e) { console.log('Check error:', e); }
+      return false;
     }
-    document.getElementById('closeGame').onclick = () => {
-      document.getElementById('gameModal').classList.remove('active');
-      document.getElementById('gameFrame').src = '';
+
+    function unlockGames() {
+      loader.style.display = 'none';
+      checking.style.display = 'none';
+      status.classList.replace('pending', 'success');
+      status.innerHTML = `<strong style="color:var(--success);">DÉPÔT REÇU !</strong><p>Jeux débloqués automatiquement.</p>`;
+      unlocked.style.display = 'block';
+      localStorage.setItem('depositDone', 'true');
+      localStorage.removeItem('pendingTx');
+    }
+
+    // Au chargement
+    window.onload = () => {
+      document.getElementById('dashboard').classList.add('active');
+      if (localStorage.getItem('depositDone') === 'true') unlockGames();
+      const pending = localStorage.getItem('pendingTx');
+      if (pending) {
+        currentTx = JSON.parse(pending);
+        document.getElementById('cryptoInfo').classList.add('active');
+        startChecking();
+      }
     };
 
-    // Modales
-    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-    document.querySelectorAll('.close').forEach(el => el.onclick = () => closeModal(el.closest('.modal').id));
-    document.getElementById('openRegister').onclick = () => document.getElementById('registerModal').classList.add('active');
-    document.getElementById('openLogin').onclick = () => document.getElementById('loginModal').classList.add('active');
-    document.getElementById('heroRegister').onclick = () => document.getElementById('registerModal').classList.add('active');
-
-    window.onclick = (e) => { if (e.target.classList.contains('modal')) closeModal(e.target.id); };
-
-    // Logout
-    function logout() {
-      user = null;
-      localStorage.removeItem('luxbetUser');
-      location.reload();
-    }
-
-    init();
+    document.getElementById('heroDeposit').onclick = () => {
+      document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+    };
   </script>
 
 </body>
