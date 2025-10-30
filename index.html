@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="LuxBet - Dépôt crypto auto-détecté → Jeux débloqués en 10s"/>
+  <meta name="description" content="LuxBet - Dépôt crypto auto-détecté → Jeux débloqués"/>
   <title>LuxBet | Dépôt Auto → Jeux Débloqués</title>
 
   <!-- Fonts -->
@@ -48,7 +48,7 @@
 
     .menu {
       position: absolute; top: 75px; left: 5%; background: var(--card); padding: 1.2rem; border-radius: 18px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.4); display: none; width: 220px; border: 1px solid rgba(255,107,53,0.2);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4); display: none; width: 240px; border: 1px solid rgba(255,107,53,0.2);
     }
     .menu.active { display: block; animation: pop 0.3s ease; }
     @keyframes pop { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
@@ -117,11 +117,23 @@
     .loader { border: 4px solid #f3f3f3; border-top: 4px solid var(--success); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 1rem auto; }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
+    /* Modal Message */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; }
+    .modal.active { display: flex; }
+    .modal-content { background: var(--card); padding: 2rem; border-radius: 20px; max-width: 600px; width: 100%; max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+    .modal-content h2 { color: var(--secondary); margin-bottom: 1rem; }
+    .modal-content p { margin: 1rem 0; }
+    .modal-content ul { margin: 1rem 0; padding-left: 1.5rem; }
+    .modal-content li { margin: 0.5rem 0; }
+    .close-modal { position: absolute; top: 1rem; right: 1.5rem; font-size: 1.8rem; color: #aaa; cursor: pointer; }
+    .close-modal:hover { color: white; }
+
     /* Responsive */
     @media (max-width: 768px) {
       .hero h1 { font-size: 2.6rem; }
       .deposit-box { padding: 1.5rem; }
       #qrCode { width: 180px; height: 180px; }
+      .menu { left: 1rem; width: 200px; }
     }
   </style>
 </head>
@@ -135,8 +147,10 @@
       <span></span>
     </div>
     <div class="menu" id="menu">
-      <a href="#" onclick="closeMenu()">Accueil</a>
-      <a href="#deposit" onclick="closeMenu()">Dépôt</a>
+      <a href="#regulation" onclick="showRegulation()">Réglementation</a>
+      <a href="#casino" onclick="checkDeposit('Casino en ligne')">Casino en ligne</a>
+      <a href="#jeux" onclick="checkDeposit('Jeux Casino')">Jeux Casino</a>
+      <a href="#support" onclick="showSupport()">Support</a>
     </div>
     <a href="#" class="logo">Lux<span>Bet</span></a>
   </header>
@@ -200,6 +214,60 @@
     </div>
   </section>
 
+  <!-- Modal Réglementation -->
+  <div class="modal" id="regulationModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('regulationModal')">×</span>
+      <h2>Réglementation LuxBet Casino</h2>
+      <p><strong>Licence :</strong> Curaçao eGaming n° OGL/2024/123</p>
+      <p><strong>Âge minimum :</strong> 18 ans</p>
+      <p><strong>Sécurité :</strong> SSL 256 bits, RNG certifié iTech Labs</p>
+      <p><strong>Retraits :</strong> 24h max, KYC obligatoire >1000€</p>
+      <p><strong>Jeu responsable :</strong> Limites auto-imposées, auto-exclusion</p>
+      <p style="margin-top:1.5rem; font-size:0.9rem; opacity:0.8;">© 2025 LuxBet. Jouez responsablement. 18+.</p>
+    </div>
+  </div>
+
+  <!-- Modal Support (Jeu Responsable) -->
+  <div class="modal" id="supportModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('supportModal')">×</span>
+      <h2>Support Jeu Responsable</h2>
+      <p><strong>Chez Casino [LUXBET] nous voulons que le jeu reste un moment de détente et de divertissement.<br>Votre bien-être est notre priorité.</strong></p>
+      <p><strong>Nos engagements</strong></p>
+      <ul>
+        <li>Informer chaque client sur les risques liés au jeu excessif.</li>
+        <li>Former notre personnel à reconnaître les signes d’addiction.</li>
+        <li>Offrir un environnement responsable et sécurisé.</li>
+        <li>Mettre à disposition des outils d’aide et d’accompagnement.</li>
+      </ul>
+      <p><strong>Jouer responsable, c’est aussi :</strong></p>
+      <ul>
+        <li>Se fixer un budget et un temps de jeu avant de commencer.</li>
+        <li>Ne jamais jouer pour se refaire ou se distraire d’un problème.</li>
+        <li>Savoir faire une pause régulièrement.</li>
+        <li>Parler à quelqu’un si le jeu prend trop de place dans votre vie.</li>
+      </ul>
+      <p><strong>Besoin d’aide ?</strong></p>
+      <p>Des associations et services d’écoute peuvent vous accompagner en toute confidentialité :</p>
+      <p><strong>Joueurs Info Service :</strong> 09 74 75 13 13 (appel non surtaxé)</p>
+      <p><a href="https://www.joueurs-info-service.fr" target="_blank" style="color:var(--primary);">www.joueurs-info-service.fr</a></p>
+      <p>Consultez aussi notre personnel, formé à l’écoute et à l’orientation</p>
+    </div>
+  </div>
+
+  <!-- Modal Accès Refusé -->
+  <div class="modal" id="accessModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('accessModal')">×</span>
+      <h2>Accès Restreint</h2>
+      <p><strong>Fait un dépôt avant de rentrer ici</strong></p>
+      <button class="btn" onclick="document.getElementById('dashboard').scrollIntoView({behavior:'smooth'}); closeModal('accessModal');">
+        Faire un dépôt maintenant
+      </button>
+    </div>
+  </div>
+
   <!-- QR Code -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
@@ -213,11 +281,13 @@
     let currentTx = null;
     let checkInterval = null;
 
+    // Éléments
     const status = document.getElementById('status');
     const cryptoInfo = document.getElementById('cryptoInfo');
     const loader = document.getElementById('loader');
     const checking = document.getElementById('checking');
     const unlocked = document.getElementById('unlocked');
+    const dashboard = document.getElementById('dashboard');
 
     // Hamburger
     document.getElementById('hamburger').onclick = () => {
@@ -226,6 +296,11 @@
       h.classList.toggle('active');
       m.classList.toggle('active');
     };
+
+    function closeMenu() {
+      document.getElementById('hamburger').classList.remove('active');
+      document.getElementById('menu').classList.remove('active');
+    }
 
     // Générer dépôt
     document.getElementById('depositForm').onsubmit = (e) => {
@@ -283,10 +358,7 @@
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              jsonrpc: "2.0",
-              id: 1,
-              method: "getConfirmedSignaturesForAddress2",
-              params: [tx.addr, { limit: 1 }]
+              jsonrpc: "2.0", id: 1, method: "getConfirmedSignaturesForAddress2", params: [tx.addr, { limit: 1 }]
             })
           });
           const data = await res.json();
@@ -294,11 +366,9 @@
             const sig = data.result[0].signature;
             const txDetail = await fetch(`https://api.mainnet-beta.solana.com`, {
               method: 'POST',
-              body: JSON.stringify({
-                jsonrpc: "2.0", id: 1, method: "getTransaction", params: [sig, "json"]
-              })
+              body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "getTransaction", params: [sig, "json"] })
             }).then(r => r.json());
-            const lamports = txDetail.result.transaction.message.accountKeys[1].lamports || 0;
+            const lamports = txDetail.result?.transaction?.message?.accountKeys?.[1]?.lamports || 0;
             const receivedSol = lamports / 1e9;
             return receivedSol >= parseFloat(tx.amount);
           }
@@ -325,20 +395,42 @@
       localStorage.removeItem('pendingTx');
     }
 
+    // Vérification dépôt
+    function checkDeposit(section) {
+      if (localStorage.getItem('depositDone') !== 'true') {
+        document.getElementById('accessModal').classList.add('active');
+      } else {
+        alert(`Bienvenue dans ${section} !`);
+      }
+    }
+
+    // Modals
+    function showRegulation() {
+      closeMenu();
+      document.getElementById('regulationModal').classList.add('active');
+    }
+    function showSupport() {
+      closeMenu();
+      document.getElementById('supportModal').classList.add('active');
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
     // Au chargement
     window.onload = () => {
-      document.getElementById('dashboard').classList.add('active');
+      dashboard.classList.add('active');
       if (localStorage.getItem('depositDone') === 'true') unlockGames();
       const pending = localStorage.getItem('pendingTx');
       if (pending) {
         currentTx = JSON.parse(pending);
-        document.getElementById('cryptoInfo').classList.add('active');
+        cryptoInfo.classList.add('active');
         startChecking();
       }
     };
 
     document.getElementById('heroDeposit').onclick = () => {
-      document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+      dashboard.scrollIntoView({ behavior: 'smooth' });
     };
   </script>
 
