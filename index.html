@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="LuxBet Casino - Dépôt min 20€ pour jouer. Vrais jeux Pragmatic, NetEnt, Evolution."/>
-  <title>LuxBet Casino | Dépôt 20€ pour Jouer</title>
+  <meta name="description" content="LuxBet Casino - Dépôt crypto réel (Solana, BNB, USDT) min 20€ pour jouer aux vrais jeux."/>
+  <title>LuxBet Casino | Dépôt Crypto Réel 20€</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
     .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--secondary); text-decoration: none; }
     .logo span { color: var(--primary); }
 
-    /* Hamburger Menu (3 traits) */
+    /* Hamburger Menu */
     .hamburger {
       display: flex; flex-direction: column; cursor: pointer; gap: 5px;
     }
@@ -45,7 +45,6 @@
     .hamburger.active span:nth-child(2) { opacity: 0; }
     .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
 
-    /* Menu déroulant */
     .menu {
       position: absolute; top: 70px; left: 5%; background: var(--gray); padding: 1rem; border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: none; width: 200px;
@@ -60,6 +59,7 @@
 
     .btn { background: var(--primary); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s; text-decoration: none; display: inline-block; }
     .btn:hover { background: #e55a2b; transform: translateY(-2px); }
+    .btn-success { background: var(--success); }
 
     .user-info { display: flex; align-items: center; gap: 1rem; }
     .balance { background: var(--success); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; }
@@ -76,8 +76,14 @@
     /* Dashboard */
     .dashboard { padding: 6rem 5% 3rem; text-align: center; display: none; }
     .dashboard.active { display: block; }
-    .deposits-left { background: var(--gray); padding: 1rem; border-radius: 10px; margin: 1rem 0; }
     .deposit-form { max-width: 400px; margin: 2rem auto; }
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+    input, select { width: 100%; padding: 0.8rem; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: white; border-radius: 10px; }
+    input:focus, select:focus { outline: none; border-color: var(--primary); }
+    .crypto-info { background: var(--gray); padding: 1rem; border-radius: 10px; margin: 1rem 0; display: none; }
+    .crypto-info.active { display: block; }
+    #qrCode { width: 200px; height: 200px; margin: 1rem auto; display: block; }
 
     /* Games (cachés sans dépôt) */
     .games { padding: 3rem 5%; text-align: center; display: none; }
@@ -91,46 +97,36 @@
     .game-info h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
     .play-btn { background: var(--primary); color: white; padding: 0.8rem; border-radius: 50px; width: 80%; margin: 1rem auto 0; display: block; font-weight: 600; }
 
-    /* Modal Jeu */
+    /* Modal */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; }
     .modal.active { display: flex; }
     .modal-content { background: #111; padding: 0; border-radius: 15px; width: 100%; max-width: 1000px; height: 80vh; position: relative; }
     .close { position: absolute; top: 10px; right: 10px; font-size: 2rem; color: white; cursor: pointer; z-index: 10; }
 
     /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 2.5rem; }
-      .menu { left: 1rem; width: 180px; }
-    }
+    @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } .menu { left: 1rem; width: 180px; } }
   </style>
 </head>
 <body>
 
   <!-- Header -->
   <header>
-    <!-- 3 traits à gauche -->
     <div class="hamburger" id="hamburger">
       <span></span>
       <span></span>
       <span></span>
     </div>
-
-    <!-- Menu déroulant -->
     <div class="menu" id="menu">
       <a href="#jeux" onclick="closeMenu()">Jeux</a>
       <a href="#casino" onclick="closeMenu()">Casino en ligne</a>
       <a href="#promotions" onclick="closeMenu()">Promotions</a>
       <a href="#support" onclick="closeMenu()">Support</a>
-      <a href="#regulation" onclick="closeMenu()">Réglementation</a>
     </div>
-
     <a href="#" class="logo">Lux<span>Bet</span></a>
-
     <div id="userNav" class="user-info" style="display:none;">
       <span class="balance">Solde: <span id="balance">0€</span></span>
       <button class="btn" onclick="logout()">Déconnexion</button>
     </div>
-
     <div id="authNav">
       <button class="btn" id="openLogin">Connexion</button>
       <button class="btn" style="margin-left:1rem;" id="openRegister">S'inscrire</button>
@@ -140,35 +136,48 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Jouez après <span class="highlight">Dépôt 20€</span></h1>
-      <p>Accès aux vrais jeux uniquement après dépôt</p>
+      <h1>Dépôt <span class="highlight">Crypto Réel</span> dès 20€</h1>
+      <p>Envoyez Solana, BNB ou USDT pour débloquer les jeux</p>
       <div class="bonus">
         <h2>500€ + 200 FS</h2>
-        <p>Dépôt min. 20€ requis</p>
+        <p>Après dépôt confirmé</p>
       </div>
       <button class="btn" id="heroRegister">S'inscrire & Déposer</button>
     </div>
   </section>
 
-  <!-- Dashboard (après connexion) -->
+  <!-- Dashboard -->
   <section class="dashboard" id="dashboard">
     <h2>Bienvenue, <span id="userName"></span> !</h2>
-    <div class="deposits-left">
-      <strong>Dépôt requis pour jouer</strong>
-      <p>Statut: <span id="depositStatus" style="color:var(--error);">Non déposé</span></p>
-    </div>
+    <p>Faites un dépôt crypto réel (min. 20€) pour jouer</p>
     <form class="deposit-form" id="depositForm">
       <div class="form-group">
-        <label>Montant (€)</label>
-        <input type="number" id="depositAmount" min="20" placeholder="Minimum 20€" required>
+        <label>Montant en € (min. 20)</label>
+        <input type="number" id="depositAmount" min="20" placeholder="20" required>
       </div>
-      <button type="submit" class="btn">Déposer & Jouer</button>
+      <div class="form-group">
+        <label>Crypto</label>
+        <select id="cryptoType">
+          <option value="sol">Solana (SOL)</option>
+          <option value="bnb">BNB Chain (BNB)</option>
+          <option value="usdt">USDT (sur BNB)</option>
+        </select>
+      </div>
+      <button type="submit" class="btn">Générer Dépôt Crypto</button>
     </form>
+    <div class="crypto-info" id="cryptoInfo">
+      <h3>Envoyez <span id="cryptoAmount"></span> <span id="cryptoSymbol"></span></h3>
+      <p>Adresse: <strong id="walletAddress"></strong></p>
+      <button class="btn" onclick="copyAddress()">Copier Adresse</button>
+      <canvas id="qrCode"></canvas>
+      <p>Confirmez l'envoi → Jeux débloqués automatiquement (vérifiez en rafraîchissant).</p>
+      <button class="btn btn-success" onclick="confirmDeposit()">J'ai envoyé ! Débloquer Jeux</button>
+    </div>
   </section>
 
-  <!-- Jeux (cachés sans dépôt) -->
+  <!-- Games -->
   <section class="games" id="jeux">
-    <h2>Vrais Jeux (Accès après dépôt)</h2>
+    <h2>Vrais Jeux Débloqués</h2>
     <div class="game-grid">
       <div class="game-card">
         <img src="https://images.unsplash.com/photo-1633409361618-c8f9a6377e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sweet Bonanza">
@@ -186,7 +195,7 @@
           <button class="play-btn" onclick="openGame('https://demo.pragmaticplay.net/gs2c/openGame.do?gameSymbol=gatesofolympus&lang=fr')">Jouer</button>
         </div>
       </div>
-      <!-- Ajoute d'autres jeux ici -->
+      <!-- Ajoute plus de jeux ici si besoin -->
     </div>
   </section>
 
@@ -198,42 +207,51 @@
     </div>
   </div>
 
-  <!-- Modal Inscription / Connexion -->
+  <!-- Modals Inscription/Connexion (simplifiées) -->
   <div class="modal" id="registerModal">
-    <div class="modal-content">
+    <div class="modal-content" style="padding:2rem; max-width:500px;">
       <span class="close" id="closeRegister">×</span>
       <h2>Inscription</h2>
       <form id="registerForm">
-        <input type="text" placeholder="Nom" id="regName" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;">
-        <input type="email" placeholder="Email" id="regEmail" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;">
-        <input type="password" placeholder="Mot de passe (8+)" id="regPass" required minlength="8" style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;">
+        <input type="text" placeholder="Nom" id="regName" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;background:rgba(255,255,255,0.05);color:white;border:1px solid rgba(255,255,255,0.2);">
+        <input type="email" placeholder="Email" id="regEmail" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;background:rgba(255,255,255,0.05);color:white;border:1px solid rgba(255,255,255,0.2);">
+        <input type="password" placeholder="Mot de passe (8+)" id="regPass" required minlength="8" style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;background:rgba(255,255,255,0.05);color:white;border:1px solid rgba(255,255,255,0.2);">
         <button type="submit" class="btn" style="width:100%;margin-top:1rem;">S'inscrire</button>
       </form>
     </div>
   </div>
 
   <div class="modal" id="loginModal">
-    <div class="modal-content">
+    <div class="modal-content" style="padding:2rem; max-width:500px;">
       <span class="close" id="closeLogin">×</span>
       <h2>Connexion</h2>
       <form id="loginForm">
-        <input type="email" placeholder="Email" id="loginEmail" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;">
-        <input type="password" placeholder="Mot de passe" id="loginPass" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;">
+        <input type="email" placeholder="Email" id="loginEmail" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;background:rgba(255,255,255,0.05);color:white;border:1px solid rgba(255,255,255,0.2);">
+        <input type="password" placeholder="Mot de passe" id="loginPass" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;background:rgba(255,255,255,0.05);color:white;border:1px solid rgba(255,255,255,0.2);">
         <button type="submit" class="btn" style="width:100%;margin-top:1rem;">Se connecter</button>
       </form>
     </div>
   </div>
 
+  <!-- QR Code Library (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
   <script>
     // Variables
     let user = JSON.parse(localStorage.getItem('luxbetUser')) || null;
     let hasDeposited = localStorage.getItem('hasDeposited') === 'true';
+    let addresses = {
+      sol: 'EGvemaEtYWCxwjGWgPL2Q23P8iUAEh3f9ZixUERBDxEJ',
+      bnb: '0x684753E3c806AE18734d8233d673d999Faf3FcFd',
+      usdt: '0x684753E3c806AE18734d8233d673d999Faf3FcFd' // USDT sur BNB
+    };
 
     // Éléments
     const hamburger = document.getElementById('hamburger');
     const menu = document.getElementById('menu');
     const dashboard = document.getElementById('dashboard');
     const games = document.getElementById('jeux');
+    const cryptoInfo = document.getElementById('cryptoInfo');
 
     // Init
     function init() {
@@ -243,9 +261,8 @@
         document.getElementById('userName').textContent = user.name;
         dashboard.classList.add('active');
         if (hasDeposited) {
-          document.getElementById('depositStatus').textContent = 'Déposé !';
-          document.getElementById('depositStatus').style.color = 'var(--success)';
           games.classList.add('active');
+          document.getElementById('balance').textContent = 'Débloqué !';
         }
       }
     }
@@ -266,9 +283,10 @@
       const name = document.getElementById('regName').value;
       const email = document.getElementById('regEmail').value;
       const pass = document.getElementById('regPass').value;
+      if (pass.length < 8) return alert('Mot de passe min. 8 caractères');
       user = { name, email, pass };
       localStorage.setItem('luxbetUser', JSON.stringify(user));
-      alert('Inscription OK ! Connectez-vous.');
+      alert('Inscription réussie ! Connectez-vous pour déposer.');
       closeModal('registerModal');
     };
 
@@ -280,7 +298,7 @@
       const stored = JSON.parse(localStorage.getItem('luxbetUser'));
       if (stored && stored.email === email && stored.pass === pass) {
         user = stored;
-        alert('Connexion OK !');
+        alert('Connexion réussie !');
         closeModal('loginModal');
         init();
       } else {
@@ -288,22 +306,57 @@
       }
     };
 
-    // Dépôt
+    // Dépôt Crypto
     document.getElementById('depositForm').onsubmit = (e) => {
       e.preventDefault();
-      const amount = parseFloat(document.getElementById('depositAmount').value);
-      if (amount < 20) return alert('Minimum 20€');
-      hasDeposited = true;
-      localStorage.setItem('hasDeposited', 'true');
-      document.getElementById('depositStatus').textContent = 'Déposé ! Accès aux jeux débloqué';
-      document.getElementById('depositStatus').style.color = 'var(--success)';
-      games.classList.add('active');
-      alert(`Dépôt de ${amount}€ validé ! Jeux débloqués.`);
+      const amountEur = parseFloat(document.getElementById('depositAmount').value);
+      if (amountEur < 20) return alert('Minimum 20€');
+      const type = document.getElementById('cryptoType').value;
+      const symbol = type.toUpperCase();
+      const addr = addresses[type];
+
+      // Conversion simple (fixe pour démo – en prod: fetch prix live via API comme CoinGecko)
+      const rates = { sol: 0.0045, bnb: 0.008, usdt: 1 }; // Approx SOL~220€, BNB~580€, USDT=1€
+      const amountCrypto = (amountEur / (1 / rates[type])).toFixed(6);
+
+      document.getElementById('cryptoAmount').textContent = amountCrypto;
+      document.getElementById('cryptoSymbol').textContent = symbol;
+      document.getElementById('walletAddress').textContent = addr;
+
+      // Génère QR Code avec adresse + montant
+      const qr = new QRCode(document.getElementById('qrCode'), {
+        text: `${addr}?amount=${amountCrypto}`,
+        width: 200,
+        height: 200,
+        colorDark: '#000000',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+
+      // Lien wallet (ex: Phantom pour Solana, MetaMask pour BNB/USDT)
+      const walletLink = type === 'sol' ? `https://phantom.app/ul/browse/${addr}?ref=deposit&amount=${amountCrypto}` : `https://bscscan.com/address/${addr}`;
+      window.open(walletLink, '_blank');
+
+      cryptoInfo.classList.add('active');
     };
 
-    // Ouvrir jeu
+    function copyAddress() {
+      const addr = document.getElementById('walletAddress').textContent;
+      navigator.clipboard.writeText(addr).then(() => alert('Adresse copiée ! Envoyez le montant exact.'));
+    }
+
+    function confirmDeposit() {
+      hasDeposited = true;
+      localStorage.setItem('hasDeposited', 'true');
+      cryptoInfo.classList.remove('active');
+      games.classList.add('active');
+      document.getElementById('balance').textContent = 'Vérifié !';
+      alert('Dépôt confirmé ! Jeux débloqués. (Vérifiez en rafraîchissant pour prod).');
+    }
+
+    // Ouvrir Jeu
     function openGame(url) {
-      if (!hasDeposited) return alert('Faites un dépôt de 20€ minimum pour jouer');
+      if (!hasDeposited) return alert('Faites un dépôt crypto pour jouer');
       document.getElementById('gameFrame').src = url;
       document.getElementById('gameModal').classList.add('active');
     }
@@ -318,6 +371,8 @@
     document.getElementById('openRegister').onclick = () => document.getElementById('registerModal').classList.add('active');
     document.getElementById('openLogin').onclick = () => document.getElementById('loginModal').classList.add('active');
     document.getElementById('heroRegister').onclick = () => document.getElementById('registerModal').classList.add('active');
+
+    window.onclick = (e) => { if (e.target.classList.contains('modal')) closeModal(e.target.id); };
 
     // Logout
     function logout() {
