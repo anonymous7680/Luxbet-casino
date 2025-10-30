@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="LuxBet Casino - Vrais jeux en démo. Dépôt min 20€. Licencié Curaçao 2025."/>
-  <title>LuxBet Casino | Vrais Jeux & Bonus 500€</title>
+  <meta name="description" content="LuxBet Casino - Dépôt min 20€ pour jouer. Vrais jeux Pragmatic, NetEnt, Evolution."/>
+  <title>LuxBet Casino | Dépôt 20€ pour Jouer</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -30,14 +30,37 @@
       z-index: 1000; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center;
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
+
     .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--secondary); text-decoration: none; }
     .logo span { color: var(--primary); }
-    nav { display: flex; gap: 2rem; }
-    nav a { color: white; text-decoration: none; font-weight: 500; transition: 0.3s; }
-    nav a:hover { color: var(--primary); }
+
+    /* Hamburger Menu (3 traits) */
+    .hamburger {
+      display: flex; flex-direction: column; cursor: pointer; gap: 5px;
+    }
+    .hamburger span {
+      width: 25px; height: 3px; background: var(--light); border-radius: 2px; transition: 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+    /* Menu déroulant */
+    .menu {
+      position: absolute; top: 70px; left: 5%; background: var(--gray); padding: 1rem; border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: none; width: 200px;
+    }
+    .menu.active { display: block; animation: slideDown 0.3s ease; }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .menu a {
+      display: block; color: white; text-decoration: none; padding: 0.8rem 1rem; border-radius: 10px; margin: 0.5rem 0;
+      transition: 0.3s;
+    }
+    .menu a:hover { background: rgba(255,107,53,0.3); color: var(--secondary); }
+
     .btn { background: var(--primary); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s; text-decoration: none; display: inline-block; }
     .btn:hover { background: #e55a2b; transform: translateY(-2px); }
-    .btn-secondary { background: transparent; border: 2px solid var(--primary); }
+
     .user-info { display: flex; align-items: center; gap: 1rem; }
     .balance { background: var(--success); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; }
 
@@ -49,19 +72,14 @@
     .hero .highlight { color: var(--secondary); }
     .bonus { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 15px; margin: 2rem 0; display: inline-block; }
     .bonus h2 { font-size: 2.5rem; color: var(--secondary); }
-    .bonus p { font-size: 1.1rem; opacity: 0.9; }
 
     /* Dashboard */
     .dashboard { padding: 6rem 5% 3rem; text-align: center; display: none; }
     .dashboard.active { display: block; }
     .deposits-left { background: var(--gray); padding: 1rem; border-radius: 10px; margin: 1rem 0; }
     .deposit-form { max-width: 400px; margin: 2rem auto; }
-    .form-group { margin-bottom: 1rem; }
-    label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
-    input { width: 100%; padding: 0.8rem; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: white; border-radius: 10px; }
-    input:focus { outline: none; border-color: var(--primary); }
 
-    /* Games */
+    /* Games (cachés sans dépôt) */
     .games { padding: 3rem 5%; text-align: center; display: none; }
     .games.active { display: block; }
     .games h2 { font-size: 2.5rem; margin-bottom: 3rem; font-family: 'Playfair Display', serif; }
@@ -73,240 +91,173 @@
     .game-info h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
     .play-btn { background: var(--primary); color: white; padding: 0.8rem; border-radius: 50px; width: 80%; margin: 1rem auto 0; display: block; font-weight: 600; }
 
-    /* Modal Inscription/Login */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; }
+    /* Modal Jeu */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; }
     .modal.active { display: flex; }
-    .modal-content { background: var(--gray); padding: 2rem; border-radius: 20px; width: 100%; max-width: 500px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.3); animation: slideIn 0.4s ease; }
-    @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    .close { position: absolute; top: 1rem; right: 1.5rem; font-size: 1.5rem; cursor: pointer; color: #aaa; }
-    .close:hover { color: white; }
-    .modal h2 { text-align: center; margin-bottom: 1.5rem; font-family: 'Playfair Display', serif; color: var(--secondary); }
-    .checkbox { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; margin: 1rem 0; }
-    .checkbox input { width: auto; }
-    .submit-btn { width: 100%; padding: 1rem; font-size: 1.1rem; margin-top: 1rem; }
-
-    /* Réglementation */
-    .regulation { padding: 3rem 5%; background: var(--gray); }
-    .regulation h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; }
-    .regulation ul { max-width: 800px; margin: 0 auto; list-style: none; }
-    .regulation li { margin-bottom: 1rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 10px; }
+    .modal-content { background: #111; padding: 0; border-radius: 15px; width: 100%; max-width: 1000px; height: 80vh; position: relative; }
+    .close { position: absolute; top: 10px; right: 10px; font-size: 2rem; color: white; cursor: pointer; z-index: 10; }
 
     /* Responsive */
-    @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } .game-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .menu { left: 1rem; width: 180px; }
+    }
   </style>
 </head>
 <body>
 
   <!-- Header -->
   <header>
+    <!-- 3 traits à gauche -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Menu déroulant -->
+    <div class="menu" id="menu">
+      <a href="#jeux" onclick="closeMenu()">Jeux</a>
+      <a href="#casino" onclick="closeMenu()">Casino en ligne</a>
+      <a href="#promotions" onclick="closeMenu()">Promotions</a>
+      <a href="#support" onclick="closeMenu()">Support</a>
+      <a href="#regulation" onclick="closeMenu()">Réglementation</a>
+    </div>
+
     <a href="#" class="logo">Lux<span>Bet</span></a>
-    <nav id="navMain">
-      <a href="#jeux">Jeux</a>
-      <a href="#regulation">Réglementation</a>
-    </nav>
+
     <div id="userNav" class="user-info" style="display:none;">
       <span class="balance">Solde: <span id="balance">0€</span></span>
       <button class="btn" onclick="logout()">Déconnexion</button>
     </div>
+
     <div id="authNav">
       <button class="btn" id="openLogin">Connexion</button>
-      <button class="btn btn-secondary" id="openRegister" style="margin-left:1rem;">S'inscrire</button>
+      <button class="btn" style="margin-left:1rem;" id="openRegister">S'inscrire</button>
     </div>
   </header>
 
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Bienvenue sur <span class="highlight">LuxBet Casino</span></h1>
-      <p>Vrais jeux de Pragmatic, NetEnt & Evolution – Démo gratuite</p>
+      <h1>Jouez après <span class="highlight">Dépôt 20€</span></h1>
+      <p>Accès aux vrais jeux uniquement après dépôt</p>
       <div class="bonus">
         <h2>500€ + 200 FS</h2>
-        <p>Dépôt min. 20€ – 5 dépôts max/mois</p>
+        <p>Dépôt min. 20€ requis</p>
       </div>
-      <button class="btn" id="heroRegister">S'inscrire maintenant</button>
+      <button class="btn" id="heroRegister">S'inscrire & Déposer</button>
     </div>
   </section>
 
-  <!-- Dashboard User -->
+  <!-- Dashboard (après connexion) -->
   <section class="dashboard" id="dashboard">
-    <h2>Bonjour, <span id="userName"></span> !</h2>
+    <h2>Bienvenue, <span id="userName"></span> !</h2>
     <div class="deposits-left">
-      <strong>Dépôts restants ce mois: <span id="depositsLeft">5</span>/5</strong>
-      <p>Solde actuel: <span id="currentBalance">0€</span></p>
+      <strong>Dépôt requis pour jouer</strong>
+      <p>Statut: <span id="depositStatus" style="color:var(--error);">Non déposé</span></p>
     </div>
     <form class="deposit-form" id="depositForm">
       <div class="form-group">
-        <label>Montant dépôt (€)</label>
-        <input type="number" id="depositAmount" min="20" placeholder="Min. 20€" required>
+        <label>Montant (€)</label>
+        <input type="number" id="depositAmount" min="20" placeholder="Minimum 20€" required>
       </div>
-      <button type="submit" class="btn">Déposer</button>
+      <button type="submit" class="btn">Déposer & Jouer</button>
     </form>
-    <button class="btn" onclick="goToGames()" style="margin-top:2rem;">Aller aux jeux</button>
   </section>
 
-  <!-- Games (Vrais jeux en démo) -->
+  <!-- Jeux (cachés sans dépôt) -->
   <section class="games" id="jeux">
-    <h2>Vrais Jeux en Démo (Sans Dépôt)</h2>
+    <h2>Vrais Jeux (Accès après dépôt)</h2>
     <div class="game-grid">
       <div class="game-card">
         <img src="https://images.unsplash.com/photo-1633409361618-c8f9a6377e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sweet Bonanza">
         <div class="game-info">
           <h3>Sweet Bonanza</h3>
-          <p>Pragmatic Play – RTP 96.48%</p>
-          <button class="play-btn" onclick="openGame('https://demo.pragmaticplay.net/gs2c/openGame.do?gameSymbol=sweetbonanza&lang=fr')">Jouer Démo</button>
+          <p>Pragmatic Play</p>
+          <button class="play-btn" onclick="openGame('https://demo.pragmaticplay.net/gs2c/openGame.do?gameSymbol=sweetbonanza&lang=fr')">Jouer</button>
         </div>
       </div>
       <div class="game-card">
         <img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gates of Olympus">
         <div class="game-info">
           <h3>Gates of Olympus</h3>
-          <p>Pragmatic Play – Jackpot x5000</p>
-          <button class="play-btn" onclick="openGame('https://demo.pragmaticplay.net/gs2c/openGame.do?gameSymbol=gatesofolympus&lang=fr')">Jouer Démo</button>
+          <p>Pragmatic Play</p>
+          <button class="play-btn" onclick="openGame('https://demo.pragmaticplay.net/gs2c/openGame.do?gameSymbol=gatesofolympus&lang=fr')">Jouer</button>
         </div>
       </div>
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Starburst">
-        <div class="game-info">
-          <h3>Starburst</h3>
-          <p>NetEnt – Classique 2014</p>
-          <button class="play-btn" onclick="openGame('https://games.netent.com/video-slots/starburst/')">Jouer Démo</button>
-        </div>
-      </div>
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Blackjack">
-        <div class="game-info">
-          <h3>Blackjack Classic</h3>
-          <p>NetEnt – RTP 99.5%</p>
-          <button class="play-btn" onclick="openGame('https://games.netent.com/table-games/blackjack/')">Jouer Démo</button>
-        </div>
-      </div>
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1511512578047-d82ccd80aafb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Roulette">
-        <div class="game-info">
-          <h3>Roulette Live</h3>
-          <p>Evolution – Immersif</p>
-          <button class="play-btn" onclick="openGame('https://www.evolution.com/live-casino-games/roulette/')">Jouer Démo</button>
-        </div>
-      </div>
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1585208798174-6cedd78e0198?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sugar Rush">
-        <div class="game-info">
-          <h3>Sugar Rush</h3>
-          <p>Pragmatic Play – 2023</p>
-          <button class="play-btn" onclick="openGame('https://demo.pragmaticplay.net/gs2c/openGame.do?gameSymbol=sugarrush&lang=fr')">Jouer Démo</button>
-        </div>
-      </div>
+      <!-- Ajoute d'autres jeux ici -->
     </div>
   </section>
 
-  <!-- Réglementation -->
-  <section class="regulation" id="regulation">
-    <h2>Fiche de Réglementation LuxBet Casino (2025)</h2>
-    <ul>
-      <li><strong>Licence :</strong> Curaçao eGaming License n° OGL/2024/123 – Délivrée par la Government of Curaçao. Valide jusqu'au 31/12/2028. Autorise les jeux en ligne pour +18 ans.</li>
-      <li><strong>Régulateur :</strong> Malta Gaming Authority (MGA) – Conformité UE pour les joueurs européens. Numéro de référence : MGA/B2C/123/2025.</li>
-      <li><strong>Jeu Responsable :</strong> Limites de dépôt auto-imposées (max 500€/jour). Auto-exclusion via BeGambleAware.org. Soutien : 18+ seulement.</li>
-      <li><strong>Sécurité :</strong> SSL 256 bits (Certificat Let's Encrypt). RNG certifié par iTech Labs (rapport ID: RNG-2025-456). KYC obligatoire pour retraits >1000€.</li>
-      <li><strong>Paiements :</strong> Dépôt min. 20€. Retraits en 24h. Méthodes : Visa, Crypto (BTC/ETH), Skrill. Frais : 0% sur dépôts >50€.</li>
-      <li><strong>Conformité :</strong> RGPD-compliant pour données UE. Audits annuels par eCOGRA. Pas de publicité aux mineurs.</li>
-      <li><strong>Contact :</strong> support@luxbet.com | Live Chat 24/7. Si problème : contact@curacao-egaming.com.</li>
-    </ul>
-    <p style="text-align:center; margin-top:2rem; opacity:0.8;">© 2025 LuxBet Casino. Jouez responsablement. 18+.</p>
-  </section>
+  <!-- Modal Jeu -->
+  <div class="modal" id="gameModal">
+    <div class="modal-content">
+      <span class="close" id="closeGame">×</span>
+      <iframe id="gameFrame" src="" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
 
-  <!-- Modal Inscription -->
+  <!-- Modal Inscription / Connexion -->
   <div class="modal" id="registerModal">
     <div class="modal-content">
       <span class="close" id="closeRegister">×</span>
       <h2>Inscription</h2>
       <form id="registerForm">
-        <div class="form-group">
-          <label>Nom</label>
-          <input type="text" id="regName" required>
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" id="regEmail" required>
-        </div>
-        <div class="form-group">
-          <label>Mot de passe</label>
-          <input type="password" id="regPass" required minlength="8">
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" id="terms" required>
-          <label for="terms">J'ai 18+ ans et accepte la <a href="#regulation" style="color:var(--primary)">réglementation</a></label>
-        </div>
-        <button type="submit" class="btn submit-btn">S'inscrire</button>
+        <input type="text" placeholder="Nom" id="regName" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;">
+        <input type="email" placeholder="Email" id="regEmail" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;">
+        <input type="password" placeholder="Mot de passe (8+)" id="regPass" required minlength="8" style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;">
+        <button type="submit" class="btn" style="width:100%;margin-top:1rem;">S'inscrire</button>
       </form>
     </div>
   </div>
 
-  <!-- Modal Login -->
   <div class="modal" id="loginModal">
     <div class="modal-content">
       <span class="close" id="closeLogin">×</span>
       <h2>Connexion</h2>
       <form id="loginForm">
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" id="loginEmail" required>
-        </div>
-        <div class="form-group">
-          <label>Mot de passe</label>
-          <input type="password" id="loginPass" required>
-        </div>
-        <button type="submit" class="btn submit-btn">Se connecter</button>
+        <input type="email" placeholder="Email" id="loginEmail" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;">
+        <input type="password" placeholder="Mot de passe" id="loginPass" required style="width:100%;padding:0.8rem;margin:0.5rem 0;border-radius:10px;">
+        <button type="submit" class="btn" style="width:100%;margin-top:1rem;">Se connecter</button>
       </form>
     </div>
   </div>
 
-  <!-- Modal Jeu (Iframe) -->
-  <div class="modal" id="gameModal" style="background:rgba(0,0,0,0.95);">
-    <div class="modal-content" style="padding:0; max-width:1000px; height:80vh;">
-      <span class="close" id="closeGame" style="top:10px; right:10px;">×</span>
-      <iframe id="gameFrame" src="" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
-
   <script>
-    // État utilisateur (localStorage)
+    // Variables
     let user = JSON.parse(localStorage.getItem('luxbetUser')) || null;
-    let depositsThisMonth = parseInt(localStorage.getItem('depositsThisMonth')) || 0;
-    let maxDeposits = 5;
-    let balance = parseFloat(localStorage.getItem('balance')) || 0;
+    let hasDeposited = localStorage.getItem('hasDeposited') === 'true';
 
-    // Initialiser
+    // Éléments
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    const dashboard = document.getElementById('dashboard');
+    const games = document.getElementById('jeux');
+
+    // Init
     function init() {
       if (user) {
-        showUser();
-      } else {
-        showAuth();
+        document.getElementById('authNav').style.display = 'none';
+        document.getElementById('userNav').style.display = 'flex';
+        document.getElementById('userName').textContent = user.name;
+        dashboard.classList.add('active');
+        if (hasDeposited) {
+          document.getElementById('depositStatus').textContent = 'Déposé !';
+          document.getElementById('depositStatus').style.color = 'var(--success)';
+          games.classList.add('active');
+        }
       }
-      updateUI();
     }
 
-    function showUser() {
-      document.getElementById('authNav').style.display = 'none';
-      document.getElementById('userNav').style.display = 'flex';
-      document.getElementById('navMain').style.display = 'flex';
-      document.getElementById('userName').textContent = user.name;
-      document.getElementById('dashboard').classList.add('active');
-      document.getElementById('jeux').classList.add('active');
-      document.getElementById('balance').textContent = balance.toFixed(2) + '€';
-      document.getElementById('currentBalance').textContent = balance.toFixed(2) + '€';
-      document.getElementById('depositsLeft').textContent = maxDeposits - depositsThisMonth;
-    }
-
-    function showAuth() {
-      document.getElementById('authNav').style.display = 'block';
-      document.getElementById('userNav').style.display = 'none';
-      document.getElementById('dashboard').classList.remove('active');
-      document.getElementById('jeux').style.display = 'block';
-    }
-
-    function updateUI() {
-      document.getElementById('balance').textContent = balance.toFixed(2) + '€';
-      document.getElementById('depositsLeft').textContent = maxDeposits - depositsThisMonth;
+    // Hamburger
+    hamburger.onclick = () => {
+      hamburger.classList.toggle('active');
+      menu.classList.toggle('active');
+    };
+    function closeMenu() {
+      hamburger.classList.remove('active');
+      menu.classList.remove('active');
     }
 
     // Inscription
@@ -315,27 +266,25 @@
       const name = document.getElementById('regName').value;
       const email = document.getElementById('regEmail').value;
       const pass = document.getElementById('regPass').value;
-      if (pass.length < 8) return alert('Mot de passe min. 8 caractères');
-      user = { name, email, pass }; // Hash en prod
+      user = { name, email, pass };
       localStorage.setItem('luxbetUser', JSON.stringify(user));
-      alert('Inscription réussie ! Connexion auto...');
+      alert('Inscription OK ! Connectez-vous.');
       closeModal('registerModal');
-      init(); // Auto-connexion
     };
 
-    // Login
+    // Connexion
     document.getElementById('loginForm').onsubmit = (e) => {
       e.preventDefault();
       const email = document.getElementById('loginEmail').value;
       const pass = document.getElementById('loginPass').value;
-      const storedUser = JSON.parse(localStorage.getItem('luxbetUser'));
-      if (storedUser && storedUser.email === email && storedUser.pass === pass) {
-        user = storedUser;
-        alert('Connexion réussie !');
+      const stored = JSON.parse(localStorage.getItem('luxbetUser'));
+      if (stored && stored.email === email && stored.pass === pass) {
+        user = stored;
+        alert('Connexion OK !');
         closeModal('loginModal');
         init();
       } else {
-        alert('Email/Mot de passe incorrect');
+        alert('Erreur de connexion');
       }
     };
 
@@ -343,33 +292,18 @@
     document.getElementById('depositForm').onsubmit = (e) => {
       e.preventDefault();
       const amount = parseFloat(document.getElementById('depositAmount').value);
-      if (amount < 20) return alert('Dépôt min. 20€');
-      if (depositsThisMonth >= maxDeposits) return alert('Limite de dépôts atteinte');
-      balance += amount;
-      depositsThisMonth++;
-      localStorage.setItem('balance', balance);
-      localStorage.setItem('depositsThisMonth', depositsThisMonth);
-      updateUI();
-      alert(`Dépôt de ${amount}€ ajouté ! Solde: ${balance.toFixed(2)}€`);
+      if (amount < 20) return alert('Minimum 20€');
+      hasDeposited = true;
+      localStorage.setItem('hasDeposited', 'true');
+      document.getElementById('depositStatus').textContent = 'Déposé ! Accès aux jeux débloqué';
+      document.getElementById('depositStatus').style.color = 'var(--success)';
+      games.classList.add('active');
+      alert(`Dépôt de ${amount}€ validé ! Jeux débloqués.`);
     };
 
-    // Modales
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('active');
-    }
-    document.querySelectorAll('.close').forEach(el => el.onclick = () => closeModal(el.closest('.modal').id));
-
-    document.getElementById('openRegister').onclick = () => document.getElementById('registerModal').classList.add('active');
-    document.getElementById('heroRegister').onclick = () => document.getElementById('registerModal').classList.add('active');
-    document.getElementById('openLogin').onclick = () => document.getElementById('loginModal').classList.add('active');
-
-    window.onclick = (e) => {
-      if (e.target.classList.contains('modal')) closeModal(e.target.id);
-    };
-
-    // Jeux (Vrais embeds)
+    // Ouvrir jeu
     function openGame(url) {
-      if (!user) return alert('Connectez-vous pour jouer');
+      if (!hasDeposited) return alert('Faites un dépôt de 20€ minimum pour jouer');
       document.getElementById('gameFrame').src = url;
       document.getElementById('gameModal').classList.add('active');
     }
@@ -378,34 +312,19 @@
       document.getElementById('gameFrame').src = '';
     };
 
-    // Utils
+    // Modales
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+    document.querySelectorAll('.close').forEach(el => el.onclick = () => closeModal(el.closest('.modal').id));
+    document.getElementById('openRegister').onclick = () => document.getElementById('registerModal').classList.add('active');
+    document.getElementById('openLogin').onclick = () => document.getElementById('loginModal').classList.add('active');
+    document.getElementById('heroRegister').onclick = () => document.getElementById('registerModal').classList.add('active');
+
+    // Logout
     function logout() {
       user = null;
       localStorage.removeItem('luxbetUser');
-      localStorage.setItem('balance', 0);
-      localStorage.setItem('depositsThisMonth', 0);
-      balance = 0;
-      depositsThisMonth = 0;
-      showAuth();
-      alert('Déconnexion réussie');
+      location.reload();
     }
-
-    function goToGames() {
-      document.getElementById('dashboard').style.display = 'none';
-      document.getElementById('jeux').style.display = 'block';
-      document.getElementById('jeux').scrollIntoView();
-    }
-
-    // Reset mensuel dépôts (simulé)
-    setInterval(() => {
-      const now = new Date();
-      if (localStorage.getItem('lastReset') && now.getMonth() !== new Date(localStorage.getItem('lastReset')).getMonth()) {
-        depositsThisMonth = 0;
-        localStorage.setItem('depositsThisMonth', 0);
-        localStorage.setItem('lastReset', now.toISOString());
-        updateUI();
-      }
-    }, 3600000); // Check hourly
 
     init();
   </script>
