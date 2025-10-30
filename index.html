@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="LuxBet Casino - Bonus 500€ + 200 FS. Inscription rapide. Licencié Curaçao."/>
-  <title>LuxBet Casino | Inscription & Bonus 500€</title>
+  <meta name="description" content="LuxBet Casino - Jouez GRATUITEMENT sans inscription ! 2000+ jeux en démo."/>
+  <title>LuxBet Casino | Jouez GRATUITEMENT sans compte</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -21,234 +21,102 @@
       --error: #ff4444;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--dark);
-      color: white;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--dark); color: white; line-height: 1.6; overflow-x: hidden; }
 
     /* Header */
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(15, 15, 26, 0.95);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      padding: 1rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: fixed; top: 0; width: 100%; background: rgba(15,15,26,0.95); backdrop-filter: blur(10px);
+      z-index: 1000; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--secondary);
-      text-decoration: none;
-    }
-
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--secondary); text-decoration: none; }
     .logo span { color: var(--primary); }
-
     nav { display: flex; gap: 2rem; }
     nav a { color: white; text-decoration: none; font-weight: 500; transition: 0.3s; }
     nav a:hover { color: var(--primary); }
-
-    .btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.7rem 1.5rem;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn:hover {
-      background: #e55a2b;
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      border: 2px solid var(--primary);
-    }
+    .btn { background: var(--primary); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s; text-decoration: none; display: inline-block; }
+    .btn:hover { background: #e55a2b; transform: translateY(-2px); }
+    .btn-secondary { background: transparent; border: 2px solid var(--primary); }
 
     /* Hero */
     .hero {
-      height: 100vh;
-      background: linear-gradient(135deg, rgba(15,15,26,0.9), rgba(255,107,53,0.2)), url('https://images.unsplash.com/photo-1511512578047-d82ccd80aafb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
+      height: 100vh; background: linear-gradient(135deg, rgba(15,15,26,0.9), rgba(255,107,53,0.2)), url('https://images.unsplash.com/photo-1511512578047-d82ccd80aafb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
+      display: flex; align-items: center; justify-content: center; text-align: center; position: relative;
     }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 150px;
-      background: linear-gradient(transparent, var(--dark));
-    }
-
-    .hero-content {
-      max-width: 800px;
-      z-index: 2;
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      font-family: 'Playfair Display', serif;
-    }
-
+    .hero::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 150px; background: linear-gradient(transparent, var(--dark)); }
+    .hero-content { max-width: 800px; z-index: 2; }
+    .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
     .hero .highlight { color: var(--secondary); }
-
-    .bonus {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      padding: 1.5rem;
-      border-radius: 15px;
-      margin: 2rem 0;
-      display: inline-block;
-    }
-
+    .bonus { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 15px; margin: 2rem 0; display: inline-block; }
     .bonus h2 { font-size: 2.5rem; color: var(--secondary); }
     .bonus p { font-size: 1.1rem; opacity: 0.9; }
 
     /* Modal Inscription */
     .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(10px);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
+      z-index: 2000; justify-content: center; align-items: center; padding: 1rem;
     }
-
     .modal.active { display: flex; }
-
     .modal-content {
-      background: var(--gray);
-      padding: 2rem;
-      border-radius: 20px;
-      width: 100%;
-      max-width: 500px;
-      position: relative;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-      animation: slideIn 0.4s ease;
+      background: var(--gray); padding: 2rem; border-radius: 20px; width: 100%; max-width: 500px; position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3); animation: slideIn 0.4s ease;
     }
-
-    @keyframes slideIn {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .close {
-      position: absolute;
-      top: 1rem; right: 1.5rem;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #aaa;
-    }
-
-    .close:hover { color: white; }
-
-    .modal h2 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      font-family: 'Playfair Display', serif;
-      color: var(--secondary);
-    }
-
-    .form-group {
-      margin-bottom: 1rem;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 0.8rem;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.05);
-      color: white;
-      border-radius: 10px;
-      font-size: 1rem;
-    }
-
-    input:focus, select:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(255,107,53,0.3);
-    }
-
-    .error {
-      color: var(--error);
-      font-size: 0.85rem;
-      margin-top: 0.3rem;
-      display: none;
-    }
-
-    .checkbox {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-      margin: 1rem 0;
-    }
-
+    @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .close, .back { position: absolute; font-size: 1.5rem; cursor: pointer; color: #aaa; }
+    .close { top: 1rem; right: 1.5rem; }
+    .back { top: 1rem; left: 1.5rem; }
+    .close:hover, .back:hover { color: white; }
+    .modal h2 { text-align: center; margin-bottom: 1.5rem; font-family: 'Playfair Display', serif; color: var(--secondary); }
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+    input, select { width: 100%; padding: 0.8rem; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: white; border-radius: 10px; font-size: 1rem; }
+    input:focus, select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(255,107,53,0.3); }
+    .error { color: var(--error); font-size: 0.85rem; margin-top: 0.3rem; display: none; }
+    .checkbox { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; margin: 1rem 0; }
     .checkbox input { width: auto; }
+    .submit-btn { width: 100%; padding: 1rem; font-size: 1.1rem; margin-top: 1rem; }
 
-    .submit-btn {
-      width: 100%;
-      padding: 1rem;
-      font-size: 1.1rem;
-      margin-top: 1rem;
+    /* Games Section */
+    .games { padding: 5rem 5%; background: var(--dark); }
+    .games h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; font-family: 'Playfair Display', serif; }
+    .game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    .game-card {
+      position: relative; height: 300px; border-radius: 15px; overflow: hidden; cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3); background: #111; transition: 0.3s;
     }
+    .game-card:hover { transform: translateY(-10px); }
+    .game-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+    .game-card:hover img { transform: scale(1.1); }
+    .game-overlay {
+      position: absolute; bottom: 0; left: 0; width: 100%; padding: 1rem; background: linear-gradient(transparent, black); color: white;
+    }
+    .game-overlay h4 { font-size: 1.1rem; }
+    .game-overlay .provider { font-size: 0.8rem; opacity: 0.7; }
+    .play-btn {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--primary); color: white;
+      padding: 1rem 2rem; border-radius: 50px; font-weight: 600; opacity: 0; transition: 0.3s; z-index: 2;
+    }
+    .game-card:hover .play-btn { opacity: 1; }
 
-    .login-link {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 0.9rem;
+    /* Demo Game Modal */
+    .demo-modal {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95);
+      z-index: 3000; justify-content: center; align-items: center; padding: 1rem;
     }
-
-    .login-link a {
-      color: var(--primary);
-      text-decoration: none;
+    .demo-modal.active { display: flex; }
+    .demo-content {
+      background: #111; padding: 1rem; border-radius: 15px; width: 100%; max-width: 900px; position: relative; height: 80vh;
     }
+    .demo-close { position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; color: white; cursor: pointer; z-index: 10; }
+    iframe { width: 100%; height: 100%; border: none; border-radius: 10px; }
 
     /* Responsive */
     @media (max-width: 768px) {
       .hero h1 { font-size: 2.5rem; }
       .bonus h2 { font-size: 2rem; }
       nav { display: none; }
-      .modal-content { padding: 1.5rem; }
+      .game-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -261,7 +129,6 @@
       <a href="#jeux">Jeux</a>
       <a href="#promotions">Promotions</a>
       <a href="#paiements">Paiements</a>
-      <a href="#support">Support</a>
     </nav>
     <div>
       <button class="btn" id="openRegister">S'inscrire</button>
@@ -271,167 +138,127 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Bienvenue sur <span class="highlight">LuxBet Casino</span></h1>
-      <p>Le casino en ligne 2025 – Bonus exclusif, crypto, +2000 jeux</p>
-      
+      <h1>Jouez <span class="highlight">GRATUITEMENT</span> sans inscription</h1>
+      <p>2000+ jeux en mode démo – Essayez avant de déposer !</p>
       <div class="bonus">
-        <h2>500€ + 200 Free Spins</h2>
-        <p>Sur votre premier dépôt – Inscription en 30 secondes</p>
+        <h2>500€ + 200 FS</h2>
+        <p>Bonus réservé aux joueurs inscrits</p>
+      </div>
+      <button class="btn" id="heroRegister">S'inscrire & toucher le bonus</button>
+    </div>
+  </section>
+
+  <!-- Games -->
+  <section class="games" id="jeux">
+    <h2>Jeux en Démo (Gratuit & Sans Compte)</h2>
+    <div class="game-grid">
+      <div class="game-card" onclick="openDemo('https://demo.pragmaticplay.net/slots/sweet-bonanza')">
+        <img src="https://images.unsplash.com/photo-1633409361618-c8f9a6377e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sweet Bonanza">
+        <div class="play-btn">JOUER EN DÉMO</div>
+        <div class="game-overlay">
+          <h4>Sweet Bonanza</h4>
+          <p class="provider">Pragmatic Play</p>
+        </div>
       </div>
 
-      <button class="btn" id="heroRegister">S'inscrire maintenant</button>
-      <button class="btn btn-secondary" style="margin-left: 1rem;">Démo gratuite</button>
+      <div class="game-card" onclick="openDemo('https://demo.pragmaticplay.net/slots/gates-of-olympus')">
+        <img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gates of Olympus">
+        <div class="play-btn">JOUER EN DÉMO</div>
+        <div class="game-overlay">
+          <h4>Gates of Olympus</h4>
+          <p class="provider">Pragmatic Play</p>
+        </div>
+      </div>
+
+      <div class="game-card" onclick="openDemo('https://demo.evolution.com/games/roulette')">
+        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Live Roulette">
+        <div class="play-btn">JOUER EN DÉMO</div>
+        <div class="game-overlay">
+          <h4>Live Roulette</h4>
+          <p class="provider">Evolution Gaming</p>
+        </div>
+      </div>
+
+      <div class="game-card" onclick="openDemo('https://demo.netent.com/blackjack')">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Blackjack">
+        <div class="play-btn">JOUER EN DÉMO</div>
+        <div class="game-overlay">
+          <h4>Blackjack VIP</h4>
+          <p class="provider">NetEnt</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Modal Inscription -->
   <div class="modal" id="registerModal">
     <div class="modal-content">
+      <span class="back" id="backBtn">←</span>
       <span class="close" id="closeModal">×</span>
       <h2>Créer un compte</h2>
       <form id="registerForm">
         <div class="form-group">
-          <label>Prénom</label>
-          <input type="text" id="firstName" required placeholder="Jean">
-          <div class="error" id="firstNameError">Veuillez entrer un prénom valide</div>
-        </div>
-
-        <div class="form-group">
-          <label>Nom</label>
-          <input type="text" id="lastName" required placeholder="Dupont">
-          <div class="error" id="lastNameError">Veuillez entrer un nom valide</div>
-        </div>
-
-        <div class="form-group">
           <label>Email</label>
-          <input type="email" id="email" required placeholder="jean.dupont@gmail.com">
+          <input type="email" id="email" required placeholder="jean@gmail.com">
           <div class="error" id="emailError">Email invalide</div>
         </div>
-
         <div class="form-group">
-          <label>Mot de passe (min. 8 caractères)</label>
-          <input type="password" id="password" required placeholder="••••••••">
-          <div class="error" id="passwordError">8 caractères minimum, 1 majuscule, 1 chiffre</div>
+          <label>Mot de passe</label>
+          <input type="password" id="password" required placeholder="8+ caractères">
+          <div class="error" id="passwordError">8 caractères min.</div>
         </div>
-
-        <div class="form-group">
-          <label>Date de naissance</label>
-          <input type="date" id="birthDate" required>
-          <div class="error" id="birthDateError">Vous devez avoir 18 ans minimum</div>
-        </div>
-
-        <div class="form-group">
-          <label>Pays</label>
-          <select id="country" required>
-            <option value="">Choisir un pays</option>
-            <option value="FR">France</option>
-            <option value="BE">Belgique</option>
-            <option value="CA">Canada</option>
-            <option value="CH">Suisse</option>
-            <option value="MA">Maroc</option>
-            <option value="OTHER">Autre</option>
-          </select>
-          <div class="error" id="countryError">Sélectionnez un pays</div>
-        </div>
-
         <div class="checkbox">
           <input type="checkbox" id="terms" required>
-          <label for="terms">J'accepte les <a href="#" style="color:var(--primary)">conditions d'utilisation</a> et j'ai 18 ans ou plus</label>
+          <label for="terms">J'ai 18 ans et j'accepte les <a href="#" style="color:var(--primary)">conditions</a></label>
         </div>
-
-        <button type="submit" class="btn submit-btn">Créer mon compte</button>
-
-        <div class="login-link">
-          Déjà inscrit ? <a href="#" id="openLogin">Se connecter</a>
-        </div>
+        <button type="submit" class="btn submit-btn">S'inscrire & Jouer</button>
       </form>
     </div>
   </div>
 
-  <!-- Script JavaScript -->
+  <!-- Demo Game Modal -->
+  <div class="demo-modal" id="demoModal">
+    <div class="demo-content">
+      <span class="demo-close" id="closeDemo">×</span>
+      <iframe id="demoFrame" src=""></iframe>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
   <script>
-    // Ouvrir la modale
-    document.getElementById('openRegister').onclick = openModal;
-    document.getElementById('heroRegister').onclick = openModal;
+    // Modale inscription
+    document.getElementById('openRegister').onclick = () => document.getElementById('registerModal').classList.add('active');
+    document.getElementById('heroRegister').onclick = () => document.getElementById('registerModal').classList.add('active');
+    document.getElementById('closeModal').onclick = closeRegister;
+    document.getElementById('backBtn').onclick = closeRegister;
+    window.onclick = (e) => { if (e.target === document.getElementById('registerModal')) closeRegister(); }
 
-    // Fermer la modale
-    document.getElementById('closeModal').onclick = closeModal;
-    window.onclick = function(e) {
-      if (e.target === document.getElementById('registerModal')) closeModal();
-    }
-
-    function openModal() {
-      document.getElementById('registerModal').classList.add('active');
-    }
-
-    function closeModal() {
+    function closeRegister() {
       document.getElementById('registerModal').classList.remove('active');
       document.getElementById('registerForm').reset();
-      document.querySelectorAll('.error').forEach(el => el.style.display = 'none');
     }
 
-    // Validation en temps réel
-    const form = document.getElementById('registerForm');
-    const inputs = form.querySelectorAll('input, select');
-
-    inputs.forEach(input => {
-      input.addEventListener('blur', validateField);
-    });
-
-    function validateField() {
-      const field = this.id;
-      const value = this.value.trim();
-      const errorEl = document.getElementById(field + 'Error');
-
-      let valid = true;
-
-      switch(field) {
-        case 'firstName':
-        case 'lastName':
-          valid = value.length >= 2;
-          break;
-        case 'email':
-          valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-          break;
-        case 'password':
-          valid = value.length >= 8 && /[A-Z]/.test(value) && /\d/.test(value);
-          break;
-        case 'birthDate':
-          const birth = new Date(value);
-          const today = new Date();
-          const age = today.getFullYear() - birth.getFullYear();
-          valid = age >= 18 && birth < today;
-          break;
-        case 'country':
-          valid = value !== '';
-          break;
-      }
-
-      errorEl.style.display = valid ? 'none' : 'block';
-      return valid;
-    }
-
-    // Soumission du formulaire
-    form.onsubmit = function(e) {
+    // Validation simple
+    document.getElementById('registerForm').onsubmit = (e) => {
       e.preventDefault();
-      
-      let allValid = true;
-      inputs.forEach(input => {
-        if (!validateField.call(input)) allValid = false;
-      });
-
-      if (allValid) {
-        alert('Inscription réussie ! 🎉\n\nUn email de confirmation a été envoyé à ' + document.getElementById('email').value);
-        closeModal();
+      const email = document.getElementById('email').value;
+      const pass = document.getElementById('password').value;
+      if (email.includes('@') && pass.length >= 8) {
+        alert('Inscription réussie ! 🎉\nBienvenue sur LuxBet !');
+        closeRegister();
       } else {
-        alert('Veuillez corriger les erreurs dans le formulaire.');
+        alert('Veuillez vérifier email et mot de passe.');
       }
     };
 
-    // Lien "Se connecter"
-    document.getElementById('openLogin').onclick = function(e) {
-      e.preventDefault();
-      alert('Fonctionnalité de connexion à venir... (ou intégrée via White Label)');
+    // Démo jeux
+    function openDemo(url) {
+      document.getElementById('demoFrame').src = url;
+      document.getElementById('demoModal').classList.add('active');
+    }
+    document.getElementById('closeDemo').onclick = () => {
+      document.getElementById('demoModal').classList.remove('active');
+      document.getElementById('demoFrame').src = '';
     };
   </script>
 
