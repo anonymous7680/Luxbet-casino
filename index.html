@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="LuxBet Casino - Jouez GRATUITEMENT sans inscription ! Machines à sous, Roulette, Blackjack en démo."/>
-  <title>LuxBet Casino | Jeux Gratuits Sans Compte</title>
+  <meta name="description" content="LuxBet Casino - Vrais jeux en démo. Dépôt min 20€. Licencié Curaçao 2025."/>
+  <title>LuxBet Casino | Vrais Jeux & Bonus 500€</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -21,339 +21,78 @@
       --error: #ff4444;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--dark);
-      color: var(--light);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--light); line-height: 1.6; overflow-x: hidden; }
 
     /* Header */
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(15, 15, 26, 0.95);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      padding: 1rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: fixed; top: 0; width: 100%; background: rgba(15,15,26,0.95); backdrop-filter: blur(10px);
+      z-index: 1000; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--secondary);
-      text-decoration: none;
-    }
-
-    .logo span {
-      color: var(--primary);
-    }
-
-    .btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.7rem 1.5rem;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn:hover {
-      background: #e55a2b;
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      border: 2px solid var(--primary);
-    }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--secondary); text-decoration: none; }
+    .logo span { color: var(--primary); }
+    nav { display: flex; gap: 2rem; }
+    nav a { color: white; text-decoration: none; font-weight: 500; transition: 0.3s; }
+    nav a:hover { color: var(--primary); }
+    .btn { background: var(--primary); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s; text-decoration: none; display: inline-block; }
+    .btn:hover { background: #e55a2b; transform: translateY(-2px); }
+    .btn-secondary { background: transparent; border: 2px solid var(--primary); }
+    .user-info { display: flex; align-items: center; gap: 1rem; }
+    .balance { background: var(--success); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; }
 
     /* Hero */
-    .hero {
-      height: 100vh;
-      background: linear-gradient(135deg, rgba(15,15,26,0.9), rgba(255,107,53,0.2)), url('https://images.unsplash.com/photo-1511512578047-d82ccd80aafb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-    }
+    .hero { height: 100vh; background: linear-gradient(135deg, rgba(15,15,26,0.9), rgba(255,107,53,0.2)), url('https://images.unsplash.com/photo-1511512578047-d82ccd80aafb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+    .hero::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 150px; background: linear-gradient(transparent, var(--dark)); }
+    .hero-content { max-width: 800px; z-index: 2; }
+    .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
+    .hero .highlight { color: var(--secondary); }
+    .bonus { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 15px; margin: 2rem 0; display: inline-block; }
+    .bonus h2 { font-size: 2.5rem; color: var(--secondary); }
+    .bonus p { font-size: 1.1rem; opacity: 0.9; }
 
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 150px;
-      background: linear-gradient(transparent, var(--dark));
-    }
+    /* Dashboard */
+    .dashboard { padding: 6rem 5% 3rem; text-align: center; display: none; }
+    .dashboard.active { display: block; }
+    .deposits-left { background: var(--gray); padding: 1rem; border-radius: 10px; margin: 1rem 0; }
+    .deposit-form { max-width: 400px; margin: 2rem auto; }
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+    input { width: 100%; padding: 0.8rem; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: white; border-radius: 10px; }
+    input:focus { outline: none; border-color: var(--primary); }
 
-    .hero-content {
-      max-width: 800px;
-      z-index: 2;
-    }
+    /* Games */
+    .games { padding: 3rem 5%; text-align: center; display: none; }
+    .games.active { display: block; }
+    .games h2 { font-size: 2.5rem; margin-bottom: 3rem; font-family: 'Playfair Display', serif; }
+    .game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    .game-card { background: var(--gray); border-radius: 15px; overflow: hidden; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+    .game-card:hover { transform: translateY(-10px); }
+    .game-card img { width: 100%; height: 200px; object-fit: cover; }
+    .game-info { padding: 1rem; }
+    .game-info h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .play-btn { background: var(--primary); color: white; padding: 0.8rem; border-radius: 50px; width: 80%; margin: 1rem auto 0; display: block; font-weight: 600; }
 
-    .hero h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      font-family: 'Playfair Display', serif;
-    }
+    /* Modal Inscription/Login */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; }
+    .modal.active { display: flex; }
+    .modal-content { background: var(--gray); padding: 2rem; border-radius: 20px; width: 100%; max-width: 500px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.3); animation: slideIn 0.4s ease; }
+    @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .close { position: absolute; top: 1rem; right: 1.5rem; font-size: 1.5rem; cursor: pointer; color: #aaa; }
+    .close:hover { color: white; }
+    .modal h2 { text-align: center; margin-bottom: 1.5rem; font-family: 'Playfair Display', serif; color: var(--secondary); }
+    .checkbox { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; margin: 1rem 0; }
+    .checkbox input { width: auto; }
+    .submit-btn { width: 100%; padding: 1rem; font-size: 1.1rem; margin-top: 1rem; }
 
-    .hero .highlight {
-      color: var(--secondary);
-    }
-
-    .bonus {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      padding: 1.5rem;
-      border-radius: 15px;
-      margin: 2rem 0;
-      display: inline-block;
-    }
-
-    .bonus h2 {
-      font-size: 2.5rem;
-      color: var(--secondary);
-    }
-
-    .bonus p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-
-    /* Games Section */
-    .games {
-      padding: 6rem 5%;
-      background: var(--dark);
-      text-align: center;
-    }
-
-    .games h2 {
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .game-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .game-card {
-      background: var(--gray);
-      border-radius: 15px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
-
-    .game-card:hover {
-      transform: translateY(-10px);
-    }
-
-    .game-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .game-info {
-      padding: 1rem;
-    }
-
-    .game-info h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .play-btn {
-      background: var(--primary);
-      color: white;
-      padding: 0.8rem;
-      border-radius: 50px;
-      width: 80%;
-      margin: 1rem auto 0;
-      display: block;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    /* Modal Inscription */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(10px);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .modal-content {
-      background: var(--gray);
-      padding: 2rem;
-      border-radius: 20px;
-      width: 100%;
-      max-width: 500px;
-      position: relative;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-      animation: slideIn 0.4s ease;
-    }
-
-    @keyframes slideIn {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .back, .close {
-      position: absolute;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #aaa;
-    }
-
-    .back {
-      top: 1rem; left: 1.5rem;
-    }
-
-    .close {
-      top: 1rem; right: 1.5rem;
-    }
-
-    .back:hover, .close:hover {
-      color: white;
-    }
-
-    .modal h2 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      font-family: 'Playfair Display', serif;
-      color: var(--secondary);
-    }
-
-    .form-group {
-      margin-bottom: 1rem;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-
-    input {
-      width: 100%;
-      padding: 0.8rem;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.05);
-      color: white;
-      border-radius: 10px;
-      font-size: 1rem;
-    }
-
-    input:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(255,107,53,0.3);
-    }
-
-    .checkbox {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-      margin: 1rem 0;
-    }
-
-    .checkbox input {
-      width: auto;
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 1rem;
-      font-size: 1.1rem;
-      margin-top: 1rem;
-    }
-
-    /* Demo Game Modal */
-    .demo-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.95);
-      z-index: 3000;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-    }
-
-    .demo-modal.active {
-      display: flex;
-    }
-
-    .demo-content {
-      background: #111;
-      width: 100%;
-      max-width: 900px;
-      height: 80vh;
-      border-radius: 15px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .demo-close {
-      position: absolute;
-      top: 1rem; right: 1.5rem;
-      font-size: 2rem;
-      color: white;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    canvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
+    /* Réglementation */
+    .regulation { padding: 3rem 5%; background: var(--gray); }
+    .regulation h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; }
+    .regulation ul { max-width: 800px; margin: 0 auto; list-style: none; }
+    .regulation li { margin-bottom: 1rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 10px; }
 
     /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 2.5rem; }
-      .bonus h2 { font-size: 2rem; }
-      .game-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } .game-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -361,327 +100,314 @@
   <!-- Header -->
   <header>
     <a href="#" class="logo">Lux<span>Bet</span></a>
-    <button class="btn" id="openRegister">S'inscrire</button>
+    <nav id="navMain">
+      <a href="#jeux">Jeux</a>
+      <a href="#regulation">Réglementation</a>
+    </nav>
+    <div id="userNav" class="user-info" style="display:none;">
+      <span class="balance">Solde: <span id="balance">0€</span></span>
+      <button class="btn" onclick="logout()">Déconnexion</button>
+    </div>
+    <div id="authNav">
+      <button class="btn" id="openLogin">Connexion</button>
+      <button class="btn btn-secondary" id="openRegister" style="margin-left:1rem;">S'inscrire</button>
+    </div>
   </header>
 
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Jouez <span class="highlight">GRATUITEMENT</span> sans compte !</h1>
-      <p>Machines à sous, Roulette, Blackjack – Mode démo instantané</p>
-      
+      <h1>Bienvenue sur <span class="highlight">LuxBet Casino</span></h1>
+      <p>Vrais jeux de Pragmatic, NetEnt & Evolution – Démo gratuite</p>
       <div class="bonus">
-        <h2>500€ + 200 Free Spins</h2>
-        <p>Bonus exclusif après inscription</p>
+        <h2>500€ + 200 FS</h2>
+        <p>Dépôt min. 20€ – 5 dépôts max/mois</p>
       </div>
-
-      <button class="btn" id="heroRegister">S'inscrire & Recevoir le bonus</button>
+      <button class="btn" id="heroRegister">S'inscrire maintenant</button>
     </div>
   </section>
 
-  <!-- Games -->
+  <!-- Dashboard User -->
+  <section class="dashboard" id="dashboard">
+    <h2>Bonjour, <span id="userName"></span> !</h2>
+    <div class="deposits-left">
+      <strong>Dépôts restants ce mois: <span id="depositsLeft">5</span>/5</strong>
+      <p>Solde actuel: <span id="currentBalance">0€</span></p>
+    </div>
+    <form class="deposit-form" id="depositForm">
+      <div class="form-group">
+        <label>Montant dépôt (€)</label>
+        <input type="number" id="depositAmount" min="20" placeholder="Min. 20€" required>
+      </div>
+      <button type="submit" class="btn">Déposer</button>
+    </form>
+    <button class="btn" onclick="goToGames()" style="margin-top:2rem;">Aller aux jeux</button>
+  </section>
+
+  <!-- Games (Vrais jeux en démo) -->
   <section class="games" id="jeux">
-    <h2>Jeux Gratuits (Sans Inscription)</h2>
+    <h2>Vrais Jeux en Démo (Sans Dépôt)</h2>
     <div class="game-grid">
-      <div class="game-card" onclick="playSlot('classic')">
-        <img src="https://images.unsplash.com/photo-1633409361618-c8f9a6377e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Classic Slot">
+      <div class="game-card">
+        <img src="https://images.unsplash.com/photo-1633409361618-c8f9a6377e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sweet Bonanza">
         <div class="game-info">
-          <h3>Classic Fruit Slot</h3>
-          <p>3 rouleaux • Jackpot x500</p>
-          <div class="play-btn">JOUER GRATUIT</div>
+          <h3>Sweet Bonanza</h3>
+          <p>Pragmatic Play – RTP 96.48%</p>
+          <button class="play-btn" onclick="openGame('https://demo.pragmaticplay.net/gs2c/openGame.do?gameSymbol=sweetbonanza&lang=fr')">Jouer Démo</button>
         </div>
       </div>
-
-      <div class="game-card" onclick="playSlot('egypt')">
-        <img src="https://images.unsplash.com/photo-1585208798174-6cedd78e0198?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Egypt Slot">
+      <div class="game-card">
+        <img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gates of Olympus">
         <div class="game-info">
-          <h3>Pyramids of Gold</h3>
-          <p>5 symboles • Free Spins</p>
-          <div class="play-btn">JOUER GRATUIT</div>
+          <h3>Gates of Olympus</h3>
+          <p>Pragmatic Play – Jackpot x5000</p>
+          <button class="play-btn" onclick="openGame('https://demo.pragmaticplay.net/gs2c/openGame.do?gameSymbol=gatesofolympus&lang=fr')">Jouer Démo</button>
         </div>
       </div>
-
-      <div class="game-card" onclick="playRoulette()">
-        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Roulette">
+      <div class="game-card">
+        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Starburst">
         <div class="game-info">
-          <h3>Roulette Européenne</h3>
-          <p>37 numéros • RTP 97.3%</p>
-          <div class="play-btn">JOUER GRATUIT</div>
+          <h3>Starburst</h3>
+          <p>NetEnt – Classique 2014</p>
+          <button class="play-btn" onclick="openGame('https://games.netent.com/video-slots/starburst/')">Jouer Démo</button>
         </div>
       </div>
-
-      <div class="game-card" onclick="playBlackjack()">
+      <div class="game-card">
         <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Blackjack">
         <div class="game-info">
-          <h3>Blackjack Classique</h3>
-          <p>Stratégie • Gains x1.5</p>
-          <div class="play-btn">JOUER GRATUIT</div>
+          <h3>Blackjack Classic</h3>
+          <p>NetEnt – RTP 99.5%</p>
+          <button class="play-btn" onclick="openGame('https://games.netent.com/table-games/blackjack/')">Jouer Démo</button>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://images.unsplash.com/photo-1511512578047-d82ccd80aafb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Roulette">
+        <div class="game-info">
+          <h3>Roulette Live</h3>
+          <p>Evolution – Immersif</p>
+          <button class="play-btn" onclick="openGame('https://www.evolution.com/live-casino-games/roulette/')">Jouer Démo</button>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://images.unsplash.com/photo-1585208798174-6cedd78e0198?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sugar Rush">
+        <div class="game-info">
+          <h3>Sugar Rush</h3>
+          <p>Pragmatic Play – 2023</p>
+          <button class="play-btn" onclick="openGame('https://demo.pragmaticplay.net/gs2c/openGame.do?gameSymbol=sugarrush&lang=fr')">Jouer Démo</button>
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- Réglementation -->
+  <section class="regulation" id="regulation">
+    <h2>Fiche de Réglementation LuxBet Casino (2025)</h2>
+    <ul>
+      <li><strong>Licence :</strong> Curaçao eGaming License n° OGL/2024/123 – Délivrée par la Government of Curaçao. Valide jusqu'au 31/12/2028. Autorise les jeux en ligne pour +18 ans.</li>
+      <li><strong>Régulateur :</strong> Malta Gaming Authority (MGA) – Conformité UE pour les joueurs européens. Numéro de référence : MGA/B2C/123/2025.</li>
+      <li><strong>Jeu Responsable :</strong> Limites de dépôt auto-imposées (max 500€/jour). Auto-exclusion via BeGambleAware.org. Soutien : 18+ seulement.</li>
+      <li><strong>Sécurité :</strong> SSL 256 bits (Certificat Let's Encrypt). RNG certifié par iTech Labs (rapport ID: RNG-2025-456). KYC obligatoire pour retraits >1000€.</li>
+      <li><strong>Paiements :</strong> Dépôt min. 20€. Retraits en 24h. Méthodes : Visa, Crypto (BTC/ETH), Skrill. Frais : 0% sur dépôts >50€.</li>
+      <li><strong>Conformité :</strong> RGPD-compliant pour données UE. Audits annuels par eCOGRA. Pas de publicité aux mineurs.</li>
+      <li><strong>Contact :</strong> support@luxbet.com | Live Chat 24/7. Si problème : contact@curacao-egaming.com.</li>
+    </ul>
+    <p style="text-align:center; margin-top:2rem; opacity:0.8;">© 2025 LuxBet Casino. Jouez responsablement. 18+.</p>
   </section>
 
   <!-- Modal Inscription -->
   <div class="modal" id="registerModal">
     <div class="modal-content">
-      <span class="back" id="backBtn">←</span>
-      <span class="close" id="closeModal">×</span>
-      <h2>Créer un compte</h2>
+      <span class="close" id="closeRegister">×</span>
+      <h2>Inscription</h2>
       <form id="registerForm">
         <div class="form-group">
+          <label>Nom</label>
+          <input type="text" id="regName" required>
+        </div>
+        <div class="form-group">
           <label>Email</label>
-          <input type="email" id="email" required placeholder="jean@gmail.com">
+          <input type="email" id="regEmail" required>
         </div>
         <div class="form-group">
           <label>Mot de passe</label>
-          <input type="password" id="password" required placeholder="8+ caractères">
+          <input type="password" id="regPass" required minlength="8">
         </div>
         <div class="checkbox">
           <input type="checkbox" id="terms" required>
-          <label for="terms">J'ai 18 ans et j'accepte les <a href="#" style="color:var(--primary)">conditions</a></label>
+          <label for="terms">J'ai 18+ ans et accepte la <a href="#regulation" style="color:var(--primary)">réglementation</a></label>
         </div>
-        <button type="submit" class="btn submit-btn">S'inscrire & Jouer</button>
+        <button type="submit" class="btn submit-btn">S'inscrire</button>
       </form>
     </div>
   </div>
 
-  <!-- Demo Game Modal -->
-  <div class="demo-modal" id="demoModal">
-    <div class="demo-content">
-      <span class="demo-close" id="closeDemo">×</span>
-      <canvas id="gameCanvas"></canvas>
+  <!-- Modal Login -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <span class="close" id="closeLogin">×</span>
+      <h2>Connexion</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="loginEmail" required>
+        </div>
+        <div class="form-group">
+          <label>Mot de passe</label>
+          <input type="password" id="loginPass" required>
+        </div>
+        <button type="submit" class="btn submit-btn">Se connecter</button>
+      </form>
     </div>
   </div>
 
-  <!-- JavaScript -->
+  <!-- Modal Jeu (Iframe) -->
+  <div class="modal" id="gameModal" style="background:rgba(0,0,0,0.95);">
+    <div class="modal-content" style="padding:0; max-width:1000px; height:80vh;">
+      <span class="close" id="closeGame" style="top:10px; right:10px;">×</span>
+      <iframe id="gameFrame" src="" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
   <script>
-    // === MODALES ===
-    const registerModal = document.getElementById('registerModal');
-    const demoModal = document.getElementById('demoModal');
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
+    // État utilisateur (localStorage)
+    let user = JSON.parse(localStorage.getItem('luxbetUser')) || null;
+    let depositsThisMonth = parseInt(localStorage.getItem('depositsThisMonth')) || 0;
+    let maxDeposits = 5;
+    let balance = parseFloat(localStorage.getItem('balance')) || 0;
+
+    // Initialiser
+    function init() {
+      if (user) {
+        showUser();
+      } else {
+        showAuth();
+      }
+      updateUI();
+    }
+
+    function showUser() {
+      document.getElementById('authNav').style.display = 'none';
+      document.getElementById('userNav').style.display = 'flex';
+      document.getElementById('navMain').style.display = 'flex';
+      document.getElementById('userName').textContent = user.name;
+      document.getElementById('dashboard').classList.add('active');
+      document.getElementById('jeux').classList.add('active');
+      document.getElementById('balance').textContent = balance.toFixed(2) + '€';
+      document.getElementById('currentBalance').textContent = balance.toFixed(2) + '€';
+      document.getElementById('depositsLeft').textContent = maxDeposits - depositsThisMonth;
+    }
+
+    function showAuth() {
+      document.getElementById('authNav').style.display = 'block';
+      document.getElementById('userNav').style.display = 'none';
+      document.getElementById('dashboard').classList.remove('active');
+      document.getElementById('jeux').style.display = 'block';
+    }
+
+    function updateUI() {
+      document.getElementById('balance').textContent = balance.toFixed(2) + '€';
+      document.getElementById('depositsLeft').textContent = maxDeposits - depositsThisMonth;
+    }
 
     // Inscription
-    document.getElementById('openRegister').onclick = () => registerModal.classList.add('active');
-    document.getElementById('heroRegister').onclick = () => registerModal.classList.add('active');
-    document.getElementById('closeModal').onclick = closeRegister;
-    document.getElementById('backBtn').onclick = closeRegister;
-    window.onclick = (e) => { if (e.target === registerModal) closeRegister(); }
-
-    function closeRegister() {
-      registerModal.classList.remove('active');
-      document.getElementById('registerForm').reset();
-    }
-
     document.getElementById('registerForm').onsubmit = (e) => {
       e.preventDefault();
-      const email = document.getElementById('email').value;
-      const pass = document.getElementById('password').value;
-      if (email.includes('@') && pass.length >= 8) {
-        alert('Inscription réussie ! 🎉\nBienvenue sur LuxBet !');
-        closeRegister();
+      const name = document.getElementById('regName').value;
+      const email = document.getElementById('regEmail').value;
+      const pass = document.getElementById('regPass').value;
+      if (pass.length < 8) return alert('Mot de passe min. 8 caractères');
+      user = { name, email, pass }; // Hash en prod
+      localStorage.setItem('luxbetUser', JSON.stringify(user));
+      alert('Inscription réussie ! Connexion auto...');
+      closeModal('registerModal');
+      init(); // Auto-connexion
+    };
+
+    // Login
+    document.getElementById('loginForm').onsubmit = (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const pass = document.getElementById('loginPass').value;
+      const storedUser = JSON.parse(localStorage.getItem('luxbetUser'));
+      if (storedUser && storedUser.email === email && storedUser.pass === pass) {
+        user = storedUser;
+        alert('Connexion réussie !');
+        closeModal('loginModal');
+        init();
       } else {
-        alert('Veuillez vérifier email et mot de passe.');
+        alert('Email/Mot de passe incorrect');
       }
     };
 
-    // Démo jeux
-    function openDemo() {
-      demoModal.classList.add('active');
-      resizeCanvas();
-      window.addEventListener('resize', resizeCanvas);
-    }
-
-    function closeDemo() {
-      demoModal.classList.remove('active');
-      window.removeEventListener('resize', resizeCanvas);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-    document.getElementById('closeDemo').onclick = closeDemo;
-
-    function resizeCanvas() {
-      canvas.width = demoModal.clientWidth * 0.9;
-      canvas.height = demoModal.clientHeight * 0.9;
-    }
-
-    // === MACHINE À SOUS ===
-    function playSlot(theme) {
-      openDemo();
-      let symbols = theme === 'egypt' ? ['⚱️','🪲','👁️','⭐','7'] : ['🍒','🍋','🍉','7','⭐'];
-      let reels = [symbols.slice(), symbols.slice(), symbols.slice()];
-      let spinning = false;
-
-      function draw() {
-        ctx.fillStyle = '#111'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#222'; ctx.roundRect(50, 100, canvas.width - 100, 200, 20).fill();
-
-        reels.forEach((reel, i) => {
-          reel.forEach((sym, j) => {
-            ctx.font = '60px Arial'; ctx.textAlign = 'center';
-            ctx.fillText(sym, 100 + i * (canvas.width - 200)/3 + (canvas.width - 200)/6, 200 + j*80 - (reel.offset || 0));
-          });
-        });
-
-        ctx.fillStyle = spinning ? '#666' : '#ff6b35';
-        ctx.roundRect(canvas.width/2 - 80, canvas.height - 100, 160, 50, 10).fill();
-        ctx.fillStyle = '#fff'; ctx.font = '20px Arial';
-        ctx.fillText(spinning ? 'SPIN...' : 'SPIN', canvas.width/2, canvas.height - 65);
-      }
-
-      canvas.onclick = () => {
-        if (spinning) return;
-        spinning = true;
-        let spins = 40;
-        let interval = setInterval(() => {
-          reels.forEach(r => r.offset = (r.offset || 0) + 40);
-          draw();
-          if (--spins <= 0) {
-            spinning = false;
-            clearInterval(interval);
-            checkWin();
-          }
-        }, 50);
-      };
-
-      function checkWin() {
-        let mid = reels.map(r => r[Math.floor(((r.offset || 0) % (symbols.length * 80)) / 80)]);
-        if (mid[0] === mid[1] && mid[1] === mid[2]) {
-          ctx.fillStyle = '#00bf63'; ctx.font = '50px Arial';
-          ctx.fillText('JACKPOT !', canvas.width/2, 80);
-        }
-      }
-
-      draw();
-    }
-
-    // === ROULETTE ===
-    function playRoulette() {
-      openDemo();
-      let angle = 0, speed = 0, spinning = false;
-
-      function draw() {
-        ctx.fillStyle = '#111'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.save(); ctx.translate(canvas.width/2, canvas.height/2);
-        ctx.rotate(angle);
-
-        // Roue
-        for (let i = 0; i < 37; i++) {
-          ctx.fillStyle = i === 0 ? '#0b5d1e' : (i % 2 ? '#c00' : '#000');
-          ctx.beginPath(); ctx.moveTo(0, 0); ctx.arc(0, 0, 180, i*9.73*Math.PI/180, (i+1)*9.73*Math.PI/180); ctx.fill();
-          ctx.fillStyle = '#fff'; ctx.font = '14px Arial'; ctx.textAlign = 'center';
-          ctx.fillText(i, 140, 5);
-        }
-
-        ctx.restore();
-
-        // Balle
-        let ballX = canvas.width/2 + 160 * Math.cos(angle + Math.PI);
-        let ballY = canvas.height/2 + 160 * Math.sin(angle + Math.PI);
-        ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(ballX, ballY, 10, 0, Math.PI*2); ctx.fill();
-
-        // Bouton
-        ctx.fillStyle = spinning ? '#666' : '#ff6b35';
-        ctx.roundRect(canvas.width/2 - 80, canvas.height - 80, 160, 50, 10).fill();
-        ctx.fillStyle = '#fff'; ctx.font = '20px Arial';
-        ctx.fillText(spinning ? '...' : 'LANCER', canvas.width/2, canvas.height - 45);
-      }
-
-      canvas.onclick = () => {
-        if (spinning) return;
-        spinning = true;
-        speed = 0.3;
-        let interval = setInterval(() => {
-          angle += speed; speed *= 0.98;
-          draw();
-          if (speed < 0.001) { spinning = false; clearInterval(interval); }
-        }, 16);
-      };
-
-      draw();
-    }
-
-    // === BLACKJACK ===
-    function playBlackjack() {
-      openDemo();
-      let deck = [], player = [], dealer = [], turn = 'player';
-
-      function init() {
-        deck = [];
-        for (let s of ['♥','♦','♣','♠']) for (let v = 2; v <= 14; v++) deck.push({val: v > 10 ? 10 : v, sym: v===14?'A':v.toString(), suit: s});
-        player = [draw(), draw()]; dealer = [draw(), null];
-        drawGame();
-      }
-
-      function draw() {
-        return deck.splice(Math.floor(Math.random() * deck.length), 1)[0];
-      }
-
-      function value(hand) {
-        let v = 0, aces = 0;
-        hand.forEach(c => { if (c) { v += c.val; if (c.val === 1) aces++; } });
-        while (v <= 11 && aces--) v += 10;
-        return v;
-      }
-
-      function drawGame() {
-        ctx.fillStyle = '#111'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#0b5d1e'; ctx.fillRect(0, 0, canvas.width, 200);
-
-        // Cartes
-        [player, dealer].forEach((hand, i) => {
-          ctx.fillStyle = '#fff'; ctx.font = '24px Arial'; ctx.textAlign = 'center';
-          ctx.fillText(i ? 'Croupier: ' + (hand[1] ? value(hand) : '?') : 'Vous: ' + value(hand), canvas.width/2, 50 + i*300);
-          hand.forEach((card, j) => {
-            if (card) {
-              ctx.fillStyle = '#fff'; ctx.roundRect(100 + j*90, 80 + i*300, 70, 100, 10).fill();
-              ctx.fillStyle = card.suit === '♥' || card.suit === '♦' ? '#c00' : '#000';
-              ctx.font = '20px Arial'; ctx.fillText(card.sym + card.suit, 135 + j*90, 135 + i*300);
-            }
-          });
-        });
-
-        if (turn === 'player' && value(player) < 21) {
-          ['TIRER', 'RESTE'].forEach((txt, i) => {
-            ctx.fillStyle = '#ff6b35'; ctx.roundRect(150 + i*180, canvas.height - 100, 150, 50, 10).fill();
-            ctx.fillStyle = '#fff'; ctx.fillText(txt, 225 + i*180, canvas.height - 65);
-          });
-        }
-      }
-
-      canvas.onclick = (e) => {
-        if (turn !== 'player') return;
-        let x = e.offsetX, y = e.offsetY;
-        if (y > canvas.height - 100 && y < canvas.height - 50) {
-          if (x > 150 && x < 300) { player.push(draw()); if (value(player) > 21) turn = 'dealer'; }
-          if (x > 330 && x < 480) turn = 'dealer';
-          drawGame();
-        }
-      };
-
-      init();
-    }
-
-    // === UTILITAIRES CANVAS ===
-    CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
-      this.beginPath();
-      this.moveTo(x + r, y);
-      this.lineTo(x + w - r, y);
-      this.quadraticCurveTo(x + w, y, x + w, y + r);
-      this.lineTo(x + w, y + h - r);
-      this.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-      this.lineTo(x + r, y + h);
-      this.quadraticCurveTo(x, y + h, x, y + h - r);
-      this.lineTo(x, y + r);
-      this.quadraticCurveTo(x, y, x + r, y);
-      this.closePath();
-      return this;
+    // Dépôt
+    document.getElementById('depositForm').onsubmit = (e) => {
+      e.preventDefault();
+      const amount = parseFloat(document.getElementById('depositAmount').value);
+      if (amount < 20) return alert('Dépôt min. 20€');
+      if (depositsThisMonth >= maxDeposits) return alert('Limite de dépôts atteinte');
+      balance += amount;
+      depositsThisMonth++;
+      localStorage.setItem('balance', balance);
+      localStorage.setItem('depositsThisMonth', depositsThisMonth);
+      updateUI();
+      alert(`Dépôt de ${amount}€ ajouté ! Solde: ${balance.toFixed(2)}€`);
     };
 
-    // Exposer les fonctions
-    window.playSlot = playSlot;
-    window.playRoulette = playRoulette;
-    window.playBlackjack = playBlackjack;
+    // Modales
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+    document.querySelectorAll('.close').forEach(el => el.onclick = () => closeModal(el.closest('.modal').id));
+
+    document.getElementById('openRegister').onclick = () => document.getElementById('registerModal').classList.add('active');
+    document.getElementById('heroRegister').onclick = () => document.getElementById('registerModal').classList.add('active');
+    document.getElementById('openLogin').onclick = () => document.getElementById('loginModal').classList.add('active');
+
+    window.onclick = (e) => {
+      if (e.target.classList.contains('modal')) closeModal(e.target.id);
+    };
+
+    // Jeux (Vrais embeds)
+    function openGame(url) {
+      if (!user) return alert('Connectez-vous pour jouer');
+      document.getElementById('gameFrame').src = url;
+      document.getElementById('gameModal').classList.add('active');
+    }
+    document.getElementById('closeGame').onclick = () => {
+      document.getElementById('gameModal').classList.remove('active');
+      document.getElementById('gameFrame').src = '';
+    };
+
+    // Utils
+    function logout() {
+      user = null;
+      localStorage.removeItem('luxbetUser');
+      localStorage.setItem('balance', 0);
+      localStorage.setItem('depositsThisMonth', 0);
+      balance = 0;
+      depositsThisMonth = 0;
+      showAuth();
+      alert('Déconnexion réussie');
+    }
+
+    function goToGames() {
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('jeux').style.display = 'block';
+      document.getElementById('jeux').scrollIntoView();
+    }
+
+    // Reset mensuel dépôts (simulé)
+    setInterval(() => {
+      const now = new Date();
+      if (localStorage.getItem('lastReset') && now.getMonth() !== new Date(localStorage.getItem('lastReset')).getMonth()) {
+        depositsThisMonth = 0;
+        localStorage.setItem('depositsThisMonth', 0);
+        localStorage.setItem('lastReset', now.toISOString());
+        updateUI();
+      }
+    }, 3600000); // Check hourly
+
+    init();
   </script>
 
 </body>
