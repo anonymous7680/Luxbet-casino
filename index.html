@@ -46,6 +46,28 @@
     .user-email { font-size: 0.9rem; color: #ccc; }
     .logout-btn { background: transparent; border: 1px solid #ccc; color: #ccc; padding: 0.4rem 0.8rem; border-radius: 12px; font-size: 0.8rem; cursor: pointer; }
 
+    /* === BOUTONS INSCRIPTION & CONNEXION PLUS PETITS === */
+    #authButtons {
+      display: flex; gap: 0.8rem;
+    }
+    #authButtons .btn {
+      background: transparent;
+      border: 1.5px solid var(--primary);
+      color: var(--primary);
+      padding: 0.5rem 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      min-width: 90px;
+    }
+    #authButtons .btn:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255,107,53,0.3);
+    }
+
     /* Hamburger */
     .hamburger {
       display: flex; flex-direction: column; cursor: pointer; gap: 6px; transition: 0.3s;
@@ -171,6 +193,7 @@
       .auth-modal { padding: 2rem 1.5rem; }
       #qrCode { width: 180px; height: 180px; }
       .menu { left: 1rem; width: 200px; }
+      #authButtons .btn { font-size: 0.85rem; padding: 0.4rem 1rem; }
     }
   </style>
 </head>
@@ -494,7 +517,7 @@
     }
 
     async function checkDeposit(tx) {
-      // À REMPLIR AVEC API RÉELLE (BscScan / Solana)
+      // REMPLACE PAR API RÉELLE
       return false;
     }
 
